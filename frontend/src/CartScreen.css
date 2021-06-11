@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=Numans&display=swap");
+
+.cartScreen {
+  display: flex;
+  flex-wrap: wrap;
+  font-family: "Numans", sans-serif;
+  padding: 0.9375rem;
+  background-color: #f8f4f4;
+}
+
+.cartScreen__title {
+  border-bottom: 1px solid lightgray;
+  padding: 0.9375rem;
+  letter-spacing: 0.125rem;
+  font-family: "Numans", sans-serif;
+}
+.cartScreen__left {
+  flex: 3;
+}
+
+.cartScreen__right {
+  flex: 1;
+}
+
+/* FOR MOBILE USERS */
+
+@media only screen and (min-width: 320px) and (max-width: 630px) {
+  .cartScreen {
+    padding-top: 0;
+  }
+
+  .cartScreen__title {
+    order: 0;
+  }
+
+  .cartScreen__left {
+    order: 2;
+  }
+  .cartScreen__right {
+    order: 1;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .cartScreen__title > span {
+    display: none;
+  }
+}

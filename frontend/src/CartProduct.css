@@ -1,0 +1,39 @@
+.cartProduct {
+  display: flex;
+  padding: 1.875rem;
+  justify-content: flex-start;
+}
+
+.forShiping {
+  padding: 0;
+  /* align-items: stretch; */
+  margin-bottom: 1.5rem;
+}
+
+.cartProduct__left {
+  flex: 1;
+  max-width: max-content;
+  margin-right: 0.625rem;
+}
+
+.cardProduct__right {
+  flex: 2;
+  font-size: 1rem;
+}
+
+.cartProduct__right-info {
+  margin-top: 0.625rem;
+}
+
+.cartProduct__img {
+  /* object-fit: contain; */
+  max-width: 10vh;
+}
+
+/* FOR MOBILE USERS */
+
+@media only screen and (min-width: 320px) and (max-width: 650px) {
+  .cardProduct__right {
+    font-size: 0.5rem;
+  }
+}

@@ -1,0 +1,194 @@
+@import url("https://fonts.googleapis.com/css2?family=Numans&display=swap");
+
+.product {
+  /* margin-top: 3.125rem;
+  margin-bottom: 3.125rem; */
+  margin: 3%;
+  max-width: max-content !important;
+  /* margin: 3.125rem; */
+  cursor: pointer;
+  /* margin: 1rem; */
+  /* padding-bottom: 3rem; */
+  transition: transform 450ms;
+  position: relative;
+}
+
+.productSlider {
+  margin: 1.875rem;
+  max-width: max-content !important;
+  cursor: pointer;
+  transition: transform 450ms;
+  position: relative;
+}
+
+.productShopScreen {
+  margin: 1.875rem;
+  max-width: max-content !important;
+  cursor: pointer;
+  transition: transform 450ms;
+  position: relative;
+}
+
+/* PRODUCTS COMPONENTS */
+
+.product__image {
+  object-fit: contain;
+  /* height: 21.875rem; */
+  height: 35vh;
+  /* max-height: 100vw; */
+  max-height: 25rem;
+  max-width: calc(100vw - 10%);
+}
+
+.product__saleTag {
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  z-index: 100;
+}
+
+.saleTagColor {
+  color: #8a2f77;
+}
+
+/* COMMON FOR LINKS */
+.link {
+  text-decoration: none;
+  color: black;
+}
+
+.product__directOrder {
+  z-index: 1;
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 0.8s;
+  position: relative;
+}
+
+.product__directOrder-button {
+  background-color: #0000008f;
+  color: white;
+  font-family: "Numans", sans-serif;
+  border: 0px;
+  width: 100%;
+  margin: 0px;
+  position: absolute;
+  bottom: 0;
+}
+
+.product__priceHeart {
+  width: 100%;
+  margin-top: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.product__price {
+  font-family: "Numans", sans-serif;
+  font-size: 0.875rem;
+  font-weight: bold;
+}
+
+.product__price > span:last-child {
+  margin-left: 15px;
+  text-decoration-line: line-through;
+  color: grey;
+  font-weight: 500 !important;
+}
+
+.product__heart {
+  transition: transform 450ms;
+}
+
+/* .colorHeart {
+  color: rgb(194, 194, 194);
+} */
+
+.product__title {
+  margin-top: 0.25rem;
+  font-family: "Numans", sans-serif;
+  font-size: 0.875rem;
+}
+
+/* HOVER EFFECTS */
+
+/* .product:hover {
+  transform: scale(1.05); */
+/* background-color: rgba(0, 0, 0, 0.3); */
+/* } */
+
+/* .productSlider:hover {
+  transform: scale(1.05);
+} */
+
+/* .productShopScreen:hover {
+  transform: scale(1.05);
+} */
+
+.product__heart:hover {
+  transform: scale(1.5);
+}
+
+.forSaleSection:hover .saleTagColor {
+  color: #a199cf;
+}
+
+/* FADING ANIMATIONS */
+
+@-webkit-keyframes fade {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* MEDIA SCREENS */
+/* //1020 */
+/* @media only screen and (min-width: 320px) and (max-width: 1172px) {
+  .product__image {
+    height: 17.5rem;
+  }
+} */
+
+/* @media only screen and (min-width: 935px) and (max-width: 1021px) {
+  .product__image {
+    height: 15rem;
+  }
+} */
+
+/* @media only screen and (min-width: 893px) and (max-width: 936px) {
+  .product__image {
+    height: 13.75rem;
+  }
+} */
+/* //892 */
+/* @media only screen and (min-width: 866px) and (max-width: 633px) {
+  .product__image {
+    height: 12.5rem;
+  }
+} */
+
+/* @media only screen and (min-width: 634px) and (max-width: 865px) {
+  .product__image {
+    height: 21.875rem;
+  }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 633px) {
+  .product__image {
+    height: 25rem;
+  }
+} */

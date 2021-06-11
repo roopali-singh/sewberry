@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Numans&display=swap");
+
+.productScreen {
+  max-width: 156.25rem;
+  /* width: 100%; */
+  margin: auto;
+  overflow-x: hidden;
+  /* display: flex;
+  flex-direction: row; */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /* gap: 30px; */
+}
+
+.productScreen__image {
+  margin-top: 3.125rem;
+  margin-left: 3.125rem;
+  margin-bottom: 3.125rem;
+  object-fit: contain;
+  /* width: 85%; */
+  /* height: 85%; */
+  max-height: calc(100vh - 18.75rem);
+  max-width: calc(100vw - 6.25rem);
+  place-items: center;
+  /* justify-content: start; */
+  /* align-items: end; */
+}
+
+.productScreen__info-status {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.productScreen__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-family: "Numans", sans-serif;
+  font-size: 0.9375rem;
+  line-height: 2.7;
+  max-width: max-content;
+  padding: 3.125rem;
+  /* justify-content: center; */
+  align-items: flex-start;
+}
+
+.productScreen__infoName {
+  font-weight: 1000;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+}
+
+.productScreen__infoDesc {
+  font-weight: 600;
+}
+
+.productScreen__infoDescTable > li {
+  text-decoration: none;
+  list-style-type: none;
+  line-height: 2;
+}

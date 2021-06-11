@@ -1,0 +1,37 @@
+@import url("https://fonts.googleapis.com/css2?family=Numans&display=swap");
+
+.slider {
+  width: 100%;
+}
+
+/* SLIDER HEADING */
+
+.slider__heading {
+  width: 100%;
+  background-color: rgba(203, 155, 155, 18%);
+}
+
+.slider__heading > p {
+  text-transform: uppercase;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  height: 6.25rem;
+  margin-bottom: 1.25rem;
+  font-family: "Numans", sans-serif;
+  text-align: center;
+  font-size: 1.6875rem;
+}
+
+/* SLIDES */
+
+.slide {
+  /* margin-bottom: 1.25rem; */
+  background-color: #afaaaa;
+}
+
+.slider__image {
+  object-fit: contain;
+  height: 21.875rem;
+}

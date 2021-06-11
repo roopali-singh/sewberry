@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Numans&display=swap");
+
+.shipping {
+  font-family: "Numans", sans-serif;
+}
+
+.shipping__title {
+  font-family: "Numans", sans-serif;
+  text-align: center;
+  border-bottom: 1px solid lightgray;
+  padding: 0.9375rem;
+}
+
+.shipping__outerBox {
+  background-color: white;
+}
+
+.shipping__box {
+  max-width: 75rem;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 0.9375rem;
+}
+
+.shipping__subBox {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 1.875rem;
+  border-bottom: 1px solid lightgray;
+}
+
+.shipping__subBox > strong {
+  flex: 1;
+  margin-right: 1rem;
+}
+
+.shipping__subBoxInfo {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.shipping__subBoxInfo > strong {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.shipping__button {
+  width: 100%;
+  margin-top: 20px;
+  max-width: 300px;
+}
+
+/* FOR MOBILE USERS */
+
+@media only screen and (min-width: 320px) and (max-width: 650px) {
+  .shipping {
+    font-size: 0.8rem;
+  }
+}

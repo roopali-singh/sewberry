@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Numans&display=swap");
+
+.errorBox {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+h3 {
+  font-family: "Numans", sans-serif;
+}
+
+.errorBox__button {
+  margin-top: 30px;
+  border-width: 2px;
+  border-color: #68e1fd;
+  background-color: white;
+  font-family: "Numans", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+.errorBox__button:hover {
+  background-color: #68e1fd;
+  border-color: white;
+}

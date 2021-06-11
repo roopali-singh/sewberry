@@ -1,0 +1,15 @@
+.back__button {
+  margin-top: 40px;
+  background-color: #4c5258;
+  color: #e4e1e1;
+  text-decoration: none;
+
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back__button:hover {
+  background-color: #424446;
+}

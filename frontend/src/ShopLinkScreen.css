@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Numans&display=swap");
+
+.shop {
+  overflow-x: hidden;
+  max-width: 75rem;
+  width: 100%;
+  margin: auto;
+}
+
+.shop__title {
+  font-family: "Numans", sans-serif;
+  text-align: center;
+  margin-top: 1.875rem;
+  margin-bottom: 1.875rem;
+}
+
+.shop__sections {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* hvr-buzz IS DEFINED IN THE NAVBAR.CSS (HOVER.CSS) */
+
+.shop__sections > p {
+  margin: 1.25rem;
+  cursor: pointer;
+  font-size: 1.25rem;
+}
+
+.shop__products {
+  /* width: 100%; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  /* 
+  display: grid;
+  place-items: center center;
+  align-items: center;
+  justify-content: center;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  grid-auto-rows: minmax(100px, auto); */
+}
+
+/* HOVER EFFECT */
+
+.shop__sections > p:hover {
+  text-decoration-line: underline;
+}

@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Numans&display=swap");
+
+.beforeNav {
+  overflow-x: hidden;
+  /* background-color: #54003d; */
+  background-color: #8a246d;
+  color: white;
+  padding: 0.4rem;
+}
+
+.beforeNav > p {
+  font-family: "Numans", sans-serif;
+  text-align: center;
+  letter-spacing: 2px;
+  font-size: 0.85rem;
+  overflow-wrap: break-word;
+
+  line-height: 1.2rem;
+}
+
+/* FOR MOBILE USERS */
+
+@media only screen and (min-width: 320px) and (max-width: 425px) {
+  .beforeNav > p {
+    font-size: 0.5;
+  }
+}

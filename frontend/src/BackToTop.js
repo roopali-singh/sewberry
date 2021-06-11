@@ -1,0 +1,12 @@
+import React from "react";
+import "./BackToTop.css";
+
+function BackToTop() {
+  return (
+    <a href="/#" className="back__button">
+      <span>Back to Top</span>
+    </a>
+  );
+}
+
+export default BackToTop;
