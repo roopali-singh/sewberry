@@ -1,0 +1,45 @@
+.wishlistIcon {
+  cursor: pointer;
+}
+
+.non-wishlistHeart {
+  color: rgb(219, 207, 207);
+}
+
+.wishlistHeart {
+  color: rgb(221, 25, 25);
+}
+
+.non-wishlistHeart:hover {
+  color: rgb(221, 25, 25);
+  transition: color 0.3s ease-out;
+}
+
+.wishlistHeart:hover {
+  color: rgb(219, 207, 207);
+  transition: color 0.3s ease-out;
+}
+
+/* // REMOVING HOVER FROM MOBILE */
+
+@media (hover: hover) {
+  /* Styling which you want with hover. */
+  .non-wishlistHeart:hover {
+    color: rgb(221, 25, 25);
+  }
+
+  .wishlistHeart:hover {
+    color: rgb(219, 207, 207);
+  }
+}
+
+@media (hover: none) {
+  /* Styling which you want without hover. */
+  .non-wishlistHeart:hover {
+    color: rgb(219, 207, 207);
+  }
+
+  .wishlistHeart:hover {
+    color: rgb(221, 25, 25);
+  }
+}

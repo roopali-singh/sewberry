@@ -28,7 +28,7 @@ function ProductScreen(props) {
   useEffect(() => {
     async function detailsProduct() {
       dispatch({
-        type: "PRODUCT_DETAILS_REQUEST",
+        type: "PRODUCT_LIST_REQUEST",
         loading: true,
       });
       try {
@@ -40,7 +40,7 @@ function ProductScreen(props) {
         });
       } catch (error) {
         dispatch({
-          type: "PRODUCT_DETAILS_FAIL",
+          type: "PRODUCT_LIST_FAIL",
           loading: false,
           error:
             error.response && error.response.data.message

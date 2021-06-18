@@ -1,15 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Product.css";
 import LoyaltyIcon from "@material-ui/icons/Loyalty";
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import { Link } from "react-router-dom";
 import { useStateValue } from "./StateProvider";
+import WishlistIcon from "./WishlistIcon";
 
 function Product({ product, forSlider, forShopScreen, forSale }) {
   const [{ basket }, dispatch] = useStateValue();
   const [inHover, setHover] = useState(false);
 
-  const addToCart = () => {
+  useEffect(() => {
+    localStorage.setItem("basket", JSON.stringify(basket));
+  }, [basket]);
+
+  function addToCart() {
     dispatch({
       type: "ADD_TO_BASKET",
       items: {
@@ -21,8 +25,7 @@ function Product({ product, forSlider, forShopScreen, forSale }) {
         countInStock: product?.countInStock - 1,
       },
     });
-    localStorage.setItem("basket", JSON.stringify(basket));
-  };
+  }
 
   return (
     <div
@@ -89,7 +92,7 @@ function Product({ product, forSlider, forShopScreen, forSale }) {
           )}
         </Link>
         <span className="product__heart">
-          <FavoriteBorderIcon className="colorHeart" />
+          <WishlistIcon product={product} />
         </span>
       </div>
 

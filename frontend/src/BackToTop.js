@@ -3,7 +3,8 @@ import "./BackToTop.css";
 
 function BackToTop() {
   return (
-    <a href="/#" className="back__button">
+    // /# => is taking us back to the home page
+    <a href="#" className="back__button">
       <span>Back to Top</span>
     </a>
   );

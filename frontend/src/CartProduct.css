@@ -4,6 +4,18 @@
   justify-content: flex-start;
 }
 
+.forWishlist {
+  width: 35vw;
+  flex-wrap: wrap;
+}
+
+.forWishlistHeart {
+  position: absolute;
+  bottom: 2%;
+  right: 2%;
+  z-index: 100;
+}
+
 .forShiping {
   padding: 0;
   /* align-items: stretch; */
@@ -14,6 +26,7 @@
   flex: 1;
   max-width: max-content;
   margin-right: 0.625rem;
+  position: relative;
 }
 
 .cardProduct__right {
@@ -35,5 +48,11 @@
 @media only screen and (min-width: 320px) and (max-width: 650px) {
   .cardProduct__right {
     font-size: 0.5rem;
+  }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 557px) {
+  .forWishlist {
+    width: max-content;
   }
 }

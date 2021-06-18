@@ -20,11 +20,11 @@ function Navbar() {
           <span className="navbar__links hvr-buzz">SHOP</span>
         </Link>
 
-        <Link to="/products">
+        <Link to="/signin">
           <span className="navbar__links hvr-buzz">ACCOUNT</span>
         </Link>
 
-        <Link to="/products">
+        <Link to="/wishlist">
           <span className="navbar__links hvr-buzz">WISHLIST</span>
         </Link>
         <Link to="/orders">

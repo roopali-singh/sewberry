@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./PriceBox.css";
 import { useHistory } from "react-router-dom";
 import { useStateValue } from "./StateProvider";
@@ -12,6 +12,10 @@ function PriceBox({ subTotal, gift, addToBasket }) {
   const discount = amount > 7000 ? 10 : 0;
   const shipping = basket?.length > 0 ? 150 : 0;
   const discountPrice = shipping + (amount - (discount / 100) * amount);
+
+  useEffect(() => {
+    localStorage.setItem("basket", JSON.stringify(basket));
+  }, [basket]);
 
   function checkoutHandler() {
     // history.push("/signin?redirect=shipping");
@@ -41,6 +45,7 @@ function PriceBox({ subTotal, gift, addToBasket }) {
   return (
     <div className="priceBox">
       {subTotal ? (
+        /// FOR THE SUBTOTAL /////////////////////////////////////////////
         <>
           <span className="priceBox__info">
             <span>Subtotal ({basket?.length} items)</span>
@@ -74,6 +79,7 @@ function PriceBox({ subTotal, gift, addToBasket }) {
           </span>
         </>
       ) : (
+        /// NORMAL PRICE FOR PRODUCT SCREEN //////////////////////////////////////
         <span className="priceBox__info">
           <span>Price</span>
           <strong>
@@ -86,11 +92,13 @@ function PriceBox({ subTotal, gift, addToBasket }) {
       )}
 
       {gift ? (
+        /// GIFT ////////////////////////////////////////////////////////////////////
         <small className="priceBox__info forCheckbox">
           <input type="checkbox" />
           This order contains a gift
         </small>
       ) : (
+        /// IN OR OUT OF STOCK /////////////////////////////////////////////////////
         <span className="priceBox__info">
           <span>Status </span>
           {productDetails?.countInStock > 0 ? (
@@ -106,6 +114,7 @@ function PriceBox({ subTotal, gift, addToBasket }) {
       )}
 
       {addToBasket ? (
+        /// ADD TO BASKET BUTTON ////////////////////////////////////////////////////////
         <button
           onClick={addToCart}
           disabled={productDetails?.countInStock <= 0}
@@ -113,6 +122,7 @@ function PriceBox({ subTotal, gift, addToBasket }) {
           Add To Cart
         </button>
       ) : (
+        /// PROCEED TO CHECKOUT BUTTON  ////////////////////////////////////////////////////
         <button onClick={checkoutHandler} disabled={basket?.length === 0}>
           Proceed to Checkout
         </button>

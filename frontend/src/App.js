@@ -11,6 +11,7 @@ import CartScreen from "./CartScreen";
 import SignIn from "./SignIn";
 import Shipping from "./Shipping";
 import BeforeNavbar from "./BeforeNavbar";
+import WishlistLinkScreen from "./WishlistLinkScreen";
 
 function App() {
   return (
@@ -20,6 +21,14 @@ function App() {
           <Route path="/shipping">
             <Navbar />
             <Shipping />
+          </Route>
+
+          <Route path="/wishlist">
+            <BeforeNavbar />
+            <Navbar />
+            <WishlistLinkScreen />
+            <BackToTop />
+            <Footer />
           </Route>
 
           <Route path="/signin">

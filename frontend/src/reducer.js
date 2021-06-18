@@ -5,13 +5,13 @@ export const initialState = {
   loading: true,
   error: false,
   // ADD TO CART
-  basket: [],
+  basket: JSON.parse(localStorage.getItem("basket")) || [],
   // PRODUCTS SHOWN ON SHOP LINK SCREEN
   productsShown: true,
   saleProductsShown: false,
   allProductsShown: false,
   // WISHLIST BASKET
-  wishlistBasket: [],
+  wishlistBasket: JSON.parse(localStorage.getItem("wishlistBasket")) || [],
 };
 
 const reducer = (state, action) => {
@@ -38,11 +38,11 @@ const reducer = (state, action) => {
 
     //FOR PRODUCT_SCREEN
 
-    case "PRODUCT_DETAILS_REQUEST":
-      return {
-        ...state,
-        loading: action.loading,
-      };
+    // case "PRODUCT_DETAILS_REQUEST":
+    //   return {
+    //     ...state,
+    //     loading: action.loading,
+    //   };
 
     case "PRODUCT_DETAILS_SUCCESS":
       return {
@@ -51,12 +51,12 @@ const reducer = (state, action) => {
         productDetails: action.productDetails,
       };
 
-    case "PRODUCT_DETAILS_FAIL":
-      return {
-        ...state,
-        loading: action.loading,
-        error: action.error,
-      };
+    // case "PRODUCT_DETAILS_FAIL":
+    //   return {
+    //     ...state,
+    //     loading: action.loading,
+    //     error: action.error,
+    //   };
 
     //ADD TO BASKET
     case "ADD_TO_BASKET":
@@ -64,6 +64,8 @@ const reducer = (state, action) => {
         ...state,
         basket: [...state.basket, action.items],
       };
+
+    //REMOVE FROM BASKET
 
     case "REMOVE_FROM_BASKET":
       const index = state.basket.findIndex(
@@ -87,6 +89,31 @@ const reducer = (state, action) => {
         basket: newBasket,
       };
 
+    // ADDING AND REMOVIGN FROM THE WISHLIST ITEMS
+
+    case "ADD_TO_WISHLIST":
+      // to check if the item is not already present in favourites
+
+      const wishlistItem = state.wishlistBasket?.find(
+        (wishlistBasketId) => wishlistBasketId?._id === action.items?._id
+      );
+      let newWishlistBasket = [...state.wishlistBasket];
+
+      if (!wishlistItem) {
+        // item not present => add that item
+        newWishlistBasket = [...state.wishlistBasket, action.items];
+      } else {
+        // item present => remove that item
+        newWishlistBasket = state.wishlistBasket?.filter(
+          (wishlistPresent) => wishlistPresent?._id !== wishlistItem?._id
+        );
+      }
+
+      return {
+        ...state,
+        wishlistBasket: newWishlistBasket,
+      };
+
     // SETTING THE TOTAL BASKET PRICE
 
     case "SHOW_PRODUCTS":
@@ -95,6 +122,14 @@ const reducer = (state, action) => {
         productsShown: action.productsShown,
         saleProductsShown: action.saleProductsShown,
         allProductsShown: action.allProductsShown,
+      };
+
+    // CHANGING THE TOTAL DISCOUNT PRICE
+
+    case "CHANGE_TOTAL_DISCOUNT_PRICE":
+      return {
+        ...state,
+        discountPrice: action.discountPrice,
       };
 
     default:
