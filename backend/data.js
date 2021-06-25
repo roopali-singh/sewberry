@@ -1,4 +1,27 @@
+import bcrypt from "bcryptjs";
+
 const data = {
+  users: [
+    // text password in database is Insecure => use bcrypt library
+    {
+      name: "Roopali Singh",
+      email: "roopali.singh.222@gmail.com",
+      password: bcrypt.hashSync("moon", 8),
+      isAdmin: true,
+    },
+    {
+      name: "Yashu Singh",
+      email: "yashu@gmail.com",
+      password: bcrypt.hashSync("doctor", 8),
+      isAdmin: false,
+    },
+    {
+      name: "Oreo",
+      email: "oreo@gmail.com",
+      password: bcrypt.hashSync("dog", 8),
+      isAdmin: false,
+    },
+  ],
   products: [
     // best_sellers: {
     // category: "Best Sellers",

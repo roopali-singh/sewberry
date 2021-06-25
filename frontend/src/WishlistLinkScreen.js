@@ -5,9 +5,7 @@ import CartProduct from "./CartProduct";
 
 function WishlistLinkScreen() {
   const [{ wishlistBasket }] = useStateValue();
-  console.log(wishlistBasket);
-  console.log({ localStorage });
-  
+
   return (
     <div className="wishlist">
       <h1 className="wishlist__title">Your Wishlist</h1>
