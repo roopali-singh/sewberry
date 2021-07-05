@@ -27,7 +27,7 @@ const data = {
     // category: "Best Sellers",
     // info: [
     {
-      _id: "1",
+      // _id: "1",
       category: "Best Sellers",
       name: "One Shoulder Pleated Mania Gown",
       alt: "One Shoulder Pleated Mania Gown",
@@ -49,7 +49,7 @@ const data = {
       },
     },
     {
-      _id: "2",
+      // _id: "2",
       category: "Best Sellers",
       name: "Deep Burgndy Strapy Back Dress",
       alt: "Deep Burgndy Strapy Back Dress",
@@ -71,7 +71,7 @@ const data = {
       },
     },
     {
-      _id: "3",
+      // _id: "3",
       category: "Best Sellers",
       name: "Mirynee Pink Two Piece Set",
       alt: "Mirynee Pink Two Piece Set",
@@ -93,7 +93,7 @@ const data = {
       },
     },
     {
-      _id: "4",
+      // _id: "4",
       category: "Best Sellers",
       name: "Mirynee Peach Two Piece Set",
       alt: "Mirynee Peach Two Piece Set",
@@ -115,7 +115,7 @@ const data = {
       },
     },
     {
-      _id: "5",
+      // _id: "5",
       category: "Best Sellers",
       name: "Maroon Multi-Layer Princess Feel Gown",
       alt: "Maroon Multi-Layer Princess Feel Gown",
@@ -136,7 +136,7 @@ const data = {
       },
     },
     {
-      _id: "6",
+      // _id: "6",
       category: "Best Sellers",
       name: "Off-Shoulder Cinderrella Look Gown",
       alt: "Off-Shoulder Cinderrella Look Gown",
@@ -163,7 +163,7 @@ const data = {
     // category: "New Arrivals",
     // info: [
     {
-      _id: "7",
+      // _id: "7",
       category: "New Arrivals",
       name: "Pretty Pink Perfect Tube Dress",
       alt: "Pretty Pink Perfect Tube Dress",
@@ -185,7 +185,7 @@ const data = {
       },
     },
     {
-      _id: "8",
+      // _id: "8",
       category: "New Arrivals",
       name: "Kiara Style It Around Cute Dress",
       alt: "Kiara Style It Around Cute Dress",
@@ -207,7 +207,7 @@ const data = {
       },
     },
     {
-      _id: "9",
+      // _id: "9",
       category: "New Arrivals",
       name: "Deep Burgndy Strapy Back Dress",
       alt: "Deep Burgndy Strapy Back Dress",
@@ -229,7 +229,7 @@ const data = {
       },
     },
     {
-      _id: "10",
+      // _id: "10",
       category: "New Arrivals",
       name: "Black Magic Tube Tulle Dress",
       alt: "Black Magic Tube Tulle Dress",
@@ -251,7 +251,7 @@ const data = {
       },
     },
     {
-      _id: "11",
+      // _id: "11",
       category: "New Arrivals",
       name: "One Shoulder Pleated Mania Gown",
       alt: "One Shoulder Pleated Mania Gown",
@@ -273,7 +273,7 @@ const data = {
       },
     },
     {
-      _id: "12",
+      // _id: "12",
       category: "New Arrivals",
       name: "Mirynee Peach Two Piece Set",
       alt: "Mirynee Peach Two Piece Set",
@@ -295,7 +295,7 @@ const data = {
       },
     },
     {
-      _id: "13",
+      // _id: "13",
       category: "New Arrivals",
       name: "Maroon Multi-Layer Princess Feel Gown",
       alt: "Maroon Multi-Layer Princess Feel Gown",
@@ -316,7 +316,7 @@ const data = {
       },
     },
     {
-      _id: "14",
+      // _id: "14",
       category: "New Arrivals",
       name: "Off-Shoulder Cinderrella Look Gown",
       alt: "Off-Shoulder Cinderrella Look Gown",
