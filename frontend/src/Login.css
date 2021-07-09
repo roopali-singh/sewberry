@@ -1,4 +1,4 @@
-.signin {
+.login {
   padding: 4vh;
   background-color: white;
   display: flex;
@@ -7,11 +7,11 @@
   align-items: center;
 }
 
-.signin__logo {
+.login__logo {
   margin: 25px auto;
 }
 
-.signin__box {
+.login__box {
   border: 1px solid lightgray;
   border-radius: 5px;
   padding: 1%;
@@ -21,25 +21,28 @@
   padding: 18px;
 }
 
-.signin__title {
+.login__title {
   text-align: left;
   margin-bottom: 20px;
 }
 
-.signin__subTitle {
+.login__subTitle {
   margin-bottom: 5px;
+  font-size: 0.83em;
+  font-weight: bolder;
 }
 
-.signin__input {
+.login__input {
   margin-bottom: 10px;
+  /* width: 100%; */
 }
 
-.signin__button {
+.login__button {
   width: 100%;
   margin-bottom: 15px;
 }
 
-.signin__button-gray {
+.login__button-gray {
   width: 100%;
   background-color: #efefef;
   /* margin-bottom: 10px; */

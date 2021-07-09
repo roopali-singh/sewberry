@@ -8,7 +8,8 @@ import Footer from "./Footer";
 import ShopLinkScreen from "./ShopLinkScreen";
 import ProductScreen from "./ProductScreen";
 import CartScreen from "./CartScreen";
-import SignIn from "./SignIn";
+import Login from "./Login";
+import RegisterScreen from "./RegisterScreen";
 import Shipping from "./Shipping";
 import BeforeNavbar from "./BeforeNavbar";
 import WishlistLinkScreen from "./WishlistLinkScreen";
@@ -31,8 +32,12 @@ function App() {
             <Footer />
           </Route>
 
-          <Route path="/signin">
-            <SignIn />
+          <Route path="/register">
+            <RegisterScreen />
+          </Route>
+
+          <Route path="/login">
+            <Login />
           </Route>
 
           <Route path="/orders">
