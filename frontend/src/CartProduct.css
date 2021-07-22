@@ -16,6 +16,10 @@
   z-index: 100;
 }
 
+.forAccount {
+  padding: 0;
+  /* align-items: stretch; */
+}
 .forShiping {
   padding: 0;
   /* align-items: stretch; */
@@ -43,16 +47,54 @@
   max-width: 10vh;
 }
 
+.order__total {
+  font-weight: 550;
+  text-align: right;
+}
+
+.order__info {
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
 /* FOR MOBILE USERS */
 
 @media only screen and (min-width: 320px) and (max-width: 650px) {
   .cardProduct__right {
     font-size: 0.5rem;
   }
+
+  .order__total {
+    font-size: 0.7rem;
+    margin-top: 0.3125rem;
+  }
+
+  .order__info {
+    margin-bottom: 0.625rem;
+  }
+
+  button {
+    font-size: 0.7rem;
+  }
 }
 
 @media only screen and (min-width: 320px) and (max-width: 557px) {
   .forWishlist {
     width: max-content;
+  }
+
+  .order__total {
+    font-size: 0.7rem;
+    margin-top: 0.3125rem;
+  }
+
+  .order__info {
+    margin-bottom: 0.625rem;
+  }
+
+  button {
+    font-size: 0.7rem;
   }
 }

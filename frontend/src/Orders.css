@@ -1,0 +1,15 @@
+.orders {
+  border-radius: 3px;
+  border: 1px solid black;
+  padding: 3%;
+  margin: 3%;
+  background-color: rgb(234, 237, 237);
+}
+
+/* FOR MOBILE USERS */
+
+@media only screen and (min-width: 320px) and (max-width: 850px) {
+  .orders {
+    font-size: 0.7rem;
+  }
+}
