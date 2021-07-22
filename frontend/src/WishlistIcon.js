@@ -5,7 +5,7 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 
 function WishlistIcon({ product }) {
   const [{ wishlistBasket }, dispatch] = useStateValue();
-  const wishlistBasketCheck = wishlistBasket.find(
+  const wishlistBasketCheck = wishlistBasket?.find(
     (wishlist) => wishlist?._id === product?._id
   );
 

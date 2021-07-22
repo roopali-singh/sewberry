@@ -18,7 +18,7 @@ function PriceBox({ subTotal, gift, addToBasket }) {
   }, [basket]);
 
   function checkoutHandler() {
-    // history.push("/signin?redirect=shipping");
+    // history.push("/login?redirect=shipping");
     history.push("/shipping");
   }
 

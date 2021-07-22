@@ -13,6 +13,7 @@ import RegisterScreen from "./RegisterScreen";
 import Shipping from "./Shipping";
 import BeforeNavbar from "./BeforeNavbar";
 import WishlistLinkScreen from "./WishlistLinkScreen";
+import Account from "./Account";
 
 function App() {
   return (
@@ -34,6 +35,11 @@ function App() {
 
           <Route path="/register">
             <RegisterScreen />
+          </Route>
+
+          <Route path="/account">
+            <Navbar />
+            <Account />
           </Route>
 
           <Route path="/login">

@@ -11,13 +11,14 @@ import { useStateValue } from "./StateProvider";
 import Video from "./Video";
 
 function Home() {
-  const [{ products, loading, error }, dispatch] = useStateValue();
+  const [{ products, loading, error, basket }, dispatch] = useStateValue();
 
   useEffect(() => {
     const listProducts = async () => {
       dispatch({
         type: "PRODUCT_LIST_REQUEST",
         loading: true,
+        error: false,
       });
       try {
         const { data } = await axios.get("/api/products");
@@ -36,6 +37,7 @@ function Home() {
     };
     listProducts();
   }, [dispatch]);
+
 
   return (
     <>

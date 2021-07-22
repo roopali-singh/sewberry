@@ -27,6 +27,7 @@ function Navbar() {
         <Link to="/wishlist">
           <span className="navbar__links hvr-buzz">WISHLIST</span>
         </Link>
+
         <Link to="/orders">
           <ShoppingCartIcon className="navbar__links nav__mobileSize hvr-buzz" />
           <strong>{basket?.length}</strong>

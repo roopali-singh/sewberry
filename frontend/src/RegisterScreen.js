@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import useFormInput from "./formUtils";
 import "./RegisterScreen.css";
 
 function RegisterScreen() {
-  const firstName = useFormInput("");
-  const lastName = useFormInput("");
-  const email = useFormInput("", true);
-  const password = useFormInput("", true);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  function handleSpacesInBetween(e) {
+    if (e.key === " ") {
+      e.preventDefault();
+    }
+  }
+
+  // SIGN IN FUNCTION
 
   function submitHandler(e) {
     e.preventDefault();
@@ -32,11 +39,12 @@ function RegisterScreen() {
               First Name
             </label>
             <input
-              {...firstName}
+              value={firstName}
               className="register__input register__input-margin-right"
               type="text"
               required
-              // disabled={!input.trim()}
+              onChange={(e) => setFirstName(e.target.value)}
+              onBlur={(e) => setFirstName(e.target.value.trim())}
             />
           </div>
 
@@ -45,10 +53,12 @@ function RegisterScreen() {
               Last Name
             </label>
             <input
-              {...lastName}
+              value={lastName}
               className="register__input register__input-margin-left"
               type="text"
               // required
+              onChange={(e) => setLastName(e.target.value)}
+              onBlur={(e) => setLastName(e.target.value.trim())}
             />
           </div>
         </section>
@@ -56,16 +66,27 @@ function RegisterScreen() {
         <label className="register__subTitle" htmlFor="email">
           E-mail
         </label>
-        <input {...email} className="register__input" type="email" required />
+        <input
+          value={email}
+          className="register__input"
+          type="email"
+          required
+          onChange={(e) => setEmail(e.target.value)}
+          onBlur={(e) => setEmail(e.target.value.trim())}
+          onKeyPress={handleSpacesInBetween}
+        />
 
         <label className="register__subTitle" htmlFor="password">
           Password
         </label>
         <input
-          {...password}
+          value={password}
           className="register__input"
           type="password"
           required
+          onChange={(e) => setPassword(e.target.value)}
+          onBlur={(e) => setPassword(e.target.value.trim())}
+          onKeyPress={handleSpacesInBetween}
         />
         <button
           className="register__button"

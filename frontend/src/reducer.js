@@ -2,16 +2,24 @@
 export const initialState = {
   products: [],
   productDetails: [],
+  // USER SIGN-IN and SIGN-OUT
+  userInfo: localStorage.getItem("userInfo")
+    ? JSON.parse(localStorage.getItem("userInfo"))
+    : {},
   loading: true,
   error: false,
   // ADD TO CART
-  basket: JSON.parse(localStorage.getItem("basket")) || [],
+  basket: localStorage.getItem("basket")
+    ? JSON.parse(localStorage.getItem("basket"))
+    : [],
   // PRODUCTS SHOWN ON SHOP LINK SCREEN
   productsShown: true,
   saleProductsShown: false,
   allProductsShown: false,
   // WISHLIST BASKET
-  wishlistBasket: JSON.parse(localStorage.getItem("wishlistBasket")) || [],
+  wishlistBasket: localStorage.getItem("wishlistBasket")
+    ? JSON.parse(localStorage.getItem("wishlistBasket"))
+    : [],
 };
 
 const reducer = (state, action) => {
@@ -20,6 +28,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         loading: action.loading,
+        error: action.error,
       };
 
     case "PRODUCT_LIST_SUCCESS":
@@ -94,17 +103,17 @@ const reducer = (state, action) => {
     case "ADD_TO_WISHLIST":
       // to check if the item is not already present in favourites
 
-      const wishlistItem = state.wishlistBasket?.find(
-        (wishlistBasketId) => wishlistBasketId?._id === action.items?._id
+      const wishlistItem = state?.wishlistBasket?.find(
+        (wishlistBasketId) => wishlistBasketId?._id === action?.items?._id
       );
-      let newWishlistBasket = [...state.wishlistBasket];
+      let newWishlistBasket = [...state?.wishlistBasket];
 
       if (!wishlistItem) {
         // item not present => add that item
-        newWishlistBasket = [...state.wishlistBasket, action.items];
+        newWishlistBasket = [...state?.wishlistBasket, action?.items];
       } else {
         // item present => remove that item
-        newWishlistBasket = state.wishlistBasket?.filter(
+        newWishlistBasket = state?.wishlistBasket?.filter(
           (wishlistPresent) => wishlistPresent?._id !== wishlistItem?._id
         );
       }
@@ -130,6 +139,33 @@ const reducer = (state, action) => {
       return {
         ...state,
         discountPrice: action.discountPrice,
+      };
+
+    /// USER SIGNIN //////////////////
+    // case "USER_SIGNIN_REQUEST":
+    //   return {
+    //     ...state,
+    //     loading: action.loading,
+    //     // error: action.error,
+    //   };
+
+    case "USER_SIGNIN_SUCCESS":
+      return {
+        ...state,
+        loading: action.loading,
+        userInfo: action.userInfo,
+      };
+
+    // case "USER_SIGNIN_FAIL":
+    //   return {
+    //     ...state,
+    //     loading: action.loading,
+    //     error: action.error,
+    //   };
+
+    case "USER_SIGNOUT":
+      return {
+        userInfo: action.userInfo,
       };
 
     default:

@@ -4,19 +4,22 @@ const data = {
   users: [
     // text password in database is Insecure => use bcrypt library
     {
-      name: "Roopali Singh",
+      firstName: "Roopali",
+      lastName: "Singh",
       email: "roopali.singh.222@gmail.com",
       password: bcrypt.hashSync("moon", 8),
       isAdmin: true,
     },
     {
-      name: "Yashu Singh",
+      firstName: "Yash",
+      lastName: "Singh",
       email: "yashu@gmail.com",
       password: bcrypt.hashSync("doctor", 8),
       isAdmin: false,
     },
     {
-      name: "Oreo",
+      firstName: "Oreo",
+      lastName: "Singh",
       email: "oreo@gmail.com",
       password: bcrypt.hashSync("dog", 8),
       isAdmin: false,
