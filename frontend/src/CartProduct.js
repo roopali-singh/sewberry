@@ -83,10 +83,10 @@ function CartProduct({
 
           {forWishlistPage ? (
             <button onClick={addToCart}>Add to Cart</button>
-          ) : forShippingPage ? (
-            <button onClick={removeFromCart}>Remove from Cart</button>
-          ) : (
+          ) : forAccountPage ? (
             <button onClick={addToCart}>Buy Again</button>
+          ) : (
+            <button onClick={removeFromCart}>Remove from Cart</button>
           )}
         </div>
       </main>

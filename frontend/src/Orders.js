@@ -9,7 +9,7 @@ function Orders() {
   return (
     // / FOR NOW USING THE WISHLIST-BASKET INSTEAD OF ORDERS
     <>
-      {wishlistBasket.length === 0 && <span>No Orders Yet</span>}
+      {wishlistBasket?.length === 0 && <span>No Orders Yet</span>}
       {wishlistBasket?.map((order) => (
         <div className="orders">
           <CartProduct info={order} forAccountPage />
