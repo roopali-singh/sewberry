@@ -7,6 +7,7 @@ function Orders() {
   const [{ wishlistBasket }] = useStateValue();
 
   return (
+    // / FOR NOW USING THE WISHLIST-BASKET INSTEAD OF ORDERS
     <>
       {wishlistBasket.length === 0 && <span>No Orders Yet</span>}
       {wishlistBasket?.map((order) => (
