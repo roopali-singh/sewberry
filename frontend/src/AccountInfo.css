@@ -8,15 +8,38 @@
 }
 
 .accountInfo__box {
-  padding: 3% 0 0 3%;
+  padding: 3% 3% 0 3%;
   white-space: pre-wrap;
+  position: relative;
   /* text-overflow: ellipsis; */
+}
+
+.accountInfo__edit {
+  z-index: 10;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 0.3125rem;
+  margin: 3%;
+  font-size: 0.3125rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.accountInfo__edit:hover {
+  background-color: grey;
+  color: white;
+  transition: background-color 0.2s ease-out;
 }
 
 /* FOR MOBILE USERS */
 
 @media only screen and (min-width: 320px) and (max-width: 850px) {
   .accountInfo__box {
+    font-size: 0.7rem;
+  }
+
+  .accountInfo__edit {
     font-size: 0.7rem;
   }
 }

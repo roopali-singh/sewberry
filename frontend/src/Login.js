@@ -89,7 +89,9 @@ function Login() {
       ) : (
         <main className="login__box">
           <h1 className="login__title">Login</h1>
+
           {error && <section className="login__error">{error}</section>}
+
           <label className="login__subTitle" htmlFor="email">
             E-mail
           </label>

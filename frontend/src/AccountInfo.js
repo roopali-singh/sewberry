@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import "./AccountInfo.css";
+import EditIcon from "@material-ui/icons/Edit";
 import { useHistory } from "react-router-dom";
 import { useStateValue } from "./StateProvider";
 
@@ -13,6 +14,12 @@ function AccountInfo() {
       // window.location.replace("/login");
     }
   }, [userInfo]);
+
+  // CAPITALIZE FIRST LETTER
+
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 
   // SIGN OUT FUNCTION
 
@@ -29,8 +36,13 @@ function AccountInfo() {
   return (
     <main className="accountInfo">
       <div className="accountInfo__box">
+        <EditIcon className="accountInfo__edit" title="edit" />
+      </div>
+
+      <div className="accountInfo__box">
         <h1>
-          {userInfo?.firstName} {userInfo.lastName}
+          {capitalizeFirstLetter(userInfo?.firstName)}{" "}
+          {capitalizeFirstLetter(userInfo?.lastName)}
         </h1>
       </div>
 
