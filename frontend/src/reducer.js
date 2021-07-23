@@ -24,7 +24,13 @@ export const initialState = {
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "PRODUCT_LIST_REQUEST":
+    case "REMOVING_ERROR":
+      return {
+        ...state,
+        error: action.error,
+      };
+
+    case "REQUEST_SEND":
       return {
         ...state,
         loading: action.loading,
@@ -38,7 +44,7 @@ const reducer = (state, action) => {
         products: action.products,
       };
 
-    case "PRODUCT_LIST_FAIL":
+    case "REQUEST_FAIL":
       return {
         ...state,
         loading: action.loading,
@@ -47,25 +53,12 @@ const reducer = (state, action) => {
 
     //FOR PRODUCT_SCREEN
 
-    // case "PRODUCT_DETAILS_REQUEST":
-    //   return {
-    //     ...state,
-    //     loading: action.loading,
-    //   };
-
     case "PRODUCT_DETAILS_SUCCESS":
       return {
         ...state,
         loading: action.loading,
         productDetails: action.productDetails,
       };
-
-    // case "PRODUCT_DETAILS_FAIL":
-    //   return {
-    //     ...state,
-    //     loading: action.loading,
-    //     error: action.error,
-    //   };
 
     //ADD TO BASKET
     case "ADD_TO_BASKET":
@@ -141,27 +134,12 @@ const reducer = (state, action) => {
         discountPrice: action.discountPrice,
       };
 
-    /// USER SIGNIN //////////////////
-    // case "USER_SIGNIN_REQUEST":
-    //   return {
-    //     ...state,
-    //     loading: action.loading,
-    //     // error: action.error,
-    //   };
-
     case "USER_SIGNIN_SUCCESS":
       return {
         ...state,
         loading: action.loading,
         userInfo: action.userInfo,
       };
-
-    // case "USER_SIGNIN_FAIL":
-    //   return {
-    //     ...state,
-    //     loading: action.loading,
-    //     error: action.error,
-    //   };
 
     case "USER_SIGNOUT":
       return {

@@ -17,6 +17,13 @@ function Login() {
     }
   }
 
+  useEffect(() => {
+    dispatch({
+      type: "REMOVING_ERROR",
+      error: false,
+    });
+  }, []);
+
   // const redirect = props.location.search
   //   ? props.location.search.split("=")[1]
   //   : "/";
@@ -32,8 +39,7 @@ function Login() {
 
   async function userSignin(email, password) {
     dispatch({
-      // type: "USER_SIGNIN_REQUEST",
-      type: "PRODUCT_LIST_REQUEST",
+      type: "REQUEST_SEND",
       loading: true,
       error: false,
     });
@@ -50,8 +56,7 @@ function Login() {
       localStorage.setItem("userInfo", JSON.stringify(data));
     } catch (error) {
       dispatch({
-        // type: "USER_SIGNIN_FAIL",
-        type: "PRODUCT_LIST_FAIL",
+        type: "REQUEST_FAIL",
         loading: false,
         error:
           error.response && error.response.data.message

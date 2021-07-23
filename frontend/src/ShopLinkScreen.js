@@ -27,7 +27,7 @@ function ShopLinkScreen() {
   useEffect(() => {
     async function listProducts() {
       dispatch({
-        type: "PRODUCT_LIST_REQUEST",
+        type: "REQUEST_SEND",
         loading: true,
         error: false,
       });
@@ -41,7 +41,7 @@ function ShopLinkScreen() {
         // return request;
       } catch (error) {
         dispatch({
-          type: "PRODUCT_LIST_FAIL",
+          type: "REQUEST_FAIL",
           loading: false,
           error: error.message,
         });

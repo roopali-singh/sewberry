@@ -16,7 +16,7 @@ function Home() {
   useEffect(() => {
     const listProducts = async () => {
       dispatch({
-        type: "PRODUCT_LIST_REQUEST",
+        type: "REQUEST_SEND",
         loading: true,
         error: false,
       });
@@ -29,7 +29,7 @@ function Home() {
         });
       } catch (error) {
         dispatch({
-          type: "PRODUCT_LIST_FAIL",
+          type: "REQUEST_FAIL",
           loading: false,
           error: error.message,
         });
@@ -37,7 +37,6 @@ function Home() {
     };
     listProducts();
   }, [dispatch]);
-
 
   return (
     <>

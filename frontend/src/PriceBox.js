@@ -6,7 +6,7 @@ import { useStateValue } from "./StateProvider";
 function PriceBox({ subTotal, gift, addToBasket }) {
   const history = useHistory();
 
-  const [{ productDetails, basket }, dispatch] = useStateValue();
+  const [{ productDetails, basket, userInfo }, dispatch] = useStateValue();
 
   const amount = basket?.reduce((amount, item) => item?.price + amount, 0);
   const discount = amount > 7000 ? 10 : 0;
@@ -19,7 +19,11 @@ function PriceBox({ subTotal, gift, addToBasket }) {
 
   function checkoutHandler() {
     // history.push("/login?redirect=shipping");
-    history.push("/shipping");
+    if (Object.keys(userInfo).length > 0) {
+      history.push("/shipping");
+    } else {
+      history.push("/login");
+    }
   }
 
   const addToCart = () => {

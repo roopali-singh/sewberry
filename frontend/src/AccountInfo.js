@@ -18,7 +18,7 @@ function AccountInfo() {
   // CAPITALIZE FIRST LETTER
 
   function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+    return string?.charAt(0)?.toUpperCase() + string?.slice(1);
   }
 
   // SIGN OUT FUNCTION
@@ -42,7 +42,7 @@ function AccountInfo() {
       <div className="accountInfo__box">
         <h1>
           {capitalizeFirstLetter(userInfo?.firstName)}{" "}
-          {capitalizeFirstLetter(userInfo?.lastName)}
+          {userInfo?.lastName && capitalizeFirstLetter(userInfo?.lastName)}
         </h1>
       </div>
 
@@ -51,11 +51,17 @@ function AccountInfo() {
       </div>
 
       <div className="accountInfo__box">
-        <span>XXXXXX XXXXXX XXXXXX XXXXXX XXXXXX XXXXXX XXXXXX</span>
+        <span>{userInfo?.address}</span>
       </div>
 
       <div className="accountInfo__box">
-        <span>Delhi: XXXXXX</span>
+        <span>
+          {userInfo?.city}: {userInfo?.pin}
+        </span>
+      </div>
+
+      <div className="accountInfo__box">
+        <span>{userInfo?.state}</span>
       </div>
 
       <div className="accountInfo__box">

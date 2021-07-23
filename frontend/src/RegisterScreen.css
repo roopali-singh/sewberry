@@ -58,8 +58,22 @@
   font-weight: bolder;
 }
 
+.register__requiredField {
+  color: rgb(218, 109, 109); 
+}
+
 .register__input {
   margin-bottom: 10px;
+}
+
+.input__blueBorder {
+  border: 1px solid rgb(29, 200, 212);
+  outline-color: rgb(93, 219, 228);
+}
+
+.input__redBorder {
+  border: 1px solid rgb(212, 29, 29);
+  outline-color: rgb(212, 29, 29);
 }
 
 .register__input-margin-right {

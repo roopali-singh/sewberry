@@ -6,8 +6,12 @@ const userSchema = new mongoose.Schema(
   {
     // object
     firstName: { type: String, required: true },
-    lastName: { type: String, required: true },
+    lastName: { type: String, required: false },
     email: { type: String, required: true, unique: true },
+    address: { type: String, required: true },
+    city: { type: String, required: true },
+    state: { type: String, required: true },
+    pin: { type: Number },
     password: { type: String, required: true },
     isAdmin: { type: Boolean, default: false, required: true },
   },

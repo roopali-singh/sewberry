@@ -11,6 +11,10 @@ function RegisterScreen() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [pin, setPin] = useState();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -21,6 +25,13 @@ function RegisterScreen() {
   }
 
   useEffect(() => {
+    dispatch({
+      type: "REMOVING_ERROR",
+      error: false,
+    });
+  }, []);
+
+  useEffect(() => {
     if (Object.keys(userInfo).length > 0) {
       // window.location.replace("/account");
       history.replace("/account");
@@ -29,10 +40,19 @@ function RegisterScreen() {
 
   // SIGN IN FUNCTION
 
-  async function userRegister(firstName, lastName, email, password) {
+  async function userRegister(
+    firstName,
+    lastName,
+    email,
+    address,
+    city,
+    state,
+    pin,
+    password
+  ) {
     dispatch({
       // type: "USER_SIGNIN_REQUEST",
-      type: "PRODUCT_LIST_REQUEST",
+      type: "REQUEST_SEND",
       loading: true,
       error: false,
     });
@@ -41,6 +61,10 @@ function RegisterScreen() {
         firstName,
         lastName,
         email,
+        address,
+        city,
+        state,
+        pin,
         password,
       });
       dispatch({
@@ -52,7 +76,7 @@ function RegisterScreen() {
     } catch (error) {
       dispatch({
         // type: "USER_SIGNIN_FAIL",
-        type: "PRODUCT_LIST_FAIL",
+        type: "REQUEST_FAIL",
         loading: false,
         error:
           error.response && error.response.data.message
@@ -69,7 +93,16 @@ function RegisterScreen() {
     if (password !== confirmPassword) {
       alert("Password and confirm password are not match");
     } else {
-      userRegister(firstName, lastName, email, password);
+      userRegister(
+        firstName,
+        lastName,
+        email,
+        address,
+        city,
+        state,
+        pin,
+        password
+      );
     }
   }
 
@@ -100,7 +133,7 @@ function RegisterScreen() {
           <section className="regiser__box-nameRow">
             <div className="regiser__box-name">
               <label className="register__subTitle" htmlFor="firstName">
-                First Name
+                First Name<span className="register__requiredField">*</span>
               </label>
               <input
                 value={firstName}
@@ -128,7 +161,7 @@ function RegisterScreen() {
           </section>
 
           <label className="register__subTitle" htmlFor="email">
-            E-mail
+            E-mail<span className="register__requiredField">*</span>
           </label>
           <input
             value={email}
@@ -140,12 +173,66 @@ function RegisterScreen() {
             onKeyPress={handleSpacesInBetween}
           />
 
+          <label className="register__subTitle" htmlFor="address">
+            Address<span className="register__requiredField">*</span>
+          </label>
+          <input
+            value={address}
+            className="register__input input__blueBorder"
+            type="text"
+            required
+            onChange={(e) => setAddress(e.target.value)}
+            onBlur={(e) => setAddress(e.target.value.trim())}
+          />
+
+          <section className="regiser__box-nameRow">
+            <div className="regiser__box-name">
+              <label className="register__subTitle" htmlFor="city">
+                City<span className="register__requiredField">*</span>
+              </label>
+              <input
+                value={city}
+                className="register__input register__input-margin-right  input__blueBorder"
+                type="text"
+                required
+                onChange={(e) => setCity(e.target.value)}
+                onBlur={(e) => setCity(e.target.value.trim())}
+              />
+            </div>
+
+            <div className="regiser__box-name">
+              <label className="register__subTitle" htmlFor="state">
+                State<span className="register__requiredField">*</span>
+              </label>
+              <input
+                value={state}
+                className="register__input register__input-margin-left  input__blueBorder"
+                type="text"
+                required
+                onChange={(e) => setState(e.target.value)}
+                onBlur={(e) => setState(e.target.value.trim())}
+              />
+            </div>
+          </section>
+
+          <label className="register__subTitle" htmlFor="pin">
+            Pin Code<span className="register__requiredField">*</span>
+          </label>
+          <input
+            value={pin}
+            className="register__input  input__blueBorder"
+            type="number"
+            required
+            onChange={(e) => setPin(e.target.value)}
+            onBlur={(e) => setPin(e.target.value.trim())}
+          />
+
           <label className="register__subTitle" htmlFor="password">
-            Password
+            Password<span className="register__requiredField">*</span>
           </label>
           <input
             value={password}
-            className="register__input"
+            className="register__input input__redBorder"
             type="password"
             required
             onChange={(e) => setPassword(e.target.value)}
@@ -153,11 +240,11 @@ function RegisterScreen() {
             onKeyPress={handleSpacesInBetween}
           />
           <label className="register__subTitle" htmlFor="password">
-            Confirm Password
+            Confirm Password<span className="register__requiredField">*</span>
           </label>
           <input
             value={confirmPassword}
-            className="register__input"
+            className="register__input input__redBorder"
             type="password"
             required
             onChange={(e) => setConfirmPassword(e.target.value)}

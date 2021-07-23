@@ -4,7 +4,7 @@ import "./Shipping.css";
 import { useStateValue } from "./StateProvider";
 
 function Shipping() {
-  const [{ basket }] = useStateValue();
+  const [{ basket, userInfo }] = useStateValue();
 
   const amount = basket?.reduce((amount, item) => item?.price + amount, 0);
   const discount = amount > 7000 ? 10 : 0;
@@ -20,8 +20,11 @@ function Shipping() {
             <strong>Delivery Address</strong>
 
             <p className="shipping__subBoxInfo">
-              <span>123 React Lane</span>
-              <span>Delhi, India</span>
+              <span>{userInfo?.address}</span>
+              <span>
+                {userInfo?.city}: {userInfo?.pin}
+              </span>
+              <span>{userInfo?.state}</span>
             </p>
           </div>
 

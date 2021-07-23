@@ -31,6 +31,10 @@ userRouter.post(
           firstName: user.firstName,
           lastName: user.lastName,
           email: user.email,
+          address: user.address,
+          city: user.city,
+          state: user.state,
+          pin: user.pin,
           isAdmin: user.isAdmin,
           token: generateToken(user),
         });
@@ -47,23 +51,38 @@ userRouter.post(
 userRouter.post(
   "/register",
   expressAsyncHandler(async (request, response) => {
-    const user = new User({
-      firstName: request.body.firstName,
-      lastName: request.body.lastName,
-      email: request.body.email,
-      password: bcrypt.hashSync(request.body.password, 8),
-    });
+    const user = await User.findOne({ email: request.body.email });
+    if (!user) {
+      const newUser = new User({
+        firstName: request.body.firstName,
+        lastName: request.body.lastName,
+        email: request.body.email,
+        address: request.body.address,
+        city: request.body.city,
+        state: request.body.state,
+        pin: request.body.pin,
+        password: bcrypt.hashSync(request.body.password, 8),
+      });
 
-    const createdUser = await user.save();
+      const createdUser = await newUser.save();
 
-    response.send({
-      _id: createdUser._id,
-      firstName: createdUser.firstName,
-      lastName: createdUser.lastName,
-      email: createdUser.email,
-      isAdmin: createdUser.isAdmin,
-      token: generateToken(createdUser),
-    });
+      response.send({
+        _id: createdUser._id,
+        firstName: createdUser.firstName,
+        lastName: createdUser.lastName,
+        email: createdUser.email,
+        address: createdUser.address,
+        city: createdUser.city,
+        state: createdUser.state,
+        pin: createdUser.pin,
+        isAdmin: createdUser.isAdmin,
+        token: generateToken(createdUser),
+      });
+    } else {
+      response
+        .status(401)
+        .send({ message: "This email address already exists" });
+    }
   })
 );
 
