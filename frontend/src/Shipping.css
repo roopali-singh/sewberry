@@ -42,14 +42,37 @@
   flex-direction: column;
 }
 
+.shipping__subBox-checkBox {
+  width: 30%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+
+.shipping__subBox-checkBox > div {
+  min-width: 67px;
+  /* border: 1px solid pink; */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.shipping__subBox-checkBox > div > input {
+  cursor: pointer;
+}
+
 .shipping__subBoxInfo > strong {
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: 10px;
 }
 
 .shipping__button {
   width: 100%;
-  margin-top: 20px;
+  /* margin-top: 20px; */
   max-width: 300px;
 }
 

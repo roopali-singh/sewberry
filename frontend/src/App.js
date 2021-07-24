@@ -14,6 +14,7 @@ import Shipping from "./Shipping";
 import BeforeNavbar from "./BeforeNavbar";
 import WishlistLinkScreen from "./WishlistLinkScreen";
 import Account from "./Account";
+import OrderStatus from "./OrderStatus";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Switch>
           <Route path="/shipping">
             <Navbar />
+            <OrderStatus active1 active2 active3 />
             <Shipping />
           </Route>
 
@@ -49,6 +51,7 @@ function App() {
           <Route path="/orders">
             <BeforeNavbar />
             <Navbar />
+            <OrderStatus active1 active2 />
             <CartScreen />
           </Route>
           <Route
