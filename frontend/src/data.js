@@ -1,4 +1,4 @@
-const data = {
+    const data = {
   products: {
     best_sellers: {
       category: "Best Sellers",

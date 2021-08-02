@@ -6,8 +6,13 @@ export const initialState = {
   userInfo: localStorage.getItem("userInfo")
     ? JSON.parse(localStorage.getItem("userInfo"))
     : {},
+  // TO GET THE CREATED ORDER
+  order: localStorage.getItem("order")
+    ? JSON.parse(localStorage.getItem("order"))
+    : {},
   loading: true,
   error: false,
+  success: false,
   // ADD TO CART
   basket: localStorage.getItem("basket")
     ? JSON.parse(localStorage.getItem("basket"))
@@ -65,6 +70,13 @@ const reducer = (state, action) => {
       return {
         ...state,
         basket: [...state.basket, action.items],
+      };
+
+    //EMPTYING THE BASKET
+    case "BASKET__EMPTY":
+      return {
+        ...state,
+        basket: action.basket,
       };
 
     //REMOVE FROM BASKET
@@ -131,7 +143,7 @@ const reducer = (state, action) => {
     case "CHANGE_TOTAL_DISCOUNT_PRICE":
       return {
         ...state,
-        discountPrice: action.discountPrice,
+        orderTotal: action.orderTotal,
       };
 
     case "USER_SIGNIN_SUCCESS":
@@ -144,6 +156,20 @@ const reducer = (state, action) => {
     case "USER_SIGNOUT":
       return {
         userInfo: action.userInfo,
+      };
+
+    case "ORDER_CREATE_SUCCESS":
+      return {
+        loading: action.loading,
+        success: action.success,
+        order: action.order,
+      };
+
+    case "ORDER_CREATE_RESET":
+      return {
+        success: action.success,
+        order: action.order,
+        success: action.success,
       };
 
     default:

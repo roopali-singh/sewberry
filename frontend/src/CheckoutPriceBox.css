@@ -1,0 +1,57 @@
+.checkout-priceBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-family: "Numans", sans-serif;
+  font-size: 0.9375rem;
+  line-height: 2.7;
+  width: max-content;
+  height: max-content;
+  min-width: 26%;
+  padding: 1.5625rem;
+  margin: 3.125rem;
+  /* BOX */
+  border: 1px solid rgb(151, 151, 151);
+  /* background-color: rgb(235, 229, 229); */
+  background-color: #ececec;
+  border-radius: 5px;
+}
+
+.checkout-priceBox__info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.625rem;
+}
+
+.checkout-priceBox__info > span {
+  margin-right: 0.625rem;
+}
+
+.forCheckbox {
+  justify-content: flex-start !important;
+}
+.forCheckbox > input {
+  margin-right: 5px;
+}
+
+button {
+  background: #f0c14b;
+  border: 1px solid;
+  margin-top: 10px;
+  border-color: #a88734 #9c7e31 #846a29;
+  color: #111;
+  border-radius: 2px;
+  height: 30px;
+  /* width: 100%; */
+  cursor: pointer;
+}
+
+/* FOR MOBILE USERS */
+
+/* @media only screen and (min-width: 320px) and (max-width: 1402px) {
+      .checkout-priceBox__info-status {
+        display: flex;
+        flex-direction: column;
+      }
+    } */

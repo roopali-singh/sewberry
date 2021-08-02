@@ -14,6 +14,13 @@ function Home() {
   const [{ products, loading, error, basket }, dispatch] = useStateValue();
 
   useEffect(() => {
+    dispatch({
+      type: "REMOVING_ERROR",
+      error: false,
+    });
+  }, []);
+
+  useEffect(() => {
     const listProducts = async () => {
       dispatch({
         type: "REQUEST_SEND",

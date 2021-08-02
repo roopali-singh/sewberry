@@ -4,13 +4,19 @@ import "./Shipping.css";
 import { useStateValue } from "./StateProvider";
 
 function Shipping() {
-  const [{ basket, userInfo }] = useStateValue();
+  const [{ basket, userInfo }, dispatch] = useStateValue();
   const [paymentMethod, setPaymentMethod] = useState("");
+
+  // THE FINAL AMOUNT CALCULATION /////////////////////
 
   const amount = basket?.reduce((amount, item) => item?.price + amount, 0);
   const discount = amount > 7000 ? 10 : 0;
   const shipping = basket?.length > 0 ? 150 : 0;
-  const discountPrice = shipping + (amount - (discount / 100) * amount);
+  const orderTotal = shipping + (amount - (discount / 100) * amount);
+
+  // THE PLACE ORDER HANDLER ///////////////
+
+  
 
   return (
     <div className="shipping">
@@ -90,11 +96,14 @@ function Shipping() {
 
               <strong>
                 Order Total: ₹
-                {discountPrice?.toLocaleString("en-IN", {
+                {orderTotal?.toLocaleString("en-IN", {
                   maximumFractionDigits: 2,
                 })}
               </strong>
-              <button className="shipping__button">
+              <button
+                className="shipping__button"
+                // onClick={() => createOrder({ ...basket, orderItems: basket })} // Deconstruct basket => then. set orderItems to basket
+              >
                 <strong>Place Order</strong>
               </button>
             </p>

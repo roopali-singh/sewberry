@@ -28,17 +28,6 @@
   margin-right: 0.625rem;
 }
 
-.red-color {
-  color: red;
-}
-
-.forCheckbox {
-  justify-content: flex-start !important;
-}
-.forCheckbox > input {
-  margin-right: 5px;
-}
-
 .priceBox__info-inOut {
   margin-left: 4rem;
 }

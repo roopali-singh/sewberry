@@ -9,7 +9,7 @@ function AccountInfo() {
   const history = useHistory();
 
   useEffect(() => {
-    if (Object.keys(userInfo).length === 0) {
+    if (Object.keys(userInfo)?.length === 0) {
       history.replace("/login");
       // window.location.replace("/login");
     }

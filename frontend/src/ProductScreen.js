@@ -97,7 +97,7 @@ function ProductScreen(props) {
             </div>
 
             {/* PRODUCT STATUS */}
-            <PriceBox addToBasket />
+            <PriceBox />
           </div>
         </div>
       )}

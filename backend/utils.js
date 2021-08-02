@@ -24,3 +24,21 @@ export const generateToken = (user) => {
     }
   );
 };
+
+export const isAuth = (request, response, next) => {
+  const authorization = request.headers.authorization;
+  if (authorization) {
+    // authorization format === Bearer XXXXXX
+    const token = authorization.slice(7, authorization.length);
+    jwt.verify(token, process.env.JWT || "somethingsecret", (error, decode) => {
+      if (error) {
+        response.status(401).send({ message: "Invalid Token" });
+      } else {
+        request.user = decode;
+        next();
+      }
+    });
+  } else {
+    response.status(401).send({ message: "No Token" });
+  }
+};

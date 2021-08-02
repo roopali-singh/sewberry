@@ -1,32 +1,50 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CartProduct from "./CartProduct";
 import "./CartScreen.css";
-import PriceBox from "./PriceBox";
+import CheckoutPriceBox from "./CheckoutPriceBox";
+import LoadingBox from "./LoadingBox";
+import ErrorBox from "./ErrorBox";
 import { useStateValue } from "./StateProvider";
 
 function CartScreen() {
-  const [{ basket }] = useStateValue();
+  const [{ basket, loading, error }, dispatch] = useStateValue();
+
+  useEffect(() => {
+    dispatch({
+      type: "REMOVING_ERROR",
+      error: false,
+    });
+  }, []);
+
   return (
-    <>
-      <h2 className="cartScreen__title">
-        Your Shopping Basket <span>📸</span>
-      </h2>
-      <div className="cartScreen">
-        <div className="cartScreen__left">
-          {/* //ADDING THE PRODUCTS FROM BASKET */}
+    <div>
+      {loading ? (
+        <LoadingBox loading={loading} />
+      ) : error ? (
+        <ErrorBox error={error} />
+      ) : (
+        <>
+          <h2 className="cartScreen__title">
+            Your Shopping Basket <span>📸</span>
+          </h2>
+          <main className="cartScreen">
+            <div className="cartScreen__left">
+              {/* //ADDING THE PRODUCTS FROM BASKET */}
 
-          {basket?.length === 0 && <h2>Cart is empty</h2>}
+              {basket?.length === 0 && <h2>Cart is empty</h2>}
 
-          {basket?.map((item) => (
-            <CartProduct info={item} />
-          ))}
-        </div>
+              {basket?.map((item) => (
+                <CartProduct info={item} />
+              ))}
+            </div>
 
-        <div className="cartScreen__right">
-          <PriceBox subTotal gift />
-        </div>
-      </div>
-    </>
+            <div className="cartScreen__right">
+              <CheckoutPriceBox />
+            </div>
+          </main>
+        </>
+      )}
+    </div>
   );
 }
 

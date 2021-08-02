@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 // import data from "./data.js";
 import userRouter from "./router/userRouter.js";
 import productRouter from "./router/productRouter.js";
+import orderRouter from "./router/orderRouter.js";
 
 // const { response } = express;
 
@@ -36,6 +37,7 @@ mongoose.connect(process.env.MONGODB_URL || "mongodb://localhost/sewberry", {
 
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
+app.use("/api/orders", orderRouter);
 
 app.get("/", (request, response) => {
   response.send("Server is Ready");

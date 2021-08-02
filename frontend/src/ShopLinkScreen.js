@@ -25,6 +25,13 @@ function ShopLinkScreen() {
   // const [saleProductsShown, setSaleProductsShown] = useState(false);
 
   useEffect(() => {
+    dispatch({
+      type: "REMOVING_ERROR",
+      error: false,
+    });
+  }, []);
+
+  useEffect(() => {
     async function listProducts() {
       dispatch({
         type: "REQUEST_SEND",
