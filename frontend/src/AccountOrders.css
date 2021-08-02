@@ -4,18 +4,19 @@
   padding: 3%;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
 }
 
-.accountOrders__box1 {
+.accountOrders__box {
   white-space: pre-wrap;
+  padding-bottom: 3%;
   /* text-overflow: ellipsis; */
 }
 
 /* FOR MOBILE USERS */
 
 @media only screen and (min-width: 320px) and (max-width: 850px) {
-  .accountOrders__box1 {
+  .accountOrders__box {
     font-size: 0.7rem;
   }
 }

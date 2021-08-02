@@ -29,7 +29,7 @@ function Login() {
   //   : "/";
 
   useEffect(() => {
-    if (Object.keys(userInfo)?.length > 0) {
+    if (Object?.keys(userInfo)?.length > 0) {
       // window.location.replace("/account");
       history.replace("/account");
     }

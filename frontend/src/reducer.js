@@ -10,6 +10,7 @@ export const initialState = {
   order: localStorage.getItem("order")
     ? JSON.parse(localStorage.getItem("order"))
     : {},
+  userOrderInfo: {},
   loading: true,
   error: false,
   success: false,
@@ -170,6 +171,15 @@ const reducer = (state, action) => {
         success: action.success,
         order: action.order,
         success: action.success,
+      };
+
+    // LISTING THE USER ORDERS
+
+    case "USER_ORDERS_LIST":
+      return {
+        ...state,
+        loading: action.loading,
+        userOrderInfo: action.userOrderInfo,
       };
 
     default:

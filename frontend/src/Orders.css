@@ -1,4 +1,6 @@
 .orders {
+  display: flex;
+  flex-direction: column;
   border-radius: 3px;
   border: 1px solid black;
   padding: 3%;
@@ -6,10 +8,49 @@
   background-color: rgb(234, 237, 237);
 }
 
+.order__info {
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.order__list {
+  margin-bottom: 2%;
+}
+
+.order__total {
+  font-weight: 550;
+  text-align: right;
+  margin-top: -2%;
+}
+
 /* FOR MOBILE USERS */
 
 @media only screen and (min-width: 320px) and (max-width: 850px) {
   .orders {
     font-size: 0.7rem;
+  }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 650px) {
+  .order__total {
+    font-size: 0.7rem;
+    margin-top: 0.3125rem;
+  }
+
+  .order__info {
+    margin-bottom: 0.625rem;
+  }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 557px) {
+  .order__total {
+    font-size: 0.7rem;
+    margin-top: 0.3125rem;
+  }
+
+  .order__info {
+    margin-bottom: 0.625rem;
   }
 }

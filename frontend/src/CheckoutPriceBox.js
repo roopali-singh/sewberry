@@ -75,6 +75,7 @@ function CheckoutPriceBox() {
       });
     }
   }
+  console.log("order(Reducer) => ", order);
 
   // CHECKOUT HANDLER /////////////////////////////////////////////////
   function checkoutHandler() {

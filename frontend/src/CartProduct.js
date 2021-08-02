@@ -40,16 +40,6 @@ function CartProduct({
 
   return (
     <>
-      {forAccountPage && (
-        <div className="order__info">
-          <div>
-            <small className="order__date">December 18th 2020, 2:10pm.</small>
-          </div>
-          <div>
-            <small className="order__id">{info?._id}</small>
-          </div>
-        </div>
-      )}
       <main
         className={`cartProduct ${forShippingPage && "forShiping"}  ${
           forWishlistPage && "forWishlist"
@@ -83,17 +73,11 @@ function CartProduct({
 
           {forWishlistPage ? (
             <button onClick={addToCart}>Add to Cart</button>
-          ) : forAccountPage ? (
-            <button onClick={addToCart}>Buy Again</button>
           ) : (
             <button onClick={removeFromCart}>Remove from Cart</button>
           )}
         </div>
       </main>
-      {/* ////////////////// ORDER TOTAL //////////////////////// */}
-      {forAccountPage && (
-        <h3 className="order__total">Order Total: {info?.price}</h3>
-      )}
     </>
   );
 }

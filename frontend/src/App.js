@@ -14,6 +14,7 @@ import Shipping from "./Shipping";
 import BeforeNavbar from "./BeforeNavbar";
 import WishlistLinkScreen from "./WishlistLinkScreen";
 import Account from "./Account";
+import AccountEdit from "./AccountEdit";
 import OrderStatus from "./OrderStatus";
 
 function App() {
@@ -37,6 +38,11 @@ function App() {
 
           <Route path="/register">
             <RegisterScreen />
+          </Route>
+
+          <Route path="/account/edit">
+            <Navbar />
+            <AccountEdit />
           </Route>
 
           <Route path="/account">

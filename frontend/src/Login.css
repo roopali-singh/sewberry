@@ -11,6 +11,7 @@
 
 .login__logo {
   margin: 25px auto;
+  cursor: pointer;
 }
 
 .login__box {

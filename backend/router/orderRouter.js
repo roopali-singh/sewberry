@@ -35,6 +35,19 @@ orderRouter.post(
   })
 );
 
-
+orderRouter.post(
+  "/userOrders",
+  isAuth,
+  expressAsyncHandler(async (request, response) => {
+    const order = await Order.find({ user: request.user._id }).sort({
+      createdAt: -1,
+    });
+    if (!order) {
+      response.status(400).send({ message: "No orders yet" });
+    } else {
+      response.status(201).send({ order });
+    }
+  })
+);
 
 export default orderRouter;

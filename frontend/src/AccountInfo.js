@@ -9,19 +9,19 @@ function AccountInfo() {
   const history = useHistory();
 
   useEffect(() => {
-    if (Object.keys(userInfo)?.length === 0) {
+    if (Object?.keys(userInfo)?.length === 0) {
       history.replace("/login");
       // window.location.replace("/login");
     }
   }, [userInfo]);
 
-  // CAPITALIZE FIRST LETTER
+  // CAPITALIZE FIRST LETTER ////////////////////////////////
 
   function capitalizeFirstLetter(string) {
     return string?.charAt(0)?.toUpperCase() + string?.slice(1);
   }
 
-  // SIGN OUT FUNCTION
+  // SIGN OUT FUNCTION ////////////////////////////////
 
   function submitHandler(e) {
     e.preventDefault();
@@ -33,10 +33,20 @@ function AccountInfo() {
     });
   }
 
+  // EDIT ACCOUNT INFO ////////////////////////////////
+
+  function editAccountInfo() {
+    history.push("/account/edit");
+  }
+
   return (
     <main className="accountInfo">
       <div className="accountInfo__box">
-        <EditIcon className="accountInfo__edit" title="edit" />
+        <EditIcon
+          className="accountInfo__edit"
+          title="edit"
+          onClick={editAccountInfo}
+        />
       </div>
 
       <div className="accountInfo__box">

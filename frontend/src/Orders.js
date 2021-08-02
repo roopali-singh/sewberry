@@ -1,21 +1,30 @@
 import React from "react";
 import "./Orders.css";
-import CartProduct from "./CartProduct";
-import { useStateValue } from "./StateProvider";
+import UserOrderList from "./UserOrderList";
 
-function Orders() {
-  const [{ wishlistBasket }] = useStateValue();
-
+function Orders({ products }) {
   return (
-    // / FOR NOW USING THE WISHLIST-BASKET INSTEAD OF ORDERS
-    <>
-      {wishlistBasket?.length === 0 && <span>No Orders Yet</span>}
-      {wishlistBasket?.map((order) => (
-        <div className="orders">
-          <CartProduct info={order} forAccountPage />
+    <div className="orders">
+      {/* ////////////////// ORDER INFO //////////////////////// */}
+      <main className="order__info">
+        <div>
+          <small className="order__date">{products?.createdAt}</small>
+        </div>
+        <div>
+          <small className="order__id">{products?._id}</small>
+        </div>
+      </main>
+
+      {/* ////////////////// MAP PRODUCTS OF ORDER //////////////////////// */}
+      {products?.orderItems?.map((order) => (
+        <div className="order__list">
+          <UserOrderList order={order} />
         </div>
       ))}
-    </>
+
+      {/* ////////////////// ORDER TOTAL //////////////////////// */}
+      <h3 className="order__total">Order Total: {products?.orderTotal}</h3>
+    </div>
   );
 }
 
