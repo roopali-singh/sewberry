@@ -8,8 +8,8 @@ import axios from "axios";
 function Login() {
   const history = useHistory();
   const [{ loading, error, userInfo }, dispatch] = useStateValue();
-  const [email, setEmail] = useState("roopali.singh.222@gmail.com");
-  const [password, setPassword] = useState("moon");
+  const [email, setEmail] = useState("test@gmail.com");
+  const [password, setPassword] = useState("made");
 
   function handleSpacesInBetween(e) {
     if (e.key === " ") {

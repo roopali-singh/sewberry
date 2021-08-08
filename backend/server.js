@@ -39,6 +39,15 @@ app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
 app.use("/api/orders", orderRouter);
 
+app.get("/api/config/stripe", (request, response) => {
+  response
+    .status(200)
+    .send(
+      process.env.STRIPE_PUBLISHABLE_KEY ||
+        "stripe publishable key doesn't exist"
+    );
+});
+
 app.get("/", (request, response) => {
   response.send("Server is Ready");
 });

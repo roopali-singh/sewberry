@@ -3,7 +3,7 @@ import expressAsyncHandler from "express-async-handler";
 import bcrypt from "bcryptjs";
 import data from "../data.js";
 import User from "../model/userModel.js ";
-import { generateToken } from "../utils.js";
+import { generateToken, isAuth } from "../utils.js";
 
 // Create a new instance;
 const userRouter = express.Router();
@@ -82,6 +82,68 @@ userRouter.post(
       response
         .status(401)
         .send({ message: "This email address already exists" });
+    }
+  })
+);
+
+userRouter.put(
+  "/account/edit",
+  isAuth,
+  expressAsyncHandler(async (request, response) => {
+    const theUser = await User.findById(request.user._id);
+    // const userEmail = await User.findOne({ email: request.body.email });
+    if (theUser) {
+      // if (userEmail) {
+      // if (userEmail === user.email) {
+      //   user.firstName = request.body.firstName;
+      //   user.lastName = request.body.lastName;
+      //   user.email = request.body.email;
+      //   user.address = request.body.address;
+      //   user.city = request.body.city;
+      //   user.state = request.body.state;
+      //   user.pin = request.body.pin;
+
+      //   const updatedUser = user.save();
+      //   response.send({
+      //     _id: updatedUser._id,
+      //     firstName: updatedUser.firstName,
+      //     lastName: updatedUser.lastName,
+      //     email: updatedUser.email,
+      //     address: updatedUser.address,
+      //     city: updatedUser.city,
+      //     state: updatedUser.state,
+      //     pin: updatedUser.pin,
+      //     token: generateToken(updatedUser),
+      //   });
+      // } else {
+      //   response
+      //     .status(401)
+      //     .send({ message: "This email address already exists" });
+      // }
+      // } else {
+      theUser.firstName = request.body.firstName;
+      theUser.lastName = request.body.lastName;
+      theUser.email = request.body.email;
+      theUser.address = request.body.address;
+      theUser.city = request.body.city;
+      theUser.state = request.body.state;
+      theUser.pin = request.body.pin;
+
+      const updatedUser = theUser.save();
+      response.send({
+        _id: updatedUser._id,
+        firstName: updatedUser.firstName,
+        lastName: updatedUser.lastName,
+        email: updatedUser.email,
+        address: updatedUser.address,
+        city: updatedUser.city,
+        state: updatedUser.state,
+        pin: updatedUser.pin,
+        token: generateToken(updatedUser),
+      });
+      // }
+    } else {
+      response.status(404).send({ message: "User doesn't exist" });
     }
   })
 );

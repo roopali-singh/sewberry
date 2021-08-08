@@ -23,13 +23,7 @@ function CheckoutPriceBox() {
 
   useEffect(() => {
     if (success) {
-      history.push("/shipping");
-
-      dispatch({
-        type: "ORDER_CREATE_RESET",
-        order: {},
-        success: false,
-      });
+      history.push(`/shipping/${order?.order?._id}`);
     }
   }, [success]);
 
@@ -58,11 +52,6 @@ function CheckoutPriceBox() {
         order: data,
       });
 
-      dispatch({
-        type: "BASKET__EMPTY",
-        basket: [],
-      });
-
       localStorage.removeItem("basket");
     } catch (error) {
       dispatch({
@@ -75,7 +64,6 @@ function CheckoutPriceBox() {
       });
     }
   }
-  console.log("order(Reducer) => ", order);
 
   // CHECKOUT HANDLER /////////////////////////////////////////////////
   function checkoutHandler() {
@@ -129,7 +117,7 @@ function CheckoutPriceBox() {
         </span>
       </>
 
-      {/* /// GIFT //////////////////////////////////////////////////////////////////// */}
+      {/* /// GIFT ///////////////////////////////////////////////dfszaDFSAewq ///////////////////// */}
 
       <small className="checkout-priceBox__info forCheckbox">
         <input type="checkbox" />
@@ -138,7 +126,10 @@ function CheckoutPriceBox() {
 
       {/* /// PROCEED TO CHECKOUT BUTTON  /////////////////////////////////////////////// */}
 
-      <button onClick={() => checkoutHandler()} disabled={basket?.length === 0}>
+      <button
+        onClick={() => checkoutHandler()}
+        disabled={basket?.length === 0 || success === true}
+      >
         Proceed to Checkout
       </button>
     </div>

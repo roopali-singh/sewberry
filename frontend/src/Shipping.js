@@ -1,44 +1,94 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CartProduct from "./CartProduct";
 import "./Shipping.css";
 import { useStateValue } from "./StateProvider";
+import { useParams } from "react-router";
+import axios from "axios";
 
 function Shipping() {
-  const [{ basket, userInfo }, dispatch] = useStateValue();
+  const [{ order, orderDetails }, dispatch] = useStateValue();
+
+  var { id } = useParams();
+
   const [paymentMethod, setPaymentMethod] = useState("");
 
-  // THE FINAL AMOUNT CALCULATION /////////////////////
+  useEffect(() => {
+    dispatch({
+      type: "REMOVING_ERROR",
+      error: false,
+    });
+  }, []);
 
-  const amount = basket?.reduce((amount, item) => item?.price + amount, 0);
-  const discount = amount > 7000 ? 10 : 0;
-  const shipping = basket?.length > 0 ? 150 : 0;
-  const orderTotal = shipping + (amount - (discount / 100) * amount);
+  useEffect(() => {
+    async function detailsOrder() {
+      dispatch({
+        type: "REQUEST_SEND",
+        loading: true,
+        error: false,
+      });
+      try {
+        const { data } = await axios.get(`/api/orders/${id}`);
+        dispatch({
+          type: "ORDER_DETAILS_SUCCESS",
+          loading: false,
+          orderDetails: data,
+        });
+      } catch (error) {
+        dispatch({
+          type: "REQUEST_FAIL",
+          loading: false,
+          error:
+            error.response && error.response.data.message
+              ? `Error ${error.response.status} : ${error.response.data.message}`
+              : error.message,
+        });
+      }
+    }
+    detailsOrder();
+  }, [id, dispatch]);
 
   // THE PLACE ORDER HANDLER ///////////////
 
-  
+  function placeOrderHandler(e) {
+    e.preventDefault();
+
+    dispatch({
+      type: "ORDER_CREATE_RESET",
+      order: {},
+      success: false,
+    });
+    dispatch({
+      type: "BASKET__EMPTY",
+      basket: [],
+    });
+  }
+  console.log("order(Reducer) => ", order);
+  console.log("orderDetails => ", orderDetails);
 
   return (
     <div className="shipping">
-      <h2 className="shipping__title">Checkout ({basket?.length} items)</h2>
+      <h2 className="shipping__title">
+        Checkout ({orderDetails?.orderItems?.length} items)
+      </h2>
       <div className="shipping__outerBox">
         <div className="shipping__box">
           <div className="shipping__subBox">
             <strong>Delivery Address</strong>
 
             <p className="shipping__subBoxInfo">
-              <span>{userInfo?.address}</span>
+              <span>{orderDetails?.shippingAddress?.address}</span>
               <span>
-                {userInfo?.city}: {userInfo?.pin}
+                {orderDetails?.shippingAddress?.city}:{" "}
+                {orderDetails?.shippingAddress?.pin}
               </span>
-              <span>{userInfo?.state}</span>
+              <span>{orderDetails?.shippingAddress?.state}</span>
             </p>
           </div>
 
           <div className="shipping__subBox">
             <strong>Review items and delivery</strong>
             <div className="shipping__subBoxInfo">
-              {basket?.map((item) => (
+              {orderDetails?.orderItems?.map((item) => (
                 <CartProduct info={item} forShippingPage />
               ))}
             </div>
@@ -93,19 +143,24 @@ function Shipping() {
               )}
 
               {/* ////////////  ORDER TOTAL ///////////////// */}
-
               <strong>
                 Order Total: ₹
-                {orderTotal?.toLocaleString("en-IN", {
+                {orderDetails?.orderTotal?.toLocaleString("en-IN", {
                   maximumFractionDigits: 2,
                 })}
               </strong>
-              <button
-                className="shipping__button"
-                // onClick={() => createOrder({ ...basket, orderItems: basket })} // Deconstruct basket => then. set orderItems to basket
-              >
-                <strong>Place Order</strong>
-              </button>
+              {orderDetails?.isPaid === true ? (
+                <button className="shipping__button" disabled>
+                  Already Paid
+                </button>
+              ) : (
+                <button
+                  className="shipping__button"
+                  onClick={placeOrderHandler}
+                >
+                  Place Order
+                </button>
+              )}
             </p>
           </div>
         </div>

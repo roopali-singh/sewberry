@@ -18,7 +18,7 @@ function Orders({ products }) {
       {/* ////////////////// MAP PRODUCTS OF ORDER //////////////////////// */}
       {products?.orderItems?.map((order) => (
         <div className="order__list">
-          <UserOrderList order={order} />
+          <UserOrderList key={order._id} order={order} />
         </div>
       ))}
 

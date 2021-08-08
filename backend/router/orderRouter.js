@@ -2,6 +2,7 @@ import express from "express";
 import Order from "../model/orderModel.js";
 import expressAsyncHandler from "express-async-handler";
 import { isAuth } from "../utils.js";
+
 const orderRouter = express.Router();
 
 orderRouter.post(
@@ -28,9 +29,7 @@ orderRouter.post(
         user: request.user._id,
       });
       const createdOrder = await order.save();
-      response
-        .status(201)
-        .send({ message: "New Order Created", order: createdOrder });
+      response.status(201).send({ order: createdOrder });
     }
   })
 );
@@ -50,4 +49,15 @@ orderRouter.post(
   })
 );
 
+orderRouter.get(
+  "/:id",
+  expressAsyncHandler(async (request, response) => {
+    const userOrder = await Order.findById(request.params.id);
+    if (userOrder) {
+      response.send(userOrder);
+    } else {
+      response.status(404).send({ message: "Order Not Found" });
+    }
+  })
+);
 export default orderRouter;

@@ -130,8 +130,8 @@ function RegisterScreen() {
 
           {error && <section className="register__error">{error}</section>}
 
-          <section className="regiser__box-nameRow">
-            <div className="regiser__box-name">
+          <section className="register__box-nameRow">
+            <div className="register__box-name">
               <label className="register__subTitle" htmlFor="firstName">
                 First Name<span className="register__requiredField">*</span>
               </label>
@@ -145,7 +145,7 @@ function RegisterScreen() {
               />
             </div>
 
-            <div className="regiser__box-name">
+            <div className="register__box-name">
               <label className="register__subTitle" htmlFor="lastName">
                 Last Name
               </label>
@@ -185,8 +185,8 @@ function RegisterScreen() {
             onBlur={(e) => setAddress(e.target.value.trim())}
           />
 
-          <section className="regiser__box-nameRow">
-            <div className="regiser__box-name">
+          <section className="register__box-nameRow">
+            <div className="register__box-name">
               <label className="register__subTitle" htmlFor="city">
                 City<span className="register__requiredField">*</span>
               </label>
@@ -200,7 +200,7 @@ function RegisterScreen() {
               />
             </div>
 
-            <div className="regiser__box-name">
+            <div className="register__box-name">
               <label className="register__subTitle" htmlFor="state">
                 State<span className="register__requiredField">*</span>
               </label>

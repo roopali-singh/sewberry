@@ -3,9 +3,12 @@ import "./AccountOrders.css";
 import Orders from "./Orders";
 import axios from "axios";
 import { useStateValue } from "./StateProvider";
+import LoadingBox from "./LoadingBox";
+import ErrorBox from "./ErrorBox";
 
 function AccountOrders() {
-  const [{ userInfo, userOrderInfo }, dispatch] = useStateValue();
+  const [{ loading, error, userInfo, userOrderInfo }, dispatch] =
+    useStateValue();
 
   useEffect(() => {
     dispatch({
@@ -57,11 +60,18 @@ function AccountOrders() {
       <div className="accountOrders__box">
         <h1>Your Orders</h1>
       </div>
-
-      {userOrderInfo?.order?.length === 0 && <span>No Orders Yet...</span>}
-      {userOrderInfo?.order?.map((order) => (
-        <Orders key={order?._id} products={order} />
-      ))}
+      {loading ? (
+        <LoadingBox loading={loading} />
+      ) : error ? (
+        <ErrorBox error={error} />
+      ) : (
+        <>
+          {userOrderInfo?.order?.length === 0 && <span>No Orders Yet...</span>}
+          {userOrderInfo?.order?.map((order) => (
+            <Orders key={order?._id} products={order} />
+          ))}
+        </>
+      )}
     </main>
   );
 }

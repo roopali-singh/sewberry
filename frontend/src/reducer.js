@@ -10,6 +10,7 @@ export const initialState = {
   order: localStorage.getItem("order")
     ? JSON.parse(localStorage.getItem("order"))
     : {},
+  orderDetails: {},
   userOrderInfo: {},
   loading: true,
   error: false,
@@ -181,6 +182,15 @@ const reducer = (state, action) => {
         loading: action.loading,
         userOrderInfo: action.userOrderInfo,
       };
+
+      // SH0WING USER ORDER FOR PAYMENT
+
+      case "ORDER_DETAILS_SUCCESS":
+        return {
+          ...state,
+          loading: action.loading,
+          orderDetails: action.orderDetails,
+        }
 
     default:
       return state;

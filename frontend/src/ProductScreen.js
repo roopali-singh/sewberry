@@ -30,7 +30,7 @@ function ProductScreen(props) {
       dispatch({
         type: "REQUEST_SEND",
         loading: true,
-        erroe: false,
+        error: false,
       });
       try {
         const { data } = await axios.get(`/api/products/${id}`);

@@ -4,12 +4,7 @@ import { useStateValue } from "./StateProvider";
 import { Link } from "react-router-dom";
 import WishlistIcon from "./WishlistIcon";
 
-function CartProduct({
-  info,
-  forShippingPage,
-  forWishlistPage,
-  forAccountPage,
-}) {
+function CartProduct({ info, forShippingPage, forWishlistPage }) {
   const [{ basket }, dispatch] = useStateValue();
 
   useEffect(() => {
@@ -43,7 +38,7 @@ function CartProduct({
       <main
         className={`cartProduct ${forShippingPage && "forShiping"}  ${
           forWishlistPage && "forWishlist"
-        } ${forAccountPage && "forAccount"}`}
+        } `}
       >
         {/* /////////////////////// LEFT SIDE //////////////////////// */}
         <div className="cartProduct__left">
@@ -73,6 +68,8 @@ function CartProduct({
 
           {forWishlistPage ? (
             <button onClick={addToCart}>Add to Cart</button>
+          ) : forShippingPage ? (
+            <></>
           ) : (
             <button onClick={removeFromCart}>Remove from Cart</button>
           )}

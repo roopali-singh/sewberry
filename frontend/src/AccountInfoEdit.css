@@ -1,4 +1,4 @@
-.register {
+.accountInfoEdit {
   padding: 4vh;
   display: flex;
   flex-direction: column;
@@ -7,11 +7,12 @@
   background-color: white;
 }
 
-.register__logo {
+.accountInfoEdit__logo {
   margin: 25px auto;
+  cursor: pointer;
 }
 
-.register__box {
+.accountInfoEdit__box {
   /* width: max-content; */
   min-width: 300px;
   max-width: 400px;
@@ -23,7 +24,7 @@
   padding: 18px;
 }
 
-.register__error {
+.accountInfoEdit__error {
   /* border: 1px solid rgb(207, 66, 66); */
   border-radius: 3px;
   padding: 3%;
@@ -35,34 +36,34 @@
   font-weight: bolder;
 }
 
-.register__title {
+.accountInfoEdit__title {
   text-align: left;
   margin-bottom: 20px;
 }
 
-.register__box-nameRow {
+.accountInfoEdit__box-nameRow {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
-.register__box-name {
+.accountInfoEdit__box-name {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
 }
 
-.register__subTitle {
+.accountInfoEdit__subTitle {
   margin-bottom: 5px;
   font-size: 0.83em;
   font-weight: bolder;
 }
 
-.register__requiredField {
+.accountInfoEdit__requiredField {
   color: rgb(218, 109, 109);
 }
 
-.register__input {
+.accountInfoEdit__input {
   margin-bottom: 10px;
 }
 
@@ -76,28 +77,28 @@
   outline-color: rgb(212, 29, 29);
 }
 
-.register__input-margin-right {
+.accountInfoEdit__input-margin-right {
   width: 91%;
   margin-right: 4%;
 }
-.register__input-margin-left {
+.accountInfoEdit__input-margin-left {
   width: 91%;
   margin-left: 4%;
 }
 
-.register__button {
+.accountInfoEdit__button {
   width: 100%;
   margin-bottom: 15px;
 }
 
 /* // 470 */
 @media only screen and (max-width: 469px) {
-  .register__input-margin-left {
+  .accountInfoEdit__input-margin-left {
     width: 100%;
     margin-left: 0;
   }
 
-  .register__input-margin-right {
+  .accountInfoEdit__input-margin-right {
     width: 100%;
     margin-right: 0;
   }

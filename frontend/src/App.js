@@ -14,22 +14,16 @@ import Shipping from "./Shipping";
 import BeforeNavbar from "./BeforeNavbar";
 import WishlistLinkScreen from "./WishlistLinkScreen";
 import Account from "./Account";
-import AccountEdit from "./AccountEdit";
 import OrderStatus from "./OrderStatus";
+import AccountInfoEdit from "./AccountInfoEdit";
 
 function App() {
   return (
     <Router>
       <div className="App">
         <Switch>
-          <Route path="/shipping">
-            <Navbar />
-            <OrderStatus active1 active2 active3 />
-            <Shipping />
-          </Route>
-
           <Route path="/wishlist">
-            <BeforeNavbar />
+            <BeforeNavbar />.
             <Navbar />
             <WishlistLinkScreen />
             <BackToTop />
@@ -41,8 +35,7 @@ function App() {
           </Route>
 
           <Route path="/account/edit">
-            <Navbar />
-            <AccountEdit />
+            <AccountInfoEdit />
           </Route>
 
           <Route path="/account">
@@ -60,6 +53,13 @@ function App() {
             <OrderStatus active1 active2 />
             <CartScreen />
           </Route>
+
+          <Route path="/shipping/:id">
+            <Navbar />
+            <OrderStatus active1 active2 active3 />
+            <Shipping />
+          </Route>
+
           <Route
             path="/products/:id"
 
