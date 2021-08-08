@@ -57,7 +57,6 @@ function AccountInfoEdit() {
     pin
   ) {
     dispatch({
-      // type: "USER_SIGNIN_REQUEST",
       type: "REQUEST_SEND",
       loading: true,
       error: false,
