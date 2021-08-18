@@ -62,8 +62,6 @@ function Shipping() {
       basket: [],
     });
   }
-  console.log("order(Reducer) => ", order);
-  console.log("orderDetails => ", orderDetails);
 
   return (
     <div className="shipping">

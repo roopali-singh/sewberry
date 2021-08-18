@@ -15,6 +15,8 @@ export const initialState = {
   loading: true,
   error: false,
   success: false,
+  // FROM THE ADMIN SIDE
+  showAllOrders: [],
   // ADD TO CART
   basket: localStorage.getItem("basket")
     ? JSON.parse(localStorage.getItem("basket"))
@@ -183,14 +185,23 @@ const reducer = (state, action) => {
         userOrderInfo: action.userOrderInfo,
       };
 
-      // SH0WING USER ORDER FOR PAYMENT
+    // SH0WING USER ORDER FOR PAYMENT
 
-      case "ORDER_DETAILS_SUCCESS":
-        return {
-          ...state,
-          loading: action.loading,
-          orderDetails: action.orderDetails,
-        }
+    case "ORDER_DETAILS_SUCCESS":
+      return {
+        ...state,
+        loading: action.loading,
+        orderDetails: action.orderDetails,
+      };
+
+    // SH0WING ALL ORDER FOR ADMIN
+
+    case "SHOW_ALL_ORDERS":
+      return {
+        ...state,
+        loading: action.loading,
+        showAllOrders: action.showAllOrders,
+      };
 
     default:
       return state;

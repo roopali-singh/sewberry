@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Numans&display=swap");
+
+.adminOptions {
+  font-family: "Numans", sans-serif;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 30%;
+  /* bottom: 50%; */
+  display: flex;
+  flex-direction: column;
+}
+
+.adminOptions__box {
+  margin: 5%;
+  display: flex;
+  flex-direction: column;
+}
+
+.adminOptions__heading {
+  padding-bottom: 16px;
+  color: #6d6d6d;
+  display: flex;
+  align-items: center;
+}
+
+.adminOptions__heading-logo {
+  padding-right: 8px;
+}
+
+.adminOptions__links {
+  cursor: pointer;
+  color: black;
+  text-decoration: none;
+  padding-bottom: 9px;
+}
+
+.adminOptions__links:hover {
+  color: purple;
+}

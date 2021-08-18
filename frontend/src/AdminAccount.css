@@ -1,0 +1,15 @@
+/* .adminAccount {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.adminAccount__left {
+  flex: 4;
+  background-color: white;
+  min-height: 100vh;
+}
+
+.adminAccount__right {
+  flex: 1;
+} */

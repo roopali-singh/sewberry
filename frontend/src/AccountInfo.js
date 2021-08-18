@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import "./AccountInfo.css";
 import EditIcon from "@material-ui/icons/Edit";
+import DashboardIcon from "@material-ui/icons/Dashboard";
 import { useHistory } from "react-router-dom";
 import { useStateValue } from "./StateProvider";
 
@@ -39,11 +40,19 @@ function AccountInfo() {
     history.push("/account/edit");
   }
 
+  function adminAccountInfo() {
+    history.push("/account/admin/orders");
+  }
+
   return (
-    <main className="accountInfo">
+    <main
+      className={`accountInfo ${
+        !userInfo?.isAdmin && "accountInfo--forMargin"
+      }`}
+    >
       <div className="accountInfo__box">
         <EditIcon
-          className="accountInfo__edit"
+          className="accountInfo__logo account__edit-logo"
           title="edit"
           onClick={editAccountInfo}
         />
@@ -77,6 +86,15 @@ function AccountInfo() {
       <div className="accountInfo__box">
         <button onClick={submitHandler}>Sign-out</button>
       </div>
+      {userInfo?.isAdmin && (
+        <div className="accountInfo__box">
+          <DashboardIcon
+            className="accountInfo__logo account__admin-logo"
+            title="edit"
+            onClick={adminAccountInfo}
+          />
+        </div>
+      )}
     </main>
   );
 }

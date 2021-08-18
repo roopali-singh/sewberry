@@ -16,6 +16,7 @@ import WishlistLinkScreen from "./WishlistLinkScreen";
 import Account from "./Account";
 import OrderStatus from "./OrderStatus";
 import AccountInfoEdit from "./AccountInfoEdit";
+import AdminAccount from "./AdminAccount";
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
       <div className="App">
         <Switch>
           <Route path="/wishlist">
-            <BeforeNavbar />.
+            <BeforeNavbar />
             <Navbar />
             <WishlistLinkScreen />
             <BackToTop />
@@ -32,6 +33,11 @@ function App() {
 
           <Route path="/register">
             <RegisterScreen />
+          </Route>
+
+          <Route path="/account/admin/orders">
+            <Navbar />
+            <AdminAccount />
           </Route>
 
           <Route path="/account/edit">

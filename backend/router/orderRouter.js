@@ -1,7 +1,7 @@
 import express from "express";
 import Order from "../model/orderModel.js";
 import expressAsyncHandler from "express-async-handler";
-import { isAuth } from "../utils.js";
+import { isAuth, isAdmin } from "../utils.js";
 
 const orderRouter = express.Router();
 
@@ -20,8 +20,8 @@ orderRouter.post(
           lastName: request.user.lastName,
           email: request.user.email,
           address: request.user.address,
-          city: request.user.state,
-          state: request.user.city,
+          city: request.user.city,
+          state: request.user.state,
           pin: request.user.pin,
         },
         // paymentMethod: request.body.paymentMethod,
@@ -50,6 +50,17 @@ orderRouter.post(
 );
 
 orderRouter.get(
+  "/seed",
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (request, response) => {
+    const createdOrders = await Order.find({}).sort({ createdAt: -1 });
+    console.log("createdOrders 💟 💟 💟 💟 ", createdOrders);
+    response.send(createdOrders);
+  })
+);
+
+orderRouter.get(
   "/:id",
   expressAsyncHandler(async (request, response) => {
     const userOrder = await Order.findById(request.params.id);
@@ -60,4 +71,5 @@ orderRouter.get(
     }
   })
 );
+
 export default orderRouter;

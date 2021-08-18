@@ -1,10 +1,13 @@
 .accountInfo {
   max-width: 75rem;
   background-color: white;
-  padding-bottom: 3%;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+}
+
+.accountInfo--forMargin {
+  padding-bottom: 3%;
 }
 
 .accountInfo__box {
@@ -14,19 +17,28 @@
   /* text-overflow: ellipsis; */
 }
 
-.accountInfo__edit {
+.accountInfo__logo {
   z-index: 10;
   cursor: pointer;
   border-radius: 50%;
   padding: 0.3125rem;
   margin: 3%;
   font-size: 0.3125rem;
+}
+
+.account__edit-logo {
   position: absolute;
   top: 0;
   right: 0;
 }
 
-.accountInfo__edit:hover {
+.account__admin-logo {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.accountInfo__logo:hover {
   background-color: grey;
   color: white;
   transition: background-color 0.2s ease-out;
@@ -39,7 +51,7 @@
     font-size: 0.7rem;
   }
 
-  .accountInfo__edit {
+  .accountInfo__logo {
     font-size: 0.7rem;
   }
 }

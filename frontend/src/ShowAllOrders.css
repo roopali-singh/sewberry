@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Numans&display=swap");
+
+.allOrders {
+  font-family: "Numans", sans-serif;
+  padding: 0.9375rem;
+}
+
+.editButton {
+  background-color: #ff9800 !important;
+  font-weight: 600 !important;
+  margin: 10px !important;
+}
+
+.dangerButton {
+  background-color: #cf0303 !important;
+  color: white !important;
+  font-weight: 600 !important;
+  margin: 10px !important;
+}

@@ -38,7 +38,6 @@ function AccountInfoEdit() {
   }, [userInfo]);
 
   useEffect(() => {
-    console.log("userInfo now => 🚀 🚀 🚀 🚀 ", userInfo);
     if (success) {
       // window.location.replace("/account");
       history.replace("/account");
@@ -85,8 +84,7 @@ function AccountInfoEdit() {
         loading: false,
         userInfo: data,
       });
-      console.log("userInfo (edit screen Reducer) => 💖 💖 💖 💖 ", userInfo);
-      console.log("data (edit screen Reducer) => 🎁 🎁 🎁 🎁 ", data);
+
       localStorage.setItem("userInfo", JSON.stringify(data));
       setSuccess(true);
     } catch (error) {
