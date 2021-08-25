@@ -39,7 +39,7 @@ const orderSchema = new mongoose.Schema(
     paidAt: { type: Date },
     isDelivered: { type: Boolean, default: false },
     deliveredAt: { type: Date },
-    created_at: { type: Date, default: Date.now },
+    // created_at: { type: Date, default: Date.now },
   },
   {
     timestamps: true,

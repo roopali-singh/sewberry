@@ -41,7 +41,7 @@ function AccountInfo() {
   }
 
   function adminAccountInfo() {
-    history.push("/account/admin/orders");
+    history.push("/account/admin");
   }
 
   return (

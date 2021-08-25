@@ -17,6 +17,7 @@ export const initialState = {
   success: false,
   // FROM THE ADMIN SIDE
   showAllOrders: [],
+  allOrders: [],
   // ADD TO CART
   basket: localStorage.getItem("basket")
     ? JSON.parse(localStorage.getItem("basket"))
@@ -171,7 +172,7 @@ const reducer = (state, action) => {
 
     case "ORDER_CREATE_RESET":
       return {
-        success: action.success,
+        // success: action.success,
         order: action.order,
         success: action.success,
       };
@@ -201,6 +202,19 @@ const reducer = (state, action) => {
         ...state,
         loading: action.loading,
         showAllOrders: action.showAllOrders,
+      };
+
+    case "ALL_ORDERS":
+      return {
+        ...state,
+        loading: action.loading,
+        allOrders: action.allOrders,
+      };
+
+    case "SUCCESS_ACHEIVED":
+      return {
+        ...state,
+        success: action.success,
       };
 
     default:

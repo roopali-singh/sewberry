@@ -1,0 +1,25 @@
+.editButton {
+  background-color: #ff9800 !important;
+  font-weight: 600 !important;
+  margin: 10px !important;
+}
+
+.dangerButton {
+  background-color: #cf0303 !important;
+  color: white !important;
+  font-weight: 600 !important;
+  margin: 10px !important;
+}
+
+.orderCollapse_img {
+  width: 100%;
+  max-width: 10vh;
+  height: auto;
+  object-fit: cover;
+}
+
+.orderCollapse__emailLink {
+  text-decoration: none;
+  color: #1d77ec;
+}
+

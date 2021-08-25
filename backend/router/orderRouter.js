@@ -55,8 +55,45 @@ orderRouter.get(
   isAdmin,
   expressAsyncHandler(async (request, response) => {
     const createdOrders = await Order.find({}).sort({ createdAt: -1 });
-    console.log("createdOrders 💟 💟 💟 💟 ", createdOrders);
+
     response.send(createdOrders);
+  })
+);
+
+orderRouter.put(
+  "/edit/:orderId",
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (request, response) => {
+    const changeOrder = await Order.findById(request.params.orderId);
+    if (changeOrder) {
+      changeOrder.isPaid = request.body.selectedPaymentValue;
+      changeOrder.isDelivered = request.body.selectedDeliveryValue;
+      changeOrder.orderTotal = request.body.orderTotalValue;
+
+      const updatedOrder = await changeOrder.save();
+
+      response.send(updatedOrder);
+    } else {
+      response.status(404).send({ message: "Order to be changed not found" });
+    }
+
+    response.send(orderId);
+  })
+);
+
+orderRouter.delete(
+  "/deleteOrder/:id",
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (request, response) => {
+    const orderToDelete = await Order.findById(request.params.id);
+    if (orderToDelete) {
+      const orderDeleted = orderToDelete.remove();
+      response.status(201).send(orderDeleted);
+    } else {
+      response.status(404).send({ message: "Order to be deleted not found" });
+    }
   })
 );
 

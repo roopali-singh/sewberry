@@ -107,6 +107,6 @@
     z-index: 100;
   }
   .strong .nav__mobileSize {
-    font-size: 0.75rem;
+    font-size: 0.75rem !important;
   }
 }

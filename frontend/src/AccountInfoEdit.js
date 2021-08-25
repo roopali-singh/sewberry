@@ -127,7 +127,7 @@ function AccountInfoEdit() {
         <LoadingBox loading={loading} />
       ) : (
         <main className="accountInfoEdit__box">
-          <h1 className="accountInfoEdit__title">Update the account</h1>
+          <h1 className="accountInfoEdit__title">Account Info</h1>
 
           {error && (
             <section className="accountInfoEdit__error">{error}</section>

@@ -4,35 +4,39 @@ import { useStateValue } from "./StateProvider";
 import axios from "axios";
 import LoadingBox from "./LoadingBox";
 import ErrorBox from "./ErrorBox";
+import SearchBar from "./SearchBar";
+
+/// LOADASH TO SORT MULTIPLE COLUMNS ////////////////
+import orderBy from "lodash/orderBy";
+
+/// MATERIAL UI TABLES imports ////////////////
+import { withStyles, makeStyles, alpha } from "@material-ui/core/styles";
+
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import CancelIcon from "@material-ui/icons/Cancel";
 import { green } from "@material-ui/core/colors";
-
-/// MATERIAL UI TABLES imports ////////////////
-import PropTypes from "prop-types";
-import { withStyles, makeStyles } from "@material-ui/core/styles";
-import Box from "@material-ui/core/Box";
 import Collapse from "@material-ui/core/Collapse";
 import IconButton from "@material-ui/core/IconButton";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableSortLabel from "@material-ui/core/TableSortLabel";
-import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
-import Button from "@material-ui/core/Button";
-import DeleteIcon from "@material-ui/icons/Delete";
-import EditIcon from "@material-ui/icons/Edit";
+
+import OrderCollapseContainer from "./OrderCollapseContainer";
 
 function ShowAllOrders() {
-  const [{ userInfo, loading, error, showAllOrders }, dispatch] =
-    useStateValue();
+  const [
+    { userInfo, loading, error, showAllOrders, orderDetails, success },
+    dispatch,
+  ] = useStateValue();
 
   const [orderId, setOrderId] = useState("");
+  const [sortOrder, setSortOrder] = useState();
+  const [sortBy, setSortBy] = useState();
 
   useEffect(() => {
     dispatch({
@@ -54,12 +58,21 @@ function ShowAllOrders() {
             Authorization: `Bearer ${userInfo?.token}`,
           },
         });
-        console.log("userInfo (token) 🚀 🚀 🚀 🚀 ", userInfo?.token);
 
         dispatch({
           type: "SHOW_ALL_ORDERS",
           loading: false,
           showAllOrders: data,
+        });
+
+        dispatch({
+          type: "ALL_ORDERS",
+          allOrders: data,
+        });
+
+        dispatch({
+          type: "SUCCESS_ACHEIVED",
+          success: false,
         });
       } catch (error) {
         dispatch({
@@ -74,7 +87,7 @@ function ShowAllOrders() {
     };
 
     listAllOrders();
-  }, [dispatch, userInfo, showAllOrders?.length]);
+  }, [dispatch, userInfo, orderDetails, success]);
 
   // CAPITALIZE FIRST LETTER ////////////////////////////////
 
@@ -85,22 +98,24 @@ function ShowAllOrders() {
   // DEFINING THE TABLE HEAD CELLS ////////////////////////////////
 
   const headCells = [
-    { id: 1, lable: "Order createdAt" },
-    { id: 2, lable: "User Name" },
-    { id: 3, lable: "No. of Items" },
-    { id: 4, lable: "Order ID" },
-    { id: 6, lable: "is Paid" },
-    { id: 7, lable: "Delivery State" },
-    { id: 8, lable: "is Delivered" },
-    { id: 9, lable: "Order Total" },
+    { prop: "createdAt", label: "Order createdAt" },
+    { prop: "shippingAddress.firstName", label: "User Name" },
+    { prop: "orderItems.length", label: "No. of Items" },
+    { prop: "_id", label: "Order ID" },
+    { prop: "isPaid", label: "is Paid" },
+    { prop: "shippingAddress.city", label: "Delivery State" },
+    { prop: "isDelivered", label: "is Delivered" },
+    { prop: "orderTotal", label: "Order Total" },
   ];
 
   // DEFINING THE TABLE HEAD CELLS ////////////////////////////////
 
   const StyledTableCell = withStyles((theme) => ({
     head: {
-      backgroundColor: theme.palette.common.black,
-      color: theme.palette.common.white,
+      backgroundColor: alpha(theme.palette.primary.light, 0.7),
+      // color: theme.palette.primary.contrastText,
+
+      fontWeight: 700,
     },
     body: {
       fontSize: 14,
@@ -115,14 +130,6 @@ function ShowAllOrders() {
     },
   }))(TableRow);
 
-  const StyledTableHeadCell = withStyles((theme) => ({
-    root: {
-      "&:nth-of-type(odd)": {
-        fontWeight: theme.typography.fontWeightBold,
-      },
-    },
-  }))(TableCell);
-
   const useStyles = makeStyles({
     table: {
       minWidth: 700,
@@ -131,14 +138,18 @@ function ShowAllOrders() {
 
   const classes = useStyles();
 
-  // BUTTON STYLING ////////////////////////////////
+  // SORTING FUNCTION ////////////////////////////////
+
+  function handleSortRequest(prop) {
+    const isAsc = sortBy === prop && sortOrder === "asc";
+    setSortOrder(isAsc ? "desc" : "asc");
+    setSortBy(prop);
+  }
 
   ///////////////////////////////////////////////////////////////////////////////////////////////
 
   return (
     <div className="allOrders">
-      <h1>Show All Orders ({showAllOrders?.length} orders)</h1>
-      <hr />
       {loading ? (
         <LoadingBox loading={loading} />
       ) : error ? (
@@ -148,17 +159,30 @@ function ShowAllOrders() {
           {/* //////////////////////////////////////////// TABLE HEAD //////////////////////////////////// */}
           <TableHead>
             <TableRow>
+              <StyledTableCell>Index</StyledTableCell>
               <StyledTableCell />
               {headCells?.map((cell) => (
-                <StyledTableCell key={cell?.id}>{cell?.lable}</StyledTableCell>
+                <StyledTableCell
+                  key={cell?.prop}
+                  sortDirection={sortBy === cell?.prop ? sortOrder : false}
+                >
+                  <TableSortLabel
+                    active={sortBy === cell?.prop}
+                    direction={sortBy === cell?.prop ? sortOrder : "asc"}
+                    onClick={() => handleSortRequest(cell?.prop)}
+                  >
+                    {cell?.label}
+                  </TableSortLabel>
+                </StyledTableCell>
               ))}
             </TableRow>
           </TableHead>
           {/* //////////////////////////////////////////// TABLE BODY //////////////////////////////////// */}
           <TableBody>
-            {showAllOrders?.map((order) => (
-              <>
-                <StyledTableRow key={order?._id}>
+            {orderBy(showAllOrders, sortBy, sortOrder)?.map((order, index) => (
+              <React.Fragment key={order?._id}>
+                <StyledTableRow hover>
+                  <StyledTableCell>{index + 1}</StyledTableCell>
                   <StyledTableCell>
                     <IconButton
                       aria-label="expand row"
@@ -174,9 +198,11 @@ function ShowAllOrders() {
                   </StyledTableCell>
                   <StyledTableCell>{order?.createdAt}</StyledTableCell>
                   <StyledTableCell>
-                    {capitalizeFirstLetter(order?.shippingAddress?.firstName)}{" "}
-                    {order?.shippingAddress?.lastName &&
-                      capitalizeFirstLetter(order?.shippingAddress?.lastName)}
+                    <strong>
+                      {capitalizeFirstLetter(order?.shippingAddress?.firstName)}{" "}
+                      {order?.shippingAddress?.lastName &&
+                        capitalizeFirstLetter(order?.shippingAddress?.lastName)}
+                    </strong>
                   </StyledTableCell>
                   <StyledTableCell>
                     {order?.orderItems?.length} Items
@@ -200,7 +226,14 @@ function ShowAllOrders() {
                       <CancelIcon style={{ color: "#db0c0c" }} />
                     )}
                   </StyledTableCell>
-                  <StyledTableCell>₹ {order?.orderTotal}</StyledTableCell>
+                  <StyledTableCell>
+                    <strong>
+                      ₹{" "}
+                      {order?.orderTotal?.toLocaleString("en-IN", {
+                        maximumFractionDigits: 2,
+                      })}
+                    </strong>
+                  </StyledTableCell>
                 </StyledTableRow>
                 {/* //////////////////////////////////////////// COLLAPSABLE ROW //////////////////////////////////// */}
                 <StyledTableRow>
@@ -213,109 +246,11 @@ function ShowAllOrders() {
                       timeout="auto"
                       unmountOnExit
                     >
-                      {" "}
-                      <Box margin={1}>
-                        <TableContainer>
-                          <Table>
-                            <TableBody>
-                              {/* /////////////////////////////////// ORDERS ITEMS DETAILS /////////////////////////// */}
-                              {order?.orderItems?.map((orderItem) => (
-                                <>
-                                  <TableRow>
-                                    <StyledTableHeadCell>
-                                      OrderItem Id
-                                    </StyledTableHeadCell>
-                                    <TableCell>{orderItem?._id}</TableCell>
-                                  </TableRow>
-                                  <TableRow>
-                                    <StyledTableHeadCell>
-                                      OrderItem Title
-                                    </StyledTableHeadCell>
-                                    <TableCell>{orderItem?.alt}</TableCell>
-                                  </TableRow>
-                                  <TableRow>
-                                    <StyledTableHeadCell>
-                                      OrderItem Price
-                                    </StyledTableHeadCell>
-                                    <TableCell>₹ {orderItem?.price}</TableCell>
-                                  </TableRow>
-                                  <TableRow>
-                                    <StyledTableHeadCell>
-                                      OrderItem Image
-                                    </StyledTableHeadCell>
-                                    <TableCell>
-                                      <img
-                                        src={orderItem?.image}
-                                        alt={orderItem?.alt}
-                                      />
-                                    </TableCell>
-                                  </TableRow>
-                                  <TableRow>
-                                    <hr />
-                                  </TableRow>
-                                </>
-                              ))}
-                              {/* /////////////////////////////////// CUSTOMER DETAILS /////////////////////////// */}
-                              <TableRow>
-                                <StyledTableHeadCell>
-                                  Customer Email
-                                </StyledTableHeadCell>
-                                <TableCell>
-                                  {order?.shippingAddress?.email}
-                                </TableCell>
-                              </TableRow>
-                              <TableRow>
-                                <StyledTableHeadCell>
-                                  ShippingAddress
-                                </StyledTableHeadCell>
-                                <TableCell>
-                                  <TableRow>
-                                    <TableCell>
-                                      {order?.shippingAddress?.address}
-                                    </TableCell>
-                                  </TableRow>
-                                  <TableRow>
-                                    <TableCell colSpan={1}>
-                                      {order?.shippingAddress?.city},{" "}
-                                      {order?.shippingAddress?.state}
-                                    </TableCell>
-                                  </TableRow>
-                                  <TableRow>
-                                    <TableCell colSpan={1}>
-                                      {order?.shippingAddress?.city}:{" "}
-                                      {order?.shippingAddress?.pin}
-                                    </TableCell>
-                                  </TableRow>
-                                </TableCell>
-                              </TableRow>
-                              <TableRow>
-                                <TableCell>
-                                  <Button
-                                    variant="contained"
-                                    color="#830404"
-                                    className="dangerButton"
-                                    startIcon={<DeleteIcon />}
-                                  >
-                                    Delete
-                                  </Button>
-                                  <Button
-                                    variant="contained"
-                                    color="#ff9800"
-                                    className="editButton"
-                                    startIcon={<EditIcon />}
-                                  >
-                                    Edit
-                                  </Button>
-                                </TableCell>
-                              </TableRow>
-                            </TableBody>
-                          </Table>
-                        </TableContainer>
-                      </Box>
+                      <OrderCollapseContainer order={order} classes={classes} />
                     </Collapse>
                   </StyledTableCell>
                 </StyledTableRow>
-              </>
+              </React.Fragment>
             ))}
           </TableBody>
         </Table>
