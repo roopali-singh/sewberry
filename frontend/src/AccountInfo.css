@@ -23,6 +23,7 @@
   border-radius: 50%;
   padding: 0.3125rem;
   margin: 3%;
+  margin-right: 5.5% !important;
   font-size: 0.3125rem;
 }
 
@@ -32,11 +33,11 @@
   right: 0;
 }
 
-.account__admin-logo {
+/* .account__admin-logo {
   position: absolute;
   bottom: 0;
   right: 0;
-}
+} */
 
 .accountInfo__logo:hover {
   background-color: grey;

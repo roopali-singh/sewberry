@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./ProductScreen.css";
 // import data from "./data";
 import { useStateValue } from "./StateProvider";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import LoadingBox from "./LoadingBox";
 import ErrorBox from "./ErrorBox";

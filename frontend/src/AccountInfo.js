@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import "./AccountInfo.css";
 import EditIcon from "@material-ui/icons/Edit";
-import DashboardIcon from "@material-ui/icons/Dashboard";
+// import DashboardIcon from "@material-ui/icons/Dashboard";
 import { useHistory } from "react-router-dom";
 import { useStateValue } from "./StateProvider";
+import AdminDashboardButton from "./AdminDashboardButton";
 
 function AccountInfo() {
   const [{ userInfo }, dispatch] = useStateValue();
@@ -40,9 +41,9 @@ function AccountInfo() {
     history.push("/account/edit");
   }
 
-  function adminAccountInfo() {
-    history.push("/account/admin");
-  }
+  // function adminAccountInfo() {
+  //   history.push("/account/admin?details=orders");
+  // }
 
   return (
     <main
@@ -88,10 +89,11 @@ function AccountInfo() {
       </div>
       {userInfo?.isAdmin && (
         <div className="accountInfo__box">
-          <DashboardIcon
-            className="accountInfo__logo account__admin-logo"
+          {/* <AdminDashboardButton /> */}
+          <AdminDashboardButton
+            // className="accountInfo__logo account__admin-logo"
             title="edit"
-            onClick={adminAccountInfo}
+            // onClick={adminAccountInfo}
           />
         </div>
       )}
