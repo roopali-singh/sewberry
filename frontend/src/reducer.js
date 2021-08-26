@@ -205,6 +205,12 @@ const reducer = (state, action) => {
         showAllProducts: action.showAllProducts,
       };
 
+    case "ALL_PRODUCTS":
+      return {
+        ...state,
+        allProducts: action.allProducts,
+      };
+
     case "SHOW_ALL_ORDERS":
       return {
         ...state,

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./OrderCollapseContainer.css";
 import DeleteProductDialogBox from "./DeleteProductDialogBox";
-// import EditOrderDialogBox from "./EditOrderDialogBox";
+import EditProductDialogBox from "./EditProductDialogBox";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import TableContainer from "@material-ui/core/TableContainer";
@@ -11,7 +11,7 @@ import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import Button from "@material-ui/core/Button";
 import DeleteIcon from "@material-ui/icons/Delete";
-// import EditIcon from "@material-ui/icons/Edit";
+import EditIcon from "@material-ui/icons/Edit";
 
 function ProductCollapseContainer({ product, classes }) {
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
@@ -117,7 +117,7 @@ function ProductCollapseContainer({ product, classes }) {
                   productId={productId}
                 />
 
-                {/* <Button
+                <Button
                   variant="contained"
                   color="#ff9800"
                   className="editButton"
@@ -129,17 +129,14 @@ function ProductCollapseContainer({ product, classes }) {
                 <EditProductDialogBox
                   open={openEditDialog}
                   onClose={handleClose}
-                  productId={productId}
-                //   orderEditInfo={orderEditInfo}
-                /> */}
+                  product={product}
+                  //   orderEditInfo={orderEditInfo}
+                />
               </TableCell>
             </TableRow>
           </TableBody>
         </Table>
       </TableContainer>
-      {/* {order?.orderItems?.map((orderItem) => (
-    <img src={orderItem?.image} alt={orderItem?.alt} />
-  ))} */}
     </Box>
   );
 }

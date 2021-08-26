@@ -38,7 +38,10 @@ function Home() {
         dispatch({
           type: "REQUEST_FAIL",
           loading: false,
-          error: error.message,
+          error:
+            error.response && error.response.data.message
+              ? error.response.data.message
+              : error.message,
         });
       }
     };

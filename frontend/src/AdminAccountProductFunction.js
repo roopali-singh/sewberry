@@ -1,11 +1,11 @@
 import React from "react";
 import { useStateValue } from "./StateProvider";
-import SearchBar from "./SearchBar";
+import SearchProductBar from "./SearchProductBar";
 import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 
 function AdminAccountProductFunction() {
-  const [{ showAllProducts }, dispatch] = useStateValue();
+  const [{ showAllProducts }] = useStateValue();
 
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -25,7 +25,7 @@ function AdminAccountProductFunction() {
     <div className="adminFunctions">
       <Toolbar className={classes.toolBar}>
         <h1>All Products ({showAllProducts?.length} orders)</h1>
-        <SearchBar />
+        <SearchProductBar />
       </Toolbar>
     </div>
   );

@@ -62,6 +62,12 @@ function ShowAllProducts() {
           loading: false,
           showAllProducts: data,
         });
+
+        dispatch({
+          type: "ALL_PRODUCTS",
+          allProducts: data,
+        });
+
         dispatch({
           type: "SUCCESS_ACHEIVED",
           success: false,
@@ -70,7 +76,10 @@ function ShowAllProducts() {
         dispatch({
           type: "REQUEST_FAIL",
           loading: false,
-          error: error.message,
+          error:
+            error.response && error.response.data.message
+              ? error.response.data.message
+              : error.message,
         });
       }
     }

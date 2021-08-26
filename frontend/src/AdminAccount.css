@@ -1,15 +1,22 @@
 /* .adminAccount {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
-}
+} */
 
-.adminAccount__left {
+/* .adminAccount__left {
   flex: 4;
   background-color: white;
   min-height: 100vh;
-}
+} */
 
-.adminAccount__right {
+/* .adminAccount__right {
   flex: 1;
 } */
+
+.addProductIcon {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 99;
+}

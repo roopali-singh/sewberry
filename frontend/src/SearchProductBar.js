@@ -5,19 +5,21 @@ import InputBase from "@material-ui/core/InputBase";
 import SearchIcon from "@material-ui/icons/Search";
 import Fuse from "fuse.js";
 
-function SearchBar() {
-  const [{ showAllOrders, allOrders }, dispatch] = useStateValue();
+function SearchProductBar() {
+  const [{ showAllProducts, allProducts }, dispatch] = useStateValue();
 
-  const [searchArray, setSearchArray] = useState(showAllOrders);
+  const [searchArray, setSearchArray] = useState(showAllProducts);
   const [input, setInput] = useState("");
+
+  // const searchFromKeys = []
 
   const matches = [];
 
   useEffect(() => {
     dispatch({
-      type: "SHOW_ALL_ORDERS",
+      type: "SHOW_ALL_PRODUCTS",
       loading: false,
-      showAllOrders: searchArray,
+      showAllProducts: searchArray,
     });
   }, [searchArray]);
 
@@ -25,14 +27,14 @@ function SearchBar() {
     keys: [
       // "createdAt",
       "_id",
-      "shippingAddress.firstName",
-      "shippingAddress.lastName",
-      "shippingAddress.email",
-      "shippingAddress.city",
-      "shippingAddress.state",
-      "shippingAddress.pin",
-      // "orderItems.name",
-      "orderItems._id",
+      "category",
+      "name",
+      "description.color",
+      "description.neckline",
+      "description.type",
+      "description.fabric",
+      "description.waist_line",
+      "description.lining",
     ],
     // Default threshold: 0.6,
     threshold: 0.3,
@@ -40,12 +42,12 @@ function SearchBar() {
   };
 
   // CREATING A NEW FUSE INSTANCE
-  const fuse = new Fuse(showAllOrders, options);
+  const fuse = new Fuse(showAllProducts, options);
 
   function handleSearch(input) {
     setInput(input);
     if (!input) {
-      setSearchArray(allOrders);
+      setSearchArray(allProducts);
     } else {
       const result = fuse.search(input);
 
@@ -130,4 +132,4 @@ function SearchBar() {
   );
 }
 
-export default SearchBar;
+export default SearchProductBar;
