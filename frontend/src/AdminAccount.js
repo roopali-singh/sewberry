@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 import "./AdminAccount.css";
 import AdminAccountFunction from "./AdminAccountFunction";
+import AdminAccountProductFunction from "./AdminAccountProductFunction";
 import ShowAllOrders from "./ShowAllOrders";
 import ShowAllProducts from "./ShowAllProducts";
 
@@ -18,9 +19,6 @@ function AdminAccount() {
     } else {
       history.push("/account");
     }
-    console.log("searchParams => ", searchParams);
-    console.log("query => ", query);
-    console.log("location.search => ", location.search);
   }, [location]);
 
   return (
@@ -35,7 +33,7 @@ function AdminAccount() {
 
       {query === "products" && (
         <>
-          <AdminAccountFunction />
+          <AdminAccountProductFunction />
           <ShowAllProducts />
         </>
       )}

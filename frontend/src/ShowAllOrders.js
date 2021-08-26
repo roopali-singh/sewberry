@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
-import "./ShowAllOrders.css";
 import { useStateValue } from "./StateProvider";
 import axios from "axios";
 import LoadingBox from "./LoadingBox";
 import ErrorBox from "./ErrorBox";
-import SearchBar from "./SearchBar";
 
 /// LOADASH TO SORT MULTIPLE COLUMNS ////////////////
 import orderBy from "lodash/orderBy";
@@ -108,7 +106,7 @@ function ShowAllOrders() {
     { prop: "orderTotal", label: "Order Total" },
   ];
 
-  // DEFINING THE TABLE HEAD CELLS ////////////////////////////////
+  // STYLING THE TABLE ////////////////////////////////
 
   const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -131,6 +129,9 @@ function ShowAllOrders() {
   }))(TableRow);
 
   const useStyles = makeStyles({
+    root: {
+      padding: "0.9375rem",
+    },
     table: {
       minWidth: 700,
     },
@@ -149,7 +150,7 @@ function ShowAllOrders() {
   ///////////////////////////////////////////////////////////////////////////////////////////////
 
   return (
-    <div className="allOrders">
+    <div className={classes.root}>
       {loading ? (
         <LoadingBox loading={loading} />
       ) : error ? (

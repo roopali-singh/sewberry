@@ -18,6 +18,7 @@ export const initialState = {
   // FROM THE ADMIN SIDE
   showAllOrders: [],
   allOrders: [],
+  showAllProducts: [],
   // ADD TO CART
   basket: localStorage.getItem("basket")
     ? JSON.parse(localStorage.getItem("basket"))
@@ -197,6 +198,13 @@ const reducer = (state, action) => {
 
     // SH0WING ALL ORDER FOR ADMIN
 
+    case "SHOW_ALL_PRODUCTS":
+      return {
+        ...state,
+        loading: action.loading,
+        showAllProducts: action.showAllProducts,
+      };
+
     case "SHOW_ALL_ORDERS":
       return {
         ...state,
@@ -207,7 +215,6 @@ const reducer = (state, action) => {
     case "ALL_ORDERS":
       return {
         ...state,
-        loading: action.loading,
         allOrders: action.allOrders,
       };
 
