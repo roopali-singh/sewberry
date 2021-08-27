@@ -35,7 +35,7 @@ function App() {
             <RegisterScreen />
           </Route>
 
-          <Route path="/account/admin">
+          <Route path="/admin">
             <Navbar />
             <AdminAccount />
           </Route>

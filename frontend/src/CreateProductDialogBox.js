@@ -11,12 +11,14 @@ import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
 import ProductEditForm from "./ProductEditForm";
 
-function EditProductDialogBox({ open, onClose, product }) {
+function CreateProductDialogBox({ open, onClose }) {
   const [{ userInfo }, dispatch] = useStateValue();
 
   const [formData, setFormData] = useState({});
 
-  async function editProductHandler() {
+  async function createProductHandler() {
+    console.log("formData 🔴 🔴 🔴 🔴 => ", formData);
+    console.log("formData.name 🔴 🔴 🔴 🔴 => ", formData.name);
     dispatch({
       type: "REQUEST_SEND",
       loading: true,
@@ -24,8 +26,8 @@ function EditProductDialogBox({ open, onClose, product }) {
     });
 
     try {
-      const { data } = await axios.put(
-        `api/products/edit/${product?._id}`,
+      const { data } = await axios.post(
+        "api/products/create",
         { formData },
         {
           headers: {
@@ -37,9 +39,8 @@ function EditProductDialogBox({ open, onClose, product }) {
       console.log("data 🔵 🔵 🔵 🔵  => ", data);
 
       dispatch({
-        type: "PRODUCT_DETAILS_SUCCESS",
-        loading: false,
-        productDetails: data,
+        type: "SUCCESS_ACHEIVED",
+        success: true,
       });
     } catch (error) {
       dispatch({
@@ -79,14 +80,14 @@ function EditProductDialogBox({ open, onClose, product }) {
           <Typography variant="h6" className={classes.title}>
             Product Details
           </Typography>
-          <Button autoFocus color="inherit" onClick={editProductHandler}>
+          <Button autoFocus color="inherit" onClick={createProductHandler}>
             save
           </Button>
         </Toolbar>
       </AppBar>
-      <ProductEditForm product={product} passFormData={setFormData} />
+      <ProductEditForm createNewProduct passFormData={setFormData} />
     </Dialog>
   );
 }
 
-export default EditProductDialogBox;
+export default CreateProductDialogBox;

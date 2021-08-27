@@ -18,11 +18,6 @@ function ProductCollapseContainer({ product, classes }) {
   const [openEditDialog, setOpenEditDialog] = useState(false);
   //   const [selectedValue, setSelectedValue] = useState();
   const productId = product?._id;
-  //   const orderEditInfo = {
-  //     orderTotalInfo: order?.orderTotal,
-  //     orderPaymentInfo: order?.isPaid,
-  //     orderDeliveryInfo: order?.isDelivered,
-  //   };
 
   const StyledTableHeadCell = withStyles((theme) => ({
     root: {
@@ -40,11 +35,13 @@ function ProductCollapseContainer({ product, classes }) {
 
   function handleEditClickOpen() {
     setOpenEditDialog(true);
+    console.log("clicked");
   }
 
   function handleClose() {
     setOpenDeleteDialog(false);
     setOpenEditDialog(false);
+    console.log("closed");
     // setSelectedValue(value);
   }
 
@@ -130,7 +127,6 @@ function ProductCollapseContainer({ product, classes }) {
                   open={openEditDialog}
                   onClose={handleClose}
                   product={product}
-                  //   orderEditInfo={orderEditInfo}
                 />
               </TableCell>
             </TableRow>

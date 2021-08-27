@@ -8,11 +8,13 @@ import ShowAllProducts from "./ShowAllProducts";
 import { makeStyles } from "@material-ui/core/styles";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
+import CreateProductDialogBox from "./CreateProductDialogBox";
 
 function AdminAccount() {
   const location = useLocation();
   const history = useHistory();
   const [query, setQuery] = useState("orders");
+  const [openCreateDialog, setOpenCreateDialog] = useState(false);
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
@@ -36,6 +38,16 @@ function AdminAccount() {
 
   /////////////////////////////////////////////////
 
+  function handleCreateDialog() {
+    setOpenCreateDialog(true);
+  }
+
+  function handleClose() {
+    setOpenCreateDialog(false);
+    console.log("closed");
+    // setSelectedValue(value);
+  }
+
   return (
     <main className="adminAccount">
       {/* ///////////////////////// ORDERS ///////////////////////////// */}
@@ -55,9 +67,14 @@ function AdminAccount() {
               className={classes.addProduct}
               color="secondary"
               aria-label="add"
+              onClick={handleCreateDialog}
             >
               <AddIcon />
             </Fab>
+            <CreateProductDialogBox
+              open={openCreateDialog}
+              onClose={handleClose}
+            />
           </div>
         </div>
       )}

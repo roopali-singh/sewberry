@@ -78,7 +78,7 @@ orderRouter.put(
       response.status(404).send({ message: "Order to be changed not found" });
     }
 
-    response.send(orderId);
+    // response.send(orderId);
   })
 );
 

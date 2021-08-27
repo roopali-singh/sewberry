@@ -46,7 +46,7 @@ function DeleteProductDialogBox({ open, onClose, productId }) {
 
     try {
       const { data } = await axios.delete(
-        `/api/products/deleteOrder/${ProductIdValue}`,
+        `/api/products/deleteProduct/${ProductIdValue}`,
         {
           headers: {
             Authorization: `Bearer ${userInfo?.token}`,

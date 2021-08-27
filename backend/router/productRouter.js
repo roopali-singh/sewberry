@@ -35,8 +35,65 @@ productRouter.get(
   })
 );
 
-orderRouter.delete(
-  "/delete/:id",
+productRouter.post(
+  "/create",
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (request, response) => {
+    const newProduct = new Product({
+      image: request.body.formData.imageSrc,
+      category: request.body.formData.category,
+      name: request.body.formData.name,
+      price: { lower: request.body.formData.price },
+      countInStock: request.body.formData.countInStock,
+      description: {
+        color: request.body.formData.color,
+        neckline: request.body.formData.neckline,
+        type: request.body.formData.type,
+        fabric: request.body.formData.fabric,
+        waist_line: request.body.formData.waistLine,
+        lining: request.body.formData.lining,
+      },
+    });
+
+    const createdProduct = await newProduct.save();
+
+    response.status(201).send(createdProduct);
+  })
+);
+
+productRouter.put(
+  "/edit/:productId",
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (request, response) => {
+    const changeProduct = await Product.findById(request.params.productId);
+    if (changeProduct) {
+      // changeProduct.image = request.body.formData.imageSrc;
+      changeProduct.category = request.body.formData.category;
+      changeProduct.name = request.body.formData.name;
+      changeProduct.price = { lower: request.body.formData.price };
+      changeProduct.countInStock = request.body.formData.countInStock;
+      changeProduct.description = {
+        color: request.body.formData.color,
+        neckline: request.body.formData.neckline,
+        type: request.body.formData.type,
+        fabric: request.body.formData.fabric,
+        waistLine: request.body.formData.waistLine,
+        lining: request.body.formData.lining,
+      };
+
+      const updatedProduct = await changeProduct.save();
+
+      response.status(201).send(updatedProduct);
+    } else {
+      response.status(404).send({ message: "Product to be changed not found" });
+    }
+  })
+);
+
+productRouter.delete(
+  "/deleteProduct/:id",
   isAuth,
   isAdmin,
   expressAsyncHandler(async (request, response) => {

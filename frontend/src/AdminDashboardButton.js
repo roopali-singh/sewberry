@@ -53,7 +53,7 @@ function AdminDashboardButton() {
   ];
 
   function adminActionButton(link) {
-    history.push(`/account/admin?details=${link}`);
+    history.push(`/admin?details=${link}`);
   }
 
   const handleClose = () => {
