@@ -137,7 +137,6 @@ function ProductEditForm({ product, createNewProduct, passFormData }) {
             id="contained-button-file"
             multiple
             type="file"
-            value={imageSrc}
           />
           <label htmlFor="contained-button-file">
             <Button
