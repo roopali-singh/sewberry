@@ -2,7 +2,6 @@ import express from "express";
 import Product from "../model/productModel.js";
 import data from "../data.js";
 import expressAsyncHandler from "express-async-handler";
-import orderRouter from "./orderRouter.js";
 import { isAuth, isAdmin } from "../utils.js";
 
 const productRouter = express.Router();
@@ -69,7 +68,7 @@ productRouter.put(
   expressAsyncHandler(async (request, response) => {
     const changeProduct = await Product.findById(request.params.productId);
     if (changeProduct) {
-      // changeProduct.image = request.body.formData.imageSrc;
+      changeProduct.image = request.body.formData.imageSrc;
       changeProduct.category = request.body.formData.category;
       changeProduct.name = request.body.formData.name;
       changeProduct.price = { lower: request.body.formData.price };

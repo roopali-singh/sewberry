@@ -6,15 +6,17 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Skeleton from "@material-ui/lab/Skeleton";
+import Box from "@material-ui/core/Box";
+import axios from "axios";
 
 function ProductEditForm({ product, createNewProduct, passFormData }) {
-  const [{ userInfo }, dispatch] = useStateValue();
+  const [{ userInfo }] = useStateValue();
 
   const [imageSrc, setImageSrc] = useState(
     !createNewProduct ? product?.image : ""
   );
   const [category, setCategory] = useState(
-    !createNewProduct ? product?.category : ""
+    !createNewProduct ? product?.category : "Best Sellers"
   );
   const [name, setName] = useState(!createNewProduct ? product?.name : "");
   const [imageAlt, setImageAlt] = useState(
@@ -44,6 +46,9 @@ function ProductEditForm({ product, createNewProduct, passFormData }) {
   const [lining, setLining] = useState(
     !createNewProduct ? product?.description?.lining : ""
   );
+
+  const [uploadLoading, setUploadLoading] = useState(false);
+  const [uploadError, setUploadError] = useState(false);
 
   ////////////////////////////////////////////////////////////
 
@@ -83,6 +88,23 @@ function ProductEditForm({ product, createNewProduct, passFormData }) {
     input: {
       display: "none",
     },
+
+    box: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+
+    uploadErrorMsg: {
+      borderRadius: "3px",
+      padding: "3%",
+      marginBottom: "10px",
+      backgroundColor: "rgb(231, 201, 201)",
+      color: "rgb(207, 66, 66)",
+      fontSize: "0.83em",
+      fontWeight: "bolder",
+    },
   }));
 
   const classes = useStyles();
@@ -100,16 +122,54 @@ function ProductEditForm({ product, createNewProduct, passFormData }) {
     },
   ];
 
+  ///////////////////////////////////////////////////////////
+
+  async function uploadFileHandler(e) {
+    e.preventDefault();
+    const file = e.target.files[0];
+
+    const bodyFormData = new FormData();
+    bodyFormData.append("image", file);
+    setUploadLoading(true);
+    try {
+      const { data } = await axios.post("/api/uploads", bodyFormData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${userInfo?.token}`,
+        },
+      });
+
+      console.log("before changing imageSrc => ", imageSrc);
+      setImageSrc(data);
+      setUploadLoading(false);
+      console.log("after changing imageSrc => ", imageSrc);
+      console.log("data => ", data);
+    } catch (error) {
+      setUploadLoading(false);
+      setUploadError(error.message);
+      // error.response && error.response.data.message
+      //   ? error.response.data.message
+      //   : error.message,
+    }
+  }
+
   return (
     <main className="editProduct">
       {/* ////////////////////////////////// RIGHT SIDE //////////////////////// */}
 
       <div className="editProduct__left">
         <div className="edit__formField--label">
-          {imageSrc ? (
-            <img className="editProduct__image" src={imageSrc} alt={imageAlt} />
-          ) : (
+          {!imageSrc || uploadLoading ? (
             <Skeleton variant="rect" width={"100%"} height={"60vh"} />
+          ) : uploadError ? (
+            <Box
+              style={{ width: "100%", height: "60vh" }}
+              className={classes.box}
+            >
+              <section className={classes.uploadErrorMsg}>uploadError</section>
+            </Box>
+          ) : (
+            <img className="editProduct__image" src={imageSrc} alt={imageAlt} />
           )}
         </div>
         <div className="edit__formField--leftLabel">
@@ -137,14 +197,10 @@ function ProductEditForm({ product, createNewProduct, passFormData }) {
             id="contained-button-file"
             multiple
             type="file"
+            onChange={uploadFileHandler}
           />
           <label htmlFor="contained-button-file">
-            <Button
-              variant="contained"
-              color="primary"
-              component="span"
-              onChange={(event) => setImageSrc(event.target.value)}
-            >
+            <Button variant="contained" color="primary" component="span">
               Upload Image
             </Button>
           </label>

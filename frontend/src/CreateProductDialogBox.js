@@ -19,6 +19,7 @@ function CreateProductDialogBox({ open, onClose }) {
   async function createProductHandler() {
     console.log("formData 🔴 🔴 🔴 🔴 => ", formData);
     console.log("formData.name 🔴 🔴 🔴 🔴 => ", formData.name);
+    console.log("formData.imageSrc 🔴 🔴 🔴 🔴 => ", formData.imageSrc);
     dispatch({
       type: "REQUEST_SEND",
       loading: true,
@@ -42,6 +43,7 @@ function CreateProductDialogBox({ open, onClose }) {
         type: "SUCCESS_ACHEIVED",
         success: true,
       });
+      onClose();
     } catch (error) {
       dispatch({
         type: "REQUEST_FAIL",

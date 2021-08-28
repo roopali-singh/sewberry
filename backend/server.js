@@ -2,6 +2,8 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 // import data from "./data.js";
+import path from "path";
+import uploadRouter from "./router/uploadRouter.js";
 import userRouter from "./router/userRouter.js";
 import productRouter from "./router/productRouter.js";
 import orderRouter from "./router/orderRouter.js";
@@ -35,9 +37,13 @@ mongoose.connect(process.env.MONGODB_URL || "mongodb://localhost/sewberry", {
 //   response.send(data.products);
 // });
 
+app.use("/api/uploads", uploadRouter);
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
 app.use("/api/orders", orderRouter);
+
+const __dirname = path.resolve();
+app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 app.get("/api/config/stripe", (request, response) => {
   response
