@@ -1,6 +1,6 @@
 import multer from "multer";
 import express from "express";
-import { isAuth } from "../utils.js";
+import { isAuth, isAdmin } from "../utils.js";
 
 const uploadRouter = express.Router();
 
@@ -9,14 +9,34 @@ const storage = multer.diskStorage({
     callBack(null, "uploads/");
   },
   filename(request, file, callBack) {
-    callBack(null, `${Date.now()}.jpg`);
+    callBack(null, `${Date.now()}.jpeg`);
   },
 });
 
-const upload = multer({ storage });
+/* defined filter */
+const fileFilter = (req, file, callBack) => {
+  if (file.mimetype === "image/jpg" || file.mimetype === "image/jpeg") {
+    callBack(null, true);
+  } else {
+    callBack(new Error("File format should be JPG or JPEG"), false); // if validation failed then generate error
+  }
+};
+/////////////////////
 
-uploadRouter.post("/", isAuth, upload.single("image"), (request, response) => {
-  response.send(`/${request.file.path}`);
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: 1024 * 500 },
+  fileFilter: fileFilter,
 });
+
+uploadRouter.post(
+  "/",
+  isAuth,
+  isAdmin,
+  upload.single("image"),
+  async (request, response) => {
+    response.send(`/${request.file.path}`);
+  }
+);
 
 export default uploadRouter;

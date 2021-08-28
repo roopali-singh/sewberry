@@ -3,6 +3,8 @@ import Product from "../model/productModel.js";
 import data from "../data.js";
 import expressAsyncHandler from "express-async-handler";
 import { isAuth, isAdmin } from "../utils.js";
+import fs from "fs";
+import path from "path";
 
 const productRouter = express.Router();
 
@@ -68,6 +70,13 @@ productRouter.put(
   expressAsyncHandler(async (request, response) => {
     const changeProduct = await Product.findById(request.params.productId);
     if (changeProduct) {
+      if (request.body.formData.imageSrc) {
+        const __dirname = path.resolve();
+
+        fs.unlink(__dirname + changeProduct.image, (error) => {
+          if (error) throw error;
+        });
+      }
       changeProduct.image = request.body.formData.imageSrc;
       changeProduct.category = request.body.formData.category;
       changeProduct.name = request.body.formData.name;
@@ -98,6 +107,10 @@ productRouter.delete(
   expressAsyncHandler(async (request, response) => {
     const productToDelete = await Product.findById(request.params.id);
     if (productToDelete) {
+      const __dirname = path.resolve();
+      fs.unlink(__dirname + productToDelete.image, (error) => {
+        if (error) throw error;
+      });
       const productDeleted = productToDelete.remove();
       response.status(201).send(productDeleted);
     } else {

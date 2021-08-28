@@ -95,16 +95,6 @@ function ProductEditForm({ product, createNewProduct, passFormData }) {
       justifyContent: "center",
       alignItems: "center",
     },
-
-    uploadErrorMsg: {
-      borderRadius: "3px",
-      padding: "3%",
-      marginBottom: "10px",
-      backgroundColor: "rgb(231, 201, 201)",
-      color: "rgb(207, 66, 66)",
-      fontSize: "0.83em",
-      fontWeight: "bolder",
-    },
   }));
 
   const classes = useStyles();
@@ -131,6 +121,7 @@ function ProductEditForm({ product, createNewProduct, passFormData }) {
     const bodyFormData = new FormData();
     bodyFormData.append("image", file);
     setUploadLoading(true);
+    setUploadError(false);
     try {
       const { data } = await axios.post("/api/uploads", bodyFormData, {
         headers: {
@@ -146,7 +137,11 @@ function ProductEditForm({ product, createNewProduct, passFormData }) {
       console.log("data => ", data);
     } catch (error) {
       setUploadLoading(false);
-      setUploadError(error.message);
+      setUploadError(
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+      );
       // error.response && error.response.data.message
       //   ? error.response.data.message
       //   : error.message,
@@ -159,19 +154,19 @@ function ProductEditForm({ product, createNewProduct, passFormData }) {
 
       <div className="editProduct__left">
         <div className="edit__formField--label">
-          {!imageSrc || uploadLoading ? (
+          {!imageSrc || uploadLoading || uploadError ? (
             <Skeleton variant="rect" width={"100%"} height={"60vh"} />
-          ) : uploadError ? (
-            <Box
-              style={{ width: "100%", height: "60vh" }}
-              className={classes.box}
-            >
-              <section className={classes.uploadErrorMsg}>uploadError</section>
-            </Box>
           ) : (
             <img className="editProduct__image" src={imageSrc} alt={imageAlt} />
           )}
         </div>
+        {/* ///////////////// ERROR FOR IMAGE UPLOAD \\\\\\\\\\\\\\\\\\\\\\\\ */}
+
+        {uploadError && (
+          <section className="uploadErrorMsg">{uploadError}</section>
+        )}
+
+        {/* ///////////////////////////////////////////////////////////////// */}
         <div className="edit__formField--leftLabel">
           <TextField
             id="outlined-select-currency-native"
@@ -195,7 +190,7 @@ function ProductEditForm({ product, createNewProduct, passFormData }) {
             accept="image/*"
             className={classes.input}
             id="contained-button-file"
-            multiple
+            // multiple
             type="file"
             onChange={uploadFileHandler}
           />
