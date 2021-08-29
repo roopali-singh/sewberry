@@ -9,9 +9,9 @@ function WishlistIcon({ product }) {
     (wishlist) => wishlist?._id === product?._id
   );
 
-  useEffect(() => {
-    localStorage.setItem("wishlistBasket", JSON.stringify(wishlistBasket));
-  }, [wishlistBasket]);
+  // useEffect(() => {
+  //   localStorage.setItem("wishlistBasket", JSON.stringify(wishlistBasket));
+  // }, [wishlistBasket]);
 
   function addToWishlist() {
     dispatch({

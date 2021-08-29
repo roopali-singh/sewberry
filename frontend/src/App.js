@@ -17,6 +17,7 @@ import Account from "./Account";
 import OrderStatus from "./OrderStatus";
 import AccountInfoEdit from "./AccountInfoEdit";
 import AdminAccount from "./AdminAccount";
+import PrivateRoute from "./PrivateRoute";
 
 function App() {
   return (
@@ -40,14 +41,14 @@ function App() {
             <AdminAccount />
           </Route>
 
-          <Route path="/account/edit">
+          <PrivateRoute path="/account/edit">
             <AccountInfoEdit />
-          </Route>
+          </PrivateRoute>
 
-          <Route path="/account">
+          <PrivateRoute path="/account">
             <Navbar />
             <Account />
-          </Route>
+          </PrivateRoute>
 
           <Route path="/login">
             <Login />

@@ -9,9 +9,9 @@ function Product({ product, forSlider, forShopScreen, forSale }) {
   const [{ basket }, dispatch] = useStateValue();
   const [inHover, setHover] = useState(false);
 
-  useEffect(() => {
-    localStorage.setItem("basket", JSON.stringify(basket));
-  }, [basket]);
+  // useEffect(() => {
+  //   localStorage.setItem("basket", JSON.stringify(basket));
+  // }, [basket]);
 
   function addToCart() {
     dispatch({

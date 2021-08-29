@@ -27,6 +27,7 @@ function ShopLinkScreen() {
   useEffect(() => {
     dispatch({
       type: "REMOVING_ERROR",
+      loading: false,
       error: false,
     });
   }, []);

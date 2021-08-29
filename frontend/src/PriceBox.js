@@ -5,9 +5,9 @@ import { useStateValue } from "./StateProvider";
 function PriceBox() {
   const [{ productDetails, basket }, dispatch] = useStateValue();
 
-  useEffect(() => {
-    localStorage.setItem("basket", JSON.stringify(basket));
-  }, [basket]);
+  // useEffect(() => {
+  //   localStorage.setItem("basket", JSON.stringify(basket));
+  // }, [basket]);
 
   const addToCart = () => {
     dispatch({

@@ -19,7 +19,7 @@ const productSchema = new mongoose.Schema(
       neckline: { type: String, required: true },
       type: { type: String, required: true },
       fabric: { type: String, required: true },
-      waist_line: { type: String, reuqired: true },
+      waist_line: { type: String },
       lining: { type: String, required: true, default: "Not Present" },
     },
   },

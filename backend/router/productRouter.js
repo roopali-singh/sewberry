@@ -45,6 +45,7 @@ productRouter.post(
       image: request.body.formData.imageSrc,
       category: request.body.formData.category,
       name: request.body.formData.name,
+      alt: request.body.formData.imageAlt,
       price: { lower: request.body.formData.price },
       countInStock: request.body.formData.countInStock,
       description: {
@@ -70,16 +71,10 @@ productRouter.put(
   expressAsyncHandler(async (request, response) => {
     const changeProduct = await Product.findById(request.params.productId);
     if (changeProduct) {
-      if (request.body.formData.imageSrc) {
-        const __dirname = path.resolve();
-
-        fs.unlink(__dirname + changeProduct.image, (error) => {
-          if (error) throw error;
-        });
-      }
-      changeProduct.image = request.body.formData.imageSrc;
+      // changeProduct.image = request.body.formData.imageSrc;
       changeProduct.category = request.body.formData.category;
       changeProduct.name = request.body.formData.name;
+      changeProduct.alt = request.body.formData.imageAlt;
       changeProduct.price = { lower: request.body.formData.price };
       changeProduct.countInStock = request.body.formData.countInStock;
       changeProduct.description = {

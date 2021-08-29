@@ -17,6 +17,7 @@ function CheckoutPriceBox() {
   useEffect(() => {
     dispatch({
       type: "REMOVING_ERROR",
+      loading: false,
       error: false,
     });
   }, []);
@@ -52,7 +53,7 @@ function CheckoutPriceBox() {
         order: data,
       });
 
-      localStorage.removeItem("basket");
+      // localStorage.removeItem("basket");
     } catch (error) {
       dispatch({
         type: "REQUEST_FAIL",
@@ -66,8 +67,9 @@ function CheckoutPriceBox() {
   }
 
   // CHECKOUT HANDLER /////////////////////////////////////////////////
-  function checkoutHandler() {
-    if (Object.keys(userInfo)?.length > 0) {
+  function checkoutHandler(e) {
+    e.preventDefault();
+    if (userInfo?.token) {
       createOrder(basket, orderTotal); // Deconstruct basket => then. set orderItems to basket
     } else {
       history.push("/login");
@@ -127,7 +129,7 @@ function CheckoutPriceBox() {
       {/* /// PROCEED TO CHECKOUT BUTTON  /////////////////////////////////////////////// */}
 
       <button
-        onClick={() => checkoutHandler()}
+        onClick={checkoutHandler}
         disabled={basket?.length === 0 || success === true}
       >
         Proceed to Checkout

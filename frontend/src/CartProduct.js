@@ -7,9 +7,9 @@ import WishlistIcon from "./WishlistIcon";
 function CartProduct({ info, forShippingPage, forWishlistPage }) {
   const [{ basket }, dispatch] = useStateValue();
 
-  useEffect(() => {
-    localStorage.setItem("basket", JSON.stringify(basket));
-  }, [basket]);
+  // useEffect(() => {
+  //   localStorage.setItem("basket", JSON.stringify(basket));
+  // }, [basket]);
 
   function addToCart() {
     dispatch({

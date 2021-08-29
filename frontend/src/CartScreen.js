@@ -12,6 +12,7 @@ function CartScreen() {
   useEffect(() => {
     dispatch({
       type: "REMOVING_ERROR",
+      loading: false,
       error: false,
     });
   }, []);

@@ -27,12 +27,13 @@ function RegisterScreen() {
   useEffect(() => {
     dispatch({
       type: "REMOVING_ERROR",
+      loading: false,
       error: false,
     });
   }, []);
 
   useEffect(() => {
-    if (Object.keys(userInfo)?.length > 0) {
+    if (userInfo?.token) {
       // window.location.replace("/account");
       history.replace("/account");
     }
@@ -72,7 +73,7 @@ function RegisterScreen() {
         loading: false,
         userInfo: data,
       });
-      localStorage.setItem("userInfo", JSON.stringify(data));
+      // localStorage.setItem("userInfo", JSON.stringify(data));
     } catch (error) {
       dispatch({
         // type: "USER_SIGNIN_FAIL",
@@ -108,8 +109,8 @@ function RegisterScreen() {
 
   function backToHome(e) {
     e.preventDefault();
-    // history.push("/");
-    window.location.href = "/";
+    history.push("/");
+    // window.location.href = "/";
   }
 
   return (

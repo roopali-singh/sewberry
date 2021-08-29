@@ -20,6 +20,7 @@ function Login() {
   useEffect(() => {
     dispatch({
       type: "REMOVING_ERROR",
+      loading: false,
       error: false,
     });
   }, []);
@@ -28,12 +29,12 @@ function Login() {
   //   ? props.location.search.split("=")[1]
   //   : "/";
 
-  useEffect(() => {
-    if (Object?.keys(userInfo)?.length > 0) {
-      // window.location.replace("/account");
-      history.replace("/account");
-    }
-  }, [userInfo]);
+  // useEffect(() => {
+  //   if (Object?.keys(userInfo)?.length > 0) {
+  //     // window.location.replace("/account");
+  //     history.replace("/account");
+  //   }
+  // }, [userInfo]);
 
   // LOGIN FUNCTION
 
@@ -53,7 +54,9 @@ function Login() {
         loading: false,
         userInfo: data,
       });
-      localStorage.setItem("userInfo", JSON.stringify(data));
+      history.replace("/account");
+
+      // localStorage.setItem("userInfo", JSON.stringify(data));
     } catch (error) {
       dispatch({
         type: "REQUEST_FAIL",
@@ -75,8 +78,8 @@ function Login() {
 
   function backToHome(e) {
     e.preventDefault();
-    // history.push("/");
-    window.location.href = "/";
+    history.push("/");
+    // window.location.href = "/";
   }
 
   return (

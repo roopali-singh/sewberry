@@ -6,7 +6,6 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Skeleton from "@material-ui/lab/Skeleton";
-import Box from "@material-ui/core/Box";
 import axios from "axios";
 
 function ProductEditForm({ product, createNewProduct, passFormData }) {
@@ -186,19 +185,23 @@ function ProductEditForm({ product, createNewProduct, passFormData }) {
               </option>
             ))}
           </TextField>
-          <input
-            accept="image/*"
-            className={classes.input}
-            id="contained-button-file"
-            // multiple
-            type="file"
-            onChange={uploadFileHandler}
-          />
-          <label htmlFor="contained-button-file">
-            <Button variant="contained" color="primary" component="span">
-              Upload Image
-            </Button>
-          </label>
+          {createNewProduct && (
+            <>
+              <input
+                accept="image/*"
+                className={classes.input}
+                id="contained-button-file"
+                // multiple
+                type="file"
+                onChange={uploadFileHandler}
+              />
+              <label htmlFor="contained-button-file">
+                <Button variant="contained" color="primary" component="span">
+                  Upload Image
+                </Button>
+              </label>
+            </>
+          )}
         </div>
       </div>
 

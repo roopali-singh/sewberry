@@ -10,12 +10,12 @@ function AccountInfo() {
   const [{ userInfo }, dispatch] = useStateValue();
   const history = useHistory();
 
-  useEffect(() => {
-    if (Object?.keys(userInfo)?.length === 0) {
-      history.replace("/login");
-      // window.location.replace("/login");
-    }
-  }, [userInfo]);
+  // useEffect(() => {
+  //   if (Object?.keys(userInfo)?.length === 0) {
+  //     history.replace("/login");
+  //     // window.location.replace("/login");
+  //   }
+  // }, [userInfo]);
 
   // CAPITALIZE FIRST LETTER ////////////////////////////////
 
@@ -28,11 +28,13 @@ function AccountInfo() {
   function submitHandler(e) {
     e.preventDefault();
 
-    localStorage.removeItem("userInfo");
+    // localStorage.removeItem("userInfo");
     dispatch({
       type: "USER_SIGNOUT",
       userInfo: {},
     });
+    window.location.replace("/login");
+    // history.replace("/login");
   }
 
   // EDIT ACCOUNT INFO ////////////////////////////////

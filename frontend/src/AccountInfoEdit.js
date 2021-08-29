@@ -26,16 +26,17 @@ function AccountInfoEdit() {
   useEffect(() => {
     dispatch({
       type: "REMOVING_ERROR",
+      loading: false,
       error: false,
     });
   }, []);
 
-  useEffect(() => {
-    if (Object?.keys(userInfo)?.length === 0) {
-      history.replace("/login");
-      // window.location.replace("/login");
-    }
-  }, [userInfo]);
+  // useEffect(() => {
+  //   if (Object?.keys(userInfo)?.length === 0) {
+  //     history.replace("/login");
+  //     // window.location.replace("/login");
+  //   }
+  // }, [userInfo]);
 
   useEffect(() => {
     if (success) {
@@ -85,7 +86,7 @@ function AccountInfoEdit() {
         userInfo: data,
       });
 
-      localStorage.setItem("userInfo", JSON.stringify(data));
+      // localStorage.setItem("userInfo", JSON.stringify(data));
       setSuccess(true);
     } catch (error) {
       dispatch({
@@ -109,8 +110,8 @@ function AccountInfoEdit() {
 
   function backToHome(e) {
     e.preventDefault();
-    // history.push("/");
-    window.location.href = "/";
+    history.push("/");
+    // window.location.href = "/";
   }
 
   return (

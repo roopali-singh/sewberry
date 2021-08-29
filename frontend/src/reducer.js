@@ -3,13 +3,13 @@ export const initialState = {
   products: [],
   productDetails: [],
   // USER SIGN-IN and SIGN-OUT
-  userInfo: localStorage.getItem("userInfo")
-    ? JSON.parse(localStorage.getItem("userInfo"))
-    : {},
+  userInfo:
+    //  localStorage.getItem("userInfo") ? JSON.parse(localStorage.getItem("userInfo")) :
+    {},
   // TO GET THE CREATED ORDER
-  order: localStorage.getItem("order")
-    ? JSON.parse(localStorage.getItem("order"))
-    : {},
+  order:
+    //  localStorage.getItem("order") ? JSON.parse(localStorage.getItem("order")) :
+    {},
   orderDetails: {},
   userOrderInfo: {},
   loading: true,
@@ -20,17 +20,17 @@ export const initialState = {
   allOrders: [],
   showAllProducts: [],
   // ADD TO CART
-  basket: localStorage.getItem("basket")
-    ? JSON.parse(localStorage.getItem("basket"))
-    : [],
+  basket:
+    //  localStorage.getItem("basket") ? JSON.parse(localStorage.getItem("basket")) :
+    [],
   // PRODUCTS SHOWN ON SHOP LINK SCREEN
   productsShown: true,
   saleProductsShown: false,
   allProductsShown: false,
   // WISHLIST BASKET
-  wishlistBasket: localStorage.getItem("wishlistBasket")
-    ? JSON.parse(localStorage.getItem("wishlistBasket"))
-    : [],
+  wishlistBasket:
+    // localStorage.getItem("wishlistBasket") ? JSON.parse(localStorage.getItem("wishlistBasket")) :
+    [],
 };
 
 const reducer = (state, action) => {
@@ -38,6 +38,7 @@ const reducer = (state, action) => {
     case "REMOVING_ERROR":
       return {
         ...state,
+        loading: action.loading,
         error: action.error,
       };
 
