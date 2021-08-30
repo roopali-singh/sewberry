@@ -34,6 +34,9 @@ export const initialState = {
 };
 
 const reducer = (state, action) => {
+  console.log("action 🍍 🍍 🍍 🍍 🍍 🍍   => ", action);
+  // console.log("action.payload 🍏 🍏 🍏 🍏  => ", action.payload);
+  // console.log("action.type 🍅 🍅 🍅 🍅 => ", action.type);
   switch (action.type) {
     case "REMOVING_ERROR":
       return {
@@ -168,15 +171,14 @@ const reducer = (state, action) => {
     case "ORDER_CREATE_SUCCESS":
       return {
         loading: action.loading,
-        success: action.success,
+        // success: action.success,
         order: action.order,
       };
 
     case "ORDER_CREATE_RESET":
       return {
-        // success: action.success,
         order: action.order,
-        success: action.success,
+        // success: action.success,
       };
 
     // LISTING THE USER ORDERS

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./AccountInfo.css";
 import EditIcon from "@material-ui/icons/Edit";
 // import DashboardIcon from "@material-ui/icons/Dashboard";
@@ -43,10 +43,6 @@ function AccountInfo() {
     history.push("/account/edit");
   }
 
-  // function adminAccountInfo() {
-  //   history.push("/account/admin?details=orders");
-  // }
-
   return (
     <main
       className={`accountInfo ${
@@ -87,16 +83,11 @@ function AccountInfo() {
       </div>
 
       <div className="accountInfo__box">
-        <button onClick={submitHandler}>Sign-out</button>
+        <button onClick={() => submitHandler()}>Sign-out</button>
       </div>
       {userInfo?.isAdmin && (
         <div className="accountInfo__box">
-          {/* <AdminDashboardButton /> */}
-          <AdminDashboardButton
-            // className="accountInfo__logo account__admin-logo"
-            title="edit"
-            // onClick={adminAccountInfo}
-          />
+          <AdminDashboardButton title="edit" />
         </div>
       )}
     </main>

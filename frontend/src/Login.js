@@ -18,11 +18,14 @@ function Login() {
   }
 
   useEffect(() => {
+    console.log("testing `1 above🍅  userInfo => ", userInfo);
+
     dispatch({
       type: "REMOVING_ERROR",
       loading: false,
       error: false,
     });
+    console.log("testing `1 below🍅  userInfo => ", userInfo);
   }, []);
 
   // const redirect = props.location.search

@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 function Shipping() {
-  const [{ order, orderDetails }, dispatch] = useStateValue();
+  const [{ orderDetails, userInfo }, dispatch] = useStateValue();
 
   var { id } = useParams();
 
@@ -17,6 +17,13 @@ function Shipping() {
       type: "REMOVING_ERROR",
       loading: false,
       error: false,
+    });
+  }, []);
+
+  useEffect(() => {
+    dispatch({
+      type: "SUCCESS_ACHEIVED",
+      success: false,
     });
   }, []);
 
@@ -56,8 +63,9 @@ function Shipping() {
     dispatch({
       type: "ORDER_CREATE_RESET",
       order: {},
-      success: false,
+      // success: false,
     });
+
     dispatch({
       type: "BASKET__EMPTY",
       basket: [],

@@ -13,7 +13,12 @@ function WishlistIcon({ product }) {
   //   localStorage.setItem("wishlistBasket", JSON.stringify(wishlistBasket));
   // }, [wishlistBasket]);
 
+  useEffect(() => {
+    console.log("wishlist useEffect🍲 🍲 🍲 🍲 => ", wishlistBasket);
+  }, []);
+
   function addToWishlist() {
+    console.log("wishlist 🍲 🍲 🍲 🍲 => ", wishlistBasket);
     dispatch({
       type: "ADD_TO_WISHLIST",
       items: {

@@ -6,30 +6,30 @@ import { isAuth, isAdmin } from "../utils.js";
 const orderRouter = express.Router();
 
 orderRouter.post(
-  "/",
+  "/create",
   isAuth,
   expressAsyncHandler(async (request, response) => {
     if (request.body.orders.length === 0) {
-      // 400 => because its client verificaton error
       response.status(400).send({ message: "Cart is empty" });
     } else {
-      const order = await new Order({
+      const newOrder = new Order({
         orderItems: request.body.orders,
         shippingAddress: {
-          firstName: request.user.firstName,
-          lastName: request.user.lastName,
-          email: request.user.email,
-          address: request.user.address,
-          city: request.user.city,
-          state: request.user.state,
-          pin: request.user.pin,
+          firstName: request.body.user.firstName,
+          lastName: request.body.user.lastName,
+          email: request.body.user.email,
+          address: request.body.user.address,
+          city: request.body.user.city,
+          state: request.body.user.state,
+          pin: request.body.user.pin,
         },
-        // paymentMethod: request.body.paymentMethod,
         orderTotal: request.body.orderTotal,
         user: request.user._id,
       });
-      const createdOrder = await order.save();
-      response.status(201).send({ order: createdOrder });
+
+      const createdOrder = await newOrder.save();
+
+      response.status(201).send(createdOrder);
     }
   })
 );
@@ -70,6 +70,7 @@ orderRouter.put(
       changeOrder.isPaid = request.body.selectedPaymentValue;
       changeOrder.isDelivered = request.body.selectedDeliveryValue;
       changeOrder.orderTotal = request.body.orderTotalValue;
+      changeOrder.deliveredAt = Date.now();
 
       const updatedOrder = await changeOrder.save();
 

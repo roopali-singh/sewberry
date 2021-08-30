@@ -57,13 +57,13 @@ function App() {
           <Route path="/orders">
             <BeforeNavbar />
             <Navbar />
-            <OrderStatus active1 active2 />
+            {/* <OrderStatus active1 active2 /> */}
             <CartScreen />
           </Route>
 
           <Route path="/shipping/:id">
             <Navbar />
-            <OrderStatus active1 active2 active3 />
+            {/* <OrderStatus active1 active2 active3 /> */}
             <Shipping />
           </Route>
 

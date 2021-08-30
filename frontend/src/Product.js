@@ -13,7 +13,12 @@ function Product({ product, forSlider, forShopScreen, forSale }) {
   //   localStorage.setItem("basket", JSON.stringify(basket));
   // }, [basket]);
 
+  useEffect(() => {
+    console.log("basket useEffect 🍕 🍕 🍕 🍕 🍕 => ", basket);
+  });
+
   function addToCart() {
+    console.log("basket 🍕 🍕 🍕 🍕 🍕 => ", basket);
     dispatch({
       type: "ADD_TO_BASKET",
       items: {

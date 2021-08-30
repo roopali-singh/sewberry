@@ -223,8 +223,9 @@ function ShowAllOrders() {
 
                   <StyledTableCell>
                     {order?.isDelivered ? (
-                      <CheckCircleIcon style={{ color: green[500] }} />
+                      order?.deliveredAt
                     ) : (
+                      // <CheckCircleIcon style={{ color: green[500] }} />
                       <CancelIcon style={{ color: "#db0c0c" }} />
                     )}
                   </StyledTableCell>

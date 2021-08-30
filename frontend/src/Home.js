@@ -11,7 +11,7 @@ import { useStateValue } from "./StateProvider";
 import Video from "./Video";
 
 function Home() {
-  const [{ products, loading, error, basket }, dispatch] = useStateValue();
+  const [{ products, loading, error }, dispatch] = useStateValue();
 
   useEffect(() => {
     dispatch({

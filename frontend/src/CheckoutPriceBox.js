@@ -24,11 +24,12 @@ function CheckoutPriceBox() {
 
   useEffect(() => {
     if (success) {
-      history.push(`/shipping/${order?.order?._id}`);
+      history.push(`/shipping/${order?._id}`);
     }
   }, [success]);
 
-  async function createOrder(orders, orderTotal) {
+  async function createOrder(event, orders, user, orderTotal) {
+    event.preventDefault();
     dispatch({
       type: "REQUEST_SEND",
       loading: true,
@@ -37,11 +38,15 @@ function CheckoutPriceBox() {
 
     try {
       const { data } = await axios.post(
-        "/api/orders",
-        { orders, orderTotal },
+        "/api/orders/create",
+        {
+          orders,
+          user,
+          orderTotal,
+        },
         {
           headers: {
-            Authorization: `Bearer ${userInfo?.token}`,
+            Authorization: `Bearer ${user?.token}`,
           },
         }
       );
@@ -49,8 +54,12 @@ function CheckoutPriceBox() {
       dispatch({
         type: "ORDER_CREATE_SUCCESS",
         loading: false,
-        success: true,
         order: data,
+      });
+
+      dispatch({
+        type: "SUCCESS_ACHEIVED",
+        success: true,
       });
 
       // localStorage.removeItem("basket");
@@ -69,8 +78,9 @@ function CheckoutPriceBox() {
   // CHECKOUT HANDLER /////////////////////////////////////////////////
   function checkoutHandler(e) {
     e.preventDefault();
+
     if (userInfo?.token) {
-      createOrder(basket, orderTotal); // Deconstruct basket => then. set orderItems to basket
+      createOrder(e, basket, userInfo, orderTotal); // Deconstruct basket => then. set orderItems to basket
     } else {
       history.push("/login");
     }
