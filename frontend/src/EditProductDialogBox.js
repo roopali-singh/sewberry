@@ -17,9 +17,6 @@ function EditProductDialogBox({ open, onClose, product }) {
   const [formData, setFormData] = useState({});
 
   async function editProductHandler() {
-    console.log("formData 🔴 🔴 🔴 🔴 => ", formData);
-    console.log("formData.name 🔴 🔴 🔴 🔴 => ", formData.name);
-    console.log("formData.imageSrc 🔴 🔴 🔴 🔴 => ", formData.imageSrc);
     dispatch({
       type: "REQUEST_SEND",
       loading: true,
@@ -37,7 +34,6 @@ function EditProductDialogBox({ open, onClose, product }) {
         }
       );
 
-      console.log("data 🔵 🔵 🔵 🔵  => ", data);
 
       dispatch({
         type: "PRODUCT_DETAILS_SUCCESS",
@@ -49,7 +45,6 @@ function EditProductDialogBox({ open, onClose, product }) {
       //   type: "SUCCESS_ACHEIVED",
       //   success: true,
       // });
-      
     } catch (error) {
       dispatch({
         type: "REQUEST_FAIL",

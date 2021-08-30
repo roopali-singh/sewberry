@@ -129,8 +129,6 @@ function EditOrderDialogBox({ open, onClose, orderId, orderEditInfo }) {
         loading: false,
         orderDetails: data,
       });
-      console.log("💛 💛 💛 💛 orderDetails => ", orderDetails);
-      console.log("💛 💛 💛 💛 data => ", data);
     } catch (error) {
       dispatch({
         // type: "USER_SIGNIN_FAIL",
@@ -149,7 +147,6 @@ function EditOrderDialogBox({ open, onClose, orderId, orderEditInfo }) {
   function submitHandler(e) {
     e.preventDefault();
     if (orderTotalValue <= orderEditInfo?.orderTotalInfo) {
-      console.log("💗 💗 💗 💗  LESS that the orderTotal");
       setAmountError(false);
       changeOrderStatusHandler(
         selectedPaymentValue === "paid" ? true : false,
@@ -157,7 +154,6 @@ function EditOrderDialogBox({ open, onClose, orderId, orderEditInfo }) {
         orderTotalValue
       );
     } else {
-      console.log("🙊 🙊 🙊 🙊 GREATER that the orderTotal");
       setAmountError(true);
     }
   }

@@ -54,7 +54,6 @@ function SearchProductBar() {
       if (!result?.length) {
         setSearchArray([]);
       } else {
-        console.log(result);
         result?.forEach(({ item }) => {
           matches.push(item);
         });

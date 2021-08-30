@@ -129,11 +129,8 @@ function ProductEditForm({ product, createNewProduct, passFormData }) {
         },
       });
 
-      console.log("before changing imageSrc => ", imageSrc);
       setImageSrc(data);
       setUploadLoading(false);
-      console.log("after changing imageSrc => ", imageSrc);
-      console.log("data => ", data);
     } catch (error) {
       setUploadLoading(false);
       setUploadError(

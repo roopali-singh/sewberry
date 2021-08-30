@@ -44,7 +44,6 @@ function AdminAccount() {
 
   function handleClose() {
     setOpenCreateDialog(false);
-    console.log("closed");
     // setSelectedValue(value);
   }
 

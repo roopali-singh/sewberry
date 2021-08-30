@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./WishlistIcon.css";
 import { useStateValue } from "./StateProvider";
 import FavoriteIcon from "@material-ui/icons/Favorite";
@@ -13,12 +13,7 @@ function WishlistIcon({ product }) {
   //   localStorage.setItem("wishlistBasket", JSON.stringify(wishlistBasket));
   // }, [wishlistBasket]);
 
-  useEffect(() => {
-    console.log("wishlist useEffect🍲 🍲 🍲 🍲 => ", wishlistBasket);
-  }, []);
-
   function addToWishlist() {
-    console.log("wishlist 🍲 🍲 🍲 🍲 => ", wishlistBasket);
     dispatch({
       type: "ADD_TO_WISHLIST",
       items: {

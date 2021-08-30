@@ -17,9 +17,6 @@ function CreateProductDialogBox({ open, onClose }) {
   const [formData, setFormData] = useState({});
 
   async function createProductHandler() {
-    console.log("formData 🔴 🔴 🔴 🔴 => ", formData);
-    console.log("formData.name 🔴 🔴 🔴 🔴 => ", formData.name);
-    console.log("formData.imageSrc 🔴 🔴 🔴 🔴 => ", formData.imageSrc);
     dispatch({
       type: "REQUEST_SEND",
       loading: true,
@@ -37,7 +34,6 @@ function CreateProductDialogBox({ open, onClose }) {
         }
       );
 
-      console.log("data 🔵 🔵 🔵 🔵  => ", data);
 
       dispatch({
         type: "SUCCESS_ACHEIVED",

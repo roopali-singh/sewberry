@@ -35,13 +35,11 @@ function ProductCollapseContainer({ product, classes }) {
 
   function handleEditClickOpen() {
     setOpenEditDialog(true);
-    console.log("clicked");
   }
 
   function handleClose() {
     setOpenDeleteDialog(false);
     setOpenEditDialog(false);
-    console.log("closed");
     // setSelectedValue(value);
   }
 

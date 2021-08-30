@@ -34,10 +34,6 @@ export const initialState = {
 };
 
 const reducer = (state, action) => {
-  console.log("action 🍍 🍍 🍍 🍍 🍍 🍍   => ", action);
-  // console.log("action.payload 🍏 🍏 🍏 🍏  => ", action.payload);
-  // console.log("action.type 🍅 🍅 🍅 🍅 => ", action.type);
-  switch (action.type) {
     case "REMOVING_ERROR":
       return {
         ...state,

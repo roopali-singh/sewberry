@@ -33,11 +33,6 @@ function DeleteProductDialogBox({ open, onClose, productId }) {
   //////////////// SENDING DELETE ORDER REQUEST ////////////////////
 
   async function deleteOrder(ProductIdValue) {
-    console.log(
-      "ProductIdValue => 🤮 🤮 🤮 🤮 🤮 🤮 🤮 🤮 🤮 🤮 🤮 🤮 ",
-      ProductIdValue
-    );
-
     dispatch({
       type: "REQUEST_SEND",
       loading: false,
@@ -74,12 +69,10 @@ function DeleteProductDialogBox({ open, onClose, productId }) {
     e.preventDefault();
     if (input === productId) {
       // e.preventDefault();
-      console.log("😋 😋 😋 😋  matched");
       setIdError(false);
       setwrongIdError("Product Id matched");
       deleteOrder(input);
     } else {
-      console.log(":  Not matched");
       setIdError(true);
       setwrongIdError("Invalid Product Id");
     }
