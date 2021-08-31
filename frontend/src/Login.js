@@ -7,7 +7,7 @@ import axios from "axios";
 
 function Login() {
   const history = useHistory();
-  const [{ loading, error, userInfo }, dispatch] = useStateValue();
+  const [{ loading, error }, dispatch] = useStateValue();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 

@@ -83,7 +83,7 @@ function AccountInfo() {
       </div>
 
       <div className="accountInfo__box">
-        <button onClick={() => submitHandler()}>Sign-out</button>
+        <button onClick={(e) => submitHandler(e)}>Sign-out</button>
       </div>
       {userInfo?.isAdmin && (
         <div className="accountInfo__box">
