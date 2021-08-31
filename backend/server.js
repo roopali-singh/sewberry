@@ -44,6 +44,8 @@ app.use("/api/orders", orderRouter);
 
 const __dirname = path.resolve();
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
+// serving the file inside build folder in frontend
+app.use(express.static(path.join(__dirname, "/frontend/build")));
 
 app.get("/api/config/stripe", (request, response) => {
   response
@@ -54,9 +56,13 @@ app.get("/api/config/stripe", (request, response) => {
     );
 });
 
-app.get("/", (request, response) => {
-  response.send("Server is Ready");
-});
+app.get("*", (request, response) =>
+  response.sendFile(path.join(__dirname, "/frontend/build/index.html"))
+);
+
+// app.get("/", (request, response) => {
+//   response.send("Server is Ready");
+// });
 
 // this middleware will catch error from userRouter as it was wraped in expressAsyncHandler
 app.use((error, request, response, next) => {
