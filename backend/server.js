@@ -8,11 +8,8 @@ import userRouter from "./router/userRouter.js";
 import productRouter from "./router/productRouter.js";
 import orderRouter from "./router/orderRouter.js";
 
-// const { response } = express;
-
 dotenv.config(); // to use .env file content
 const app = express();
-// adding new middleware => parsing json data in the body of http request => to not get error in postman
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
