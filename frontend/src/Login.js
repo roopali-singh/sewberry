@@ -8,8 +8,8 @@ import axios from "axios";
 function Login() {
   const history = useHistory();
   const [{ loading, error, userInfo }, dispatch] = useStateValue();
-  const [email, setEmail] = useState("roopali@gmail.com");
-  const [password, setPassword] = useState("moon");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   function handleSpacesInBetween(e) {
     if (e.key === " ") {
@@ -18,7 +18,6 @@ function Login() {
   }
 
   useEffect(() => {
-
     dispatch({
       type: "REMOVING_ERROR",
       loading: false,
