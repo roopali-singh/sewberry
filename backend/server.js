@@ -6,6 +6,7 @@ import path from "path";
 import uploadRouter from "./router/uploadRouter.js";
 import userRouter from "./router/userRouter.js";
 import productRouter from "./router/productRouter.js";
+import wishlistRouter from "./router/wishlistRouter.js";
 import orderRouter from "./router/orderRouter.js";
 
 dotenv.config(); // to use .env file content
@@ -37,6 +38,7 @@ mongoose.connect(process.env.MONGODB_URL || "mongodb://localhost/sewberry", {
 app.use("/api/uploads", uploadRouter);
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
+app.use("/api/wishlist", wishlistRouter);
 app.use("/api/orders", orderRouter);
 
 const __dirname = path.resolve();

@@ -9,7 +9,10 @@ function CheckoutPriceBox() {
 
   const [{ basket, userInfo, success, order }, dispatch] = useStateValue();
 
-  const amount = basket?.reduce((amount, item) => item?.price + amount, 0);
+  const amount = basket?.reduce(
+    (amount, item) => item?.price?.lower + amount,
+    0
+  );
   const discount = amount > 7000 ? 10 : 0;
   const shipping = basket?.length > 0 ? 150 : 0;
   const orderTotal = shipping + (amount - (discount / 100) * amount);
@@ -80,6 +83,7 @@ function CheckoutPriceBox() {
     e.preventDefault();
 
     if (userInfo?.token) {
+      console.log("basket => ", basket);
       createOrder(e, basket, userInfo, orderTotal); // Deconstruct basket => then. set orderItems to basket
     } else {
       history.push("/login");

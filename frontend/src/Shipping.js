@@ -96,7 +96,7 @@ function Shipping() {
             <strong>Review items and delivery</strong>
             <div className="shipping__subBoxInfo">
               {orderDetails?.orderItems?.map((item) => (
-                <CartProduct info={item} forShippingPage />
+                <CartProduct key={item?._id} info={item} forShippingPage />
               ))}
             </div>
           </div>

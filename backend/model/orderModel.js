@@ -8,9 +8,8 @@ const orderSchema = new mongoose.Schema(
         image: { type: String, required: true },
         alt: { type: String, required: true },
         price: {
-          type: Number,
-          required: true,
-          // lower: { type: Number, required: true },
+          // type: Number, required: true,
+          lower: { type: Number, required: true },
           // upper: { type: Number, required: false },
         },
         countInStock: { type: Number, required: true },

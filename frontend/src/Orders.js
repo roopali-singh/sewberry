@@ -24,7 +24,7 @@ function Orders({ products }) {
 
       {/* ////////////////// MAP PRODUCTS OF ORDER //////////////////////// */}
       {products?.orderItems?.map((order) => (
-        <div className="order__list">
+        <div key={order._id} className="order__list">
           <UserOrderList key={order._id} order={order} />
         </div>
       ))}
@@ -34,7 +34,12 @@ function Orders({ products }) {
         <h3 className="order__total">Order Total: {products?.orderTotal}</h3>
 
         {products?.isPaid === false && (
-          <button className="order__pay-Buton" onClick={() => completePayment()}>Pay Now</button>
+          <button
+            className="order__pay-Buton"
+            onClick={() => completePayment()}
+          >
+            Pay Now
+          </button>
         )}
       </div>
     </div>

@@ -21,7 +21,7 @@ function Product({ product, forSlider, forShopScreen, forSale }) {
         image: product?.image,
         alt: product?.alt,
         name: product?.name,
-        price: product?.price?.lower,
+        price: product?.price,
         countInStock: product?.countInStock - 1,
       },
     });

@@ -39,7 +39,7 @@ function UserOrderList({ order }) {
 
         <div className="userOrder__right-price">
           ₹
-          {order?.price?.toLocaleString("en-IN", {
+          {order?.price?.lower?.toLocaleString("en-IN", {
             maximumFractionDigits: 2,
           })}
         </div>

@@ -31,6 +31,8 @@ export const initialState = {
   wishlistBasket:
     // localStorage.getItem("wishlistBasket") ? JSON.parse(localStorage.getItem("wishlistBasket")) :
     [],
+  favourites: [],
+  favouritesId: [],
 };
 
 const reducer = (state, action) => {
@@ -222,6 +224,29 @@ const reducer = (state, action) => {
       return {
         ...state,
         allOrders: action.allOrders,
+      };
+
+    // FOR THE WISHLIST SCREEN PAGE
+
+    case "SHOW_ALL_FAVOURITES":
+      return {
+        ...state,
+        loading: action.loading,
+        favourites: action.favourites,
+      };
+
+    // case "SHOW_ALL_FAVOURITES_ID":
+    //   return {
+    //     ...state,
+    //     loading: action.loading,
+    //     favouritesId: action.favouritesId,
+    //   };
+
+    case "CHANGE_WISHLIST_ICON":
+      return {
+        ...state,
+        loading: action.loading,
+        heart: action.heart,
       };
 
     case "SUCCESS_ACHEIVED":

@@ -17,7 +17,7 @@ function PriceBox() {
         image: productDetails?.image,
         alt: productDetails?.alt,
         name: productDetails?.name,
-        price: productDetails?.price?.lower,
+        price: productDetails?.price,
         countInStock: productDetails?.countInStock - 1,
       },
     });

@@ -58,7 +58,7 @@ function OrderCollapseContainer({ order, classes }) {
           <TableBody>
             {/* /////////////////////////////////// ORDERS ITEMS DETAILS /////////////////////////// */}
             {order?.orderItems?.map((orderItem) => (
-              <>
+              <React.Fragment key={orderItem?._id}>
                 <TableRow>
                   <StyledTableHeadCell>OrderItem Id</StyledTableHeadCell>
                   <TableCell>{orderItem?._id}</TableCell>
@@ -72,7 +72,7 @@ function OrderCollapseContainer({ order, classes }) {
                   <TableCell>
                     <strong>
                       ₹{" "}
-                      {orderItem?.price?.toLocaleString("en-IN", {
+                      {orderItem?.price?.lower?.toLocaleString("en-IN", {
                         maximumFractionDigits: 2,
                       })}
                     </strong>
@@ -91,7 +91,7 @@ function OrderCollapseContainer({ order, classes }) {
                 <TableRow>
                   <hr />
                 </TableRow>
-              </>
+              </React.Fragment>
             ))}
             {/* /////////////////////////////////// CUSTOMER DETAILS /////////////////////////// */}
             <TableRow>

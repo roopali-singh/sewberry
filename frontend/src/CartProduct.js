@@ -61,7 +61,7 @@ function CartProduct({ info, forShippingPage, forWishlistPage }) {
           <strong>{info?.name}</strong>
           <div className="cartProduct__right-info">
             ₹
-            {info?.price?.toLocaleString("en-IN", {
+            {info?.price?.lower?.toLocaleString("en-IN", {
               maximumFractionDigits: 2,
             })}
           </div>
