@@ -15,7 +15,8 @@
   text-transform: uppercase;
   display: flex;
   align-self: center;
-  justify-content: center;
+  /* justify-content: center; */
+  justify-content: space-evenly;
   align-items: center;
   height: 6.25rem;
   margin-bottom: 1.25rem;
@@ -27,11 +28,10 @@
 /* SLIDES */
 
 .slide {
-  /* margin-bottom: 1.25rem; */
+  /* padding: 1%; */
   background-color: #afaaaa;
 }
 
-.slider__image {
-  object-fit: contain;
-  height: 21.875rem;
+.SplideSlide {
+  width: 1.7%;
 }

@@ -1,29 +1,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Numans&display=swap");
 
 .product {
-  /* margin-top: 3.125rem;
-  margin-bottom: 3.125rem; */
-  margin: 3%;
-  max-width: max-content !important;
-  /* margin: 3.125rem; */
+  margin: 1%;
+  max-width: 20% !important;
   cursor: pointer;
-  /* margin: 1rem; */
-  /* padding-bottom: 3rem; */
   transition: transform 450ms;
   position: relative;
 }
 
 .productSlider {
-  margin: 1.875rem;
-  max-width: max-content !important;
+  margin: 11%;
+  max-width: 100% !important;
   cursor: pointer;
   transition: transform 450ms;
   position: relative;
 }
 
 .productShopScreen {
-  margin: 1.875rem;
-  max-width: max-content !important;
+  margin: 1%;
+  max-width: 23% !important;
   cursor: pointer;
   transition: transform 450ms;
   position: relative;
@@ -32,12 +27,10 @@
 /* PRODUCTS COMPONENTS */
 
 .product__image {
-  object-fit: contain;
-  /* height: 21.875rem; */
-  height: 35vh;
-  /* max-height: 100vw; */
-  max-height: 25rem;
-  max-width: calc(100vw - 10%);
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  max-width: 300px;
 }
 
 .product__saleTag {
@@ -79,7 +72,8 @@
 
 .product__priceHeart {
   width: 100%;
-  margin-top: 0.75rem;
+  margin-top: 4%;
+  /* margin-top: 0.75rem; */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -89,10 +83,18 @@
   font-family: "Numans", sans-serif;
   font-size: 0.875rem;
   font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.product__price > span:last-child {
-  margin-left: 15px;
+.product__price--forMargin {
+  margin-right: 15px;
+}
+
+.product__price--inSale {
   text-decoration-line: line-through;
   color: grey;
   font-weight: 500 !important;
@@ -106,6 +108,7 @@
   margin-top: 0.25rem;
   font-family: "Numans", sans-serif;
   font-size: 0.875rem;
+  white-space: pre-wrap;
 }
 
 /* HOVER EFFECTS */
@@ -131,5 +134,18 @@
   }
   to {
     opacity: 1;
+  }
+}
+
+@media only screen and (max-width: 844px) {
+  .product__title {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 11px !important;
+  }
+
+  .product__price {
+    font-size: 11px;
   }
 }

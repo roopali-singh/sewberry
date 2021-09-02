@@ -20,6 +20,16 @@
   transition: color 0.3s ease-out;
 }
 
+@media only screen and (max-width: 844px) {
+  .wishlistIcon {
+    font-size: 100% !important;
+  }
+
+  .non-wishlistHeart {
+    font-size: 100% !important;
+  }
+}
+
 /* // REMOVING HOVER FROM MOBILE */
 
 @media (hover: hover) {

@@ -72,24 +72,22 @@ function Product({ product, forSlider, forShopScreen, forSale }) {
       <div className="product__priceHeart">
         {/* FOR PRODUCT SALE SECTION */}
         <Link to={`/products/${product?._id}`} className="link">
-          {!forSale ? (
-            <span className="product__price">
+          <span className="product__price">
+            {forSale && (
+              <span className="product__price--forMargin">₹2900</span>
+            )}
+
+            <span
+              className={`product__price--forMargin ${
+                forSale && "product__price--inSale"
+              }`}
+            >
               ₹
               {product?.price?.lower?.toLocaleString("en-IN", {
                 maximumFractionDigits: 2,
               })}
             </span>
-          ) : (
-            <span className="product__price">
-              <span>₹2900</span>
-              <span>
-                ₹
-                {product?.price?.lower?.toLocaleString("en-IN", {
-                  maximumFractionDigits: 2,
-                })}
-              </span>
-            </span>
-          )}
+          </span>
         </Link>
         <span className="product__heart">
           <WishlistIcon product={product} />
@@ -98,7 +96,7 @@ function Product({ product, forSlider, forShopScreen, forSale }) {
 
       {/* PRODUCT TITLE */}
       <Link to={`/products/${product?._id}`} className="link">
-        <p className="product__title">{product?.name}</p>
+        <div className="product__title">{product?.name}</div>
       </Link>
     </div>
   );

@@ -15,22 +15,23 @@ function Slider({ sliderCategory }) {
         <Splide
           options={{
             type: "loop",
-            perPage: 3,
+            perPage: 4,
             focus: "center",
             lazyLoad: true,
             autoplay: true,
-            interval: 2000,
+            interval: 1000,
             pauseOnHover: true,
             resetProgress: false,
             pauseOnFocus: false,
             autoWidth: true,
             autoHeight: true,
+            // gap: "1rem ",
             // cover: true,
             // height: "22.875rem",
           }}
         >
           {sliderCategory?.map((product) => (
-            <SplideSlide key={product?._id}>
+            <SplideSlide key={product?._id} className="SplideSlide">
               <Product key={product?._id} product={product} forSlider />
             </SplideSlide>
           ))}
