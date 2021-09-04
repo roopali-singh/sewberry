@@ -5,31 +5,21 @@ import { isAuth } from "../utils.js";
 
 const wishlistRouter = express.Router();
 
-// wishlistRouter.post(
-//   "/",
-//   isAuth,
-//   expressAsyncHandler(async (request, response) => {
-//     const favourite = await Wishlist.find({
-//       user: request.user._id,
-//       product: request.body.productId,
-//     });
+/* Wishlist => 
+1) user info
+2) product info
 
-//     if (favourite.length === 0) {
-//       const addFavourite = new Wishlist({
-//         user: request.user._id,
-//         product: request.body.productId,
-//       });
+*WishlistIcon => 
+1) Adding
+2) Removing
 
-//       const favouriteAdded = await addFavourite.save();
+*NOT on WishlistScreen --
+onClick: add new to favourites
 
-//       response.status(201).send(favouriteAdded);
-//     } else {
-//       const favouriteRemoved = favourite.deleteOne();
+*On WishlistScreen -- 
+onClick: deleteOne() the found favourite
 
-//       response.status(201).send(favouriteRemoved);
-//     }
-//   })
-// );
+*/
 
 wishlistRouter.post(
   "/add",
@@ -54,19 +44,20 @@ wishlistRouter.post(
 );
 
 wishlistRouter.delete(
-  "/deleteFavourite",
+  "/deleteFavourite/:id",
   isAuth,
-  expressAsyncHandler(async (request, response) => {
-    const favourite = await Wishlist.find({
+  expressAsyncHandler((request, response) => {
+    Wishlist.find({
       user: request.user._id,
-      product: request.body.productId,
+      product: request.params.id,
+    }).deleteOne(function (err, result) {
+      if (err) {
+        response.status(400).send(err);
+      }
+      if (result) {
+        response.status(201).send(result);
+      }
     });
-
-    if (favourite) {
-      const favouriteDeleted = await favourite.deleteOne();
-
-      response.status(200).send(favouriteDeleted);
-    }
   })
 );
 
@@ -87,23 +78,5 @@ wishlistRouter.get(
     }
   })
 );
-
-/* Wishlist => 
-1) user info
-2) product info
-
-*WishlistIcon => 
-1) Adding
-2) Removing
-
-find by user._id && product._id
-if(found){ remove }
-else { add }
-
-*WishlistScreen => 
-1) find by user._id
-2) show matched populated products
-
-*/
 
 export default wishlistRouter;

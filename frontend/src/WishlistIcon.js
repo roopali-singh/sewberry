@@ -10,10 +10,6 @@ function WishlistIcon({ product, forWishlistPageHeart }) {
 
   const [wishlistBasketCheck, setWishlistBasketCheck] = useState({});
 
-  // const wishlistBasketCheck = wishlistBasket?.find(
-  //   (wishlist) => wishlist?._id === product?._id
-  // );
-
   // useEffect(() => {
   //   localStorage.setItem("wishlistBasket", JSON.stringify(wishlistBasket));
   // }, [wishlistBasket]);
@@ -36,13 +32,18 @@ function WishlistIcon({ product, forWishlistPageHeart }) {
         wishlistBasket?.find((wishlist) => wishlist?._id === product?._id)
       );
     }
+  }, [userInfo, wishlistBasket, favouriteSuccess]);
 
+  useEffect(() => {
     dispatch({
       type: "FAVOURITE_SUCCESS_ACHEIVED",
       loading: false,
       favouriteSuccess: false,
     });
-  }, [userInfo, favourites, wishlistBasket, favouriteSuccess]);
+    console.log("favouriteSuccess USEEFFECT=> ", favouriteSuccess);
+  }, [wishlistBasketCheck]);
+
+  //////////// CHOOSING REMOVE OR ADD IN FAOVRITES /////////////////////
 
   function loginUserHeart(e) {
     e.preventDefault();
@@ -76,10 +77,12 @@ function WishlistIcon({ product, forWishlistPageHeart }) {
         loading: false,
         favouriteSuccess: true,
       });
+
+      console.log("favouriteSuccess add => ", favouriteSuccess);
     } catch (error) {
       dispatch({
         type: "REQUEST_FAIL",
-        loading: true,
+        loading: false,
         error:
           error.response && error.response.data.message
             ? error.response.data.message
@@ -93,8 +96,8 @@ function WishlistIcon({ product, forWishlistPageHeart }) {
   async function removeFromFavourites(productId) {
     try {
       const { data } = await axios.delete(
-        "/api/wishlist/deleteFavourite",
-        { productId },
+        `/api/wishlist/deleteFavourite/${productId}`,
+        // { productId },
         {
           headers: {
             Authorization: `Bearer ${userInfo?.token}`,
@@ -102,16 +105,18 @@ function WishlistIcon({ product, forWishlistPageHeart }) {
         }
       );
 
-
       dispatch({
         type: "FAVOURITE_SUCCESS_ACHEIVED",
         loading: false,
         favouriteSuccess: true,
       });
+      console.log("favouriteSuccess remove => ", favouriteSuccess);
     } catch (error) {
+      console.log("favouriteSuccess remove ERROR => ", favouriteSuccess);
+
       dispatch({
         type: "REQUEST_FAIL",
-        loading: true,
+        loading: false,
         error:
           error.response && error.response.data.message
             ? error.response.data.message

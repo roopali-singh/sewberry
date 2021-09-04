@@ -44,7 +44,7 @@ function Account() {
       }
       loginUserFavourites();
     }
-  }, [userInfo, favouriteSuccess, dispatch]);
+  }, [userInfo, favouriteSuccess]);
 
   //////////////////////////////////////////
 
