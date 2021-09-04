@@ -23,7 +23,7 @@ import axios from "axios";
 ///////////////////////////////
 
 function EditOrderDialogBox({ open, onClose, orderId, orderEditInfo }) {
-  const [{ userInfo, orderDetails }, dispatch] = useStateValue();
+  const [{ userInfo }, dispatch] = useStateValue();
   const [selectedPaymentValue, setSelectedPaymentValue] = useState(
     orderEditInfo?.orderPaymentInfo ? "paid" : "notPaid"
   );

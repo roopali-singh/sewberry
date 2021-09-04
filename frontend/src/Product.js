@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Product.css";
 import LoyaltyIcon from "@material-ui/icons/Loyalty";
 import { Link } from "react-router-dom";
@@ -6,7 +6,7 @@ import { useStateValue } from "./StateProvider";
 import WishlistIcon from "./WishlistIcon";
 
 function Product({ product, forSlider, forShopScreen, forSale }) {
-  const [{ basket }, dispatch] = useStateValue();
+  const [{}, dispatch] = useStateValue();
   const [inHover, setHover] = useState(false);
 
   // useEffect(() => {

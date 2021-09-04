@@ -42,7 +42,7 @@
   padding: 0.625rem;
   display: flex;
   flex-direction: row;
-  justify-content: end !important;
+  justify-content: flex-end !important;
   align-items: center;
   flex-wrap: wrap;
 }

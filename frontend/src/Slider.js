@@ -16,10 +16,11 @@ function Slider({ sliderCategory }) {
           options={{
             type: "loop",
             perPage: 4,
+            perMove: 4,
             focus: "center",
             lazyLoad: true,
             autoplay: true,
-            interval: 1000,
+            interval: 2000,
             pauseOnHover: true,
             resetProgress: false,
             pauseOnFocus: false,

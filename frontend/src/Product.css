@@ -26,6 +26,7 @@
 
 /* PRODUCTS COMPONENTS */
 
+/* 500x700 => images (ratio: 5:7) */
 .product__image {
   width: 100%;
   height: auto;
@@ -143,6 +144,10 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     font-size: 11px !important;
+  }
+
+  .product__saleTag {
+    font-size: 100% !important;
   }
 
   .product__price {

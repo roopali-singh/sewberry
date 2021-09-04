@@ -1,5 +1,5 @@
-import multer from "multer";
 import express from "express";
+import multer from "multer";
 import { isAuth, isAdmin } from "../utils.js";
 
 const uploadRouter = express.Router();

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./OrderCollapseContainer.css";
 import DeleteOrderDialogBox from "./DeleteOrderDialogBox";
 import EditOrderDialogBox from "./EditOrderDialogBox";
-import { withStyles, makeStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import TableContainer from "@material-ui/core/TableContainer";
 import Table from "@material-ui/core/Table";

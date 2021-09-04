@@ -32,7 +32,9 @@ export const initialState = {
     // localStorage.getItem("wishlistBasket") ? JSON.parse(localStorage.getItem("wishlistBasket")) :
     [],
   favourites: [],
-  favouritesId: [],
+  favouriteDetails: [],
+  favouriteSuccess: false,
+  heart: false,
 };
 
 const reducer = (state, action) => {
@@ -235,13 +237,6 @@ const reducer = (state, action) => {
         favourites: action.favourites,
       };
 
-    // case "SHOW_ALL_FAVOURITES_ID":
-    //   return {
-    //     ...state,
-    //     loading: action.loading,
-    //     favouritesId: action.favouritesId,
-    //   };
-
     case "CHANGE_WISHLIST_ICON":
       return {
         ...state,
@@ -253,6 +248,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         success: action.success,
+      };
+
+    case "FAVOURITE_SUCCESS_ACHEIVED":
+      return {
+        ...state,
+        favouriteSuccess: action.favouriteSuccess,
       };
 
     default:

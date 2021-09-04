@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import WishlistIcon from "./WishlistIcon";
 
 function CartProduct({ info, forShippingPage, forWishlistPage }) {
-  const [{ basket }, dispatch] = useStateValue();
+  const [{}, dispatch] = useStateValue();
 
   // useEffect(() => {
   //   localStorage.setItem("basket", JSON.stringify(basket));
@@ -52,7 +52,7 @@ function CartProduct({ info, forShippingPage, forWishlistPage }) {
 
           {forWishlistPage && (
             <span className="forWishlistHeart">
-              <WishlistIcon product={info} />
+              <WishlistIcon product={info} forWishlistPageHeart />
             </span>
           )}
         </div>

@@ -5,8 +5,34 @@ import { isAuth } from "../utils.js";
 
 const wishlistRouter = express.Router();
 
+// wishlistRouter.post(
+//   "/",
+//   isAuth,
+//   expressAsyncHandler(async (request, response) => {
+//     const favourite = await Wishlist.find({
+//       user: request.user._id,
+//       product: request.body.productId,
+//     });
+
+//     if (favourite.length === 0) {
+//       const addFavourite = new Wishlist({
+//         user: request.user._id,
+//         product: request.body.productId,
+//       });
+
+//       const favouriteAdded = await addFavourite.save();
+
+//       response.status(201).send(favouriteAdded);
+//     } else {
+//       const favouriteRemoved = favourite.deleteOne();
+
+//       response.status(201).send(favouriteRemoved);
+//     }
+//   })
+// );
+
 wishlistRouter.post(
-  "/",
+  "/add",
   isAuth,
   expressAsyncHandler(async (request, response) => {
     const favourite = await Wishlist.find({
@@ -15,18 +41,31 @@ wishlistRouter.post(
     });
 
     if (favourite.length === 0) {
-      const addFavourite = new Wishlist({
+      const newFavourite = new Wishlist({
         user: request.user._id,
         product: request.body.productId,
       });
 
-      const favouriteAdded = await addFavourite.save();
+      const favouriteAdded = await newFavourite.save();
 
-      response.status(201).send({ heart: true, favourite: favouriteAdded });
-    } else {
-      const favouriteRemoved = favourite.remove();
+      response.status(201).send(favouriteAdded);
+    }
+  })
+);
 
-      response.status(201).send({ heart: false, favourite: favouriteRemoved });
+wishlistRouter.delete(
+  "/deleteFavourite",
+  isAuth,
+  expressAsyncHandler(async (request, response) => {
+    const favourite = await Wishlist.find({
+      user: request.user._id,
+      product: request.body.productId,
+    });
+
+    if (favourite) {
+      const favouriteDeleted = await favourite.deleteOne();
+
+      response.status(200).send(favouriteDeleted);
     }
   })
 );
@@ -41,8 +80,8 @@ wishlistRouter.get(
         createdAt: -1,
       });
 
-    if (favourites.length === 0) {
-      response.status(400).send({ message: "Empty Wishlist" });
+    if (!favourites) {
+      response.status(200).send({ message: "Empty Wishlist" });
     } else {
       response.status(200).send(favourites);
     }

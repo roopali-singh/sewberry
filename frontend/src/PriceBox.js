@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./PriceBox.css";
 import { useStateValue } from "./StateProvider";
 
 function PriceBox() {
-  const [{ productDetails, basket }, dispatch] = useStateValue();
+  const [{ productDetails }, dispatch] = useStateValue();
 
   // useEffect(() => {
   //   localStorage.setItem("basket", JSON.stringify(basket));

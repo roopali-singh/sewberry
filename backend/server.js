@@ -6,8 +6,8 @@ import path from "path";
 import uploadRouter from "./router/uploadRouter.js";
 import userRouter from "./router/userRouter.js";
 import productRouter from "./router/productRouter.js";
-import wishlistRouter from "./router/wishlistRouter.js";
 import orderRouter from "./router/orderRouter.js";
+import wishlistRouter from "./router/wishlistRouter.js";
 
 dotenv.config(); // to use .env file content
 const app = express();
@@ -38,8 +38,8 @@ mongoose.connect(process.env.MONGODB_URL || "mongodb://localhost/sewberry", {
 app.use("/api/uploads", uploadRouter);
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
-app.use("/api/wishlist", wishlistRouter);
 app.use("/api/orders", orderRouter);
+app.use("/api/wishlist", wishlistRouter);
 
 const __dirname = path.resolve();
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
@@ -65,7 +65,14 @@ app.get("*", (request, response) =>
 
 // this middleware will catch error from userRouter as it was wraped in expressAsyncHandler
 app.use((error, request, response, next) => {
-  response.status(500).send({ message: error.message });
+  response
+    .status(500)
+    .send({
+      message:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
 });
 
 const port = process.env.PORT || 5000;

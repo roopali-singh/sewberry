@@ -106,7 +106,7 @@ productRouter.delete(
       fs.unlink(__dirname + productToDelete.image, (error) => {
         if (error) throw error;
       });
-      const productDeleted = productToDelete.remove();
+      const productDeleted = await productToDelete.remove();
       response.status(201).send(productDeleted);
     } else {
       response.status(404).send({ message: "Product to be deleted not found" });

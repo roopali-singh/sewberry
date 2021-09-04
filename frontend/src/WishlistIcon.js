@@ -1,15 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./WishlistIcon.css";
 import { useStateValue } from "./StateProvider";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import axios from "axios";
 
-function WishlistIcon({ product }) {
-  const [{ wishlistBasket, userInfo, heart, favouritesId }, dispatch] =
+function WishlistIcon({ product, forWishlistPageHeart }) {
+  const [{ wishlistBasket, userInfo, favourites, favouriteSuccess }, dispatch] =
     useStateValue();
-  const wishlistBasketCheck = userInfo?.token
-    ? favouritesId?.find((favourite) => favourite?.product === product?._id)
-    : wishlistBasket?.find((wishlist) => wishlist?._id === product?._id);
+
+  const [wishlistBasketCheck, setWishlistBasketCheck] = useState({});
+
+  // const wishlistBasketCheck = wishlistBasket?.find(
+  //   (wishlist) => wishlist?._id === product?._id
+  // );
 
   // useEffect(() => {
   //   localStorage.setItem("wishlistBasket", JSON.stringify(wishlistBasket));
@@ -23,16 +26,43 @@ function WishlistIcon({ product }) {
     });
   }, []);
 
-  async function loginUserHeart(productId) {
+  useEffect(() => {
+    if (userInfo?.token) {
+      setWishlistBasketCheck(
+        favourites?.find((wishlist) => wishlist?.product?._id === product?._id)
+      );
+    } else {
+      setWishlistBasketCheck(
+        wishlistBasket?.find((wishlist) => wishlist?._id === product?._id)
+      );
+    }
+
     dispatch({
-      type: "REQUEST_SEND",
-      loading: true,
-      error: false,
+      type: "FAVOURITE_SUCCESS_ACHEIVED",
+      loading: false,
+      favouriteSuccess: false,
     });
+  }, [userInfo, favourites, wishlistBasket, favouriteSuccess]);
+
+  function loginUserHeart(e) {
+    e.preventDefault();
+    if (forWishlistPageHeart) {
+      removeFromFavourites(product?._id);
+    } else {
+      addToFavourites(product?._id);
+    }
+  }
+  //////////////////////////////// ADD TO FAVOURITES ///////////////////
+  async function addToFavourites(productId) {
+    // dispatch({
+    //   type: "REQUEST_SEND",
+    //   loading: true,
+    //   error: false,
+    // });
 
     try {
       const { data } = await axios.post(
-        "/api/wishlist",
+        "/api/wishlist/add",
         { productId },
         {
           headers: {
@@ -40,22 +70,13 @@ function WishlistIcon({ product }) {
           },
         }
       );
-      console.log(data);
 
       dispatch({
-        type: "CHANGE_WISHLIST_ICON",
+        type: "FAVOURITE_SUCCESS_ACHEIVED",
         loading: false,
-        heart: data?.heart,
+        favouriteSuccess: true,
       });
-
-      heart &&
-        dispatch({
-          type: "SHOW_ALL_FAVOURITES",
-          loading: false,
-          favourites: data?.favourite,
-        });
     } catch (error) {
-      console.log("error");
       dispatch({
         type: "REQUEST_FAIL",
         loading: true,
@@ -66,6 +87,40 @@ function WishlistIcon({ product }) {
       });
     }
   }
+
+  ////////////////////////// REMOVE FROM FAVOURITES /////////////////////
+
+  async function removeFromFavourites(productId) {
+    try {
+      const { data } = await axios.delete(
+        "/api/wishlist/deleteFavourite",
+        { productId },
+        {
+          headers: {
+            Authorization: `Bearer ${userInfo?.token}`,
+          },
+        }
+      );
+
+
+      dispatch({
+        type: "FAVOURITE_SUCCESS_ACHEIVED",
+        loading: false,
+        favouriteSuccess: true,
+      });
+    } catch (error) {
+      dispatch({
+        type: "REQUEST_FAIL",
+        loading: true,
+        error:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  }
+
+  ///////////////////////// ADD WISHLIST TO CONTEXT API ///////////////////////////
 
   function addToWishlist() {
     dispatch({
@@ -92,8 +147,11 @@ function WishlistIcon({ product }) {
         />
       ) : (
         <FavoriteIcon
-          className={heart ? "wishlistHeart" : "non-wishlistHeart"}
-          onClick={() => loginUserHeart(product?._id)}
+          className={
+            wishlistBasketCheck ? "wishlistHeart" : "non-wishlistHeart"
+          }
+          disabled={wishlistBasketCheck}
+          onClick={loginUserHeart}
         />
       )}
     </div>

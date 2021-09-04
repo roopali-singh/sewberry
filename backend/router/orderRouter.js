@@ -90,7 +90,7 @@ orderRouter.delete(
   expressAsyncHandler(async (request, response) => {
     const orderToDelete = await Order.findById(request.params.id);
     if (orderToDelete) {
-      const orderDeleted = orderToDelete.remove();
+      const orderDeleted = await orderToDelete.remove();
       response.status(201).send(orderDeleted);
     } else {
       response.status(404).send({ message: "Order to be deleted not found" });
