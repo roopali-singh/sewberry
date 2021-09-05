@@ -76,8 +76,6 @@ function WishlistIcon({ product, forWishlistPageHeart }) {
         loading: false,
         favouriteSuccess: true,
       });
-
-      console.log("favouriteSuccess add => ", favouriteSuccess);
     } catch (error) {
       dispatch({
         type: "REQUEST_FAIL",
@@ -109,10 +107,7 @@ function WishlistIcon({ product, forWishlistPageHeart }) {
         loading: false,
         favouriteSuccess: true,
       });
-      console.log("favouriteSuccess remove => ", favouriteSuccess);
     } catch (error) {
-      console.log("favouriteSuccess remove ERROR => ", favouriteSuccess);
-
       dispatch({
         type: "REQUEST_FAIL",
         loading: false,

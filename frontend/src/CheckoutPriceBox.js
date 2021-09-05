@@ -28,8 +28,6 @@ function CheckoutPriceBox() {
 
   useEffect(() => {
     if (order?._id) {
-      console.log("here comes userInfo with order?._id => ", userInfo);
-      console.log("here comes products with order?._id => ", products);
       history.push(`/shipping/${order?._id}`);
     }
   }, [order]);
@@ -62,9 +60,6 @@ function CheckoutPriceBox() {
         loading: false,
         order: data,
       });
-      console.log("here comes data => ", data);
-      console.log("here comes order => ", order);
-      console.log("here comes userInfo at checkout => ", userInfo);
 
       // dispatch({
       //   type: "SUCCESS_ACHEIVED",

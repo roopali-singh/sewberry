@@ -31,11 +31,9 @@ orderRouter.post(
       newOrder
         .save()
         .then((result) => {
-          console.log("result => ", result);
           response.status(201).send(result);
         })
         .catch((error) => {
-          console.log("error", error);
           response.status(400).send({ message: error });
         });
     }

@@ -18,8 +18,6 @@ function Shipping() {
       loading: false,
       error: false,
     });
-    console.log("here comes userInfo => ", userInfo);
-    console.log("here comes basket => ", basket);
   }, []);
 
   useEffect(() => {
