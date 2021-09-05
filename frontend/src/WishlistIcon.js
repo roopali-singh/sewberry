@@ -34,14 +34,13 @@ function WishlistIcon({ product, forWishlistPageHeart }) {
     }
   }, [userInfo, wishlistBasket, favouriteSuccess]);
 
-  useEffect(() => {
-    dispatch({
-      type: "FAVOURITE_SUCCESS_ACHEIVED",
-      loading: false,
-      favouriteSuccess: false,
-    });
-    console.log("favouriteSuccess USEEFFECT=> ", favouriteSuccess);
-  }, [wishlistBasketCheck]);
+  // useEffect(() => {
+  //   dispatch({
+  //     type: "FAVOURITE_SUCCESS_ACHEIVED",
+  //     loading: false,
+  //     favouriteSuccess: false,
+  //   });
+  // }, [wishlistBasketCheck]);
 
   //////////// CHOOSING REMOVE OR ADD IN FAOVRITES /////////////////////
 

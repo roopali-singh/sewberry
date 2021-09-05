@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 function Shipping() {
-  const [{ orderDetails, userInfo }, dispatch] = useStateValue();
+  const [{ orderDetails, userInfo, basket }, dispatch] = useStateValue();
 
   var { id } = useParams();
 
@@ -18,12 +18,21 @@ function Shipping() {
       loading: false,
       error: false,
     });
+    console.log("here comes userInfo => ", userInfo);
+    console.log("here comes basket => ", basket);
   }, []);
 
   useEffect(() => {
     dispatch({
       type: "SUCCESS_ACHEIVED",
       success: false,
+    });
+  }, []);
+
+  useEffect(() => {
+    dispatch({
+      type: "ORDER_CREATE_RESET",
+      order: {},
     });
   }, []);
 

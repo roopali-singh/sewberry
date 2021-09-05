@@ -15,22 +15,32 @@ orderRouter.post(
       const newOrder = new Order({
         orderItems: request.body.orders,
         shippingAddress: {
-          firstName: request.body.user.firstName,
-          lastName: request.body.user.lastName,
-          email: request.body.user.email,
-          address: request.body.user.address,
-          city: request.body.user.city,
-          state: request.body.user.state,
-          pin: request.body.user.pin,
+          firstName: request.user.firstName,
+          lastName: request.user.lastName,
+          email: request.user.email,
+          address: request.user.address,
+          city: request.user.city,
+          state: request.user.state,
+          pin: request.user.pin,
         },
         orderTotal: request.body.orderTotal,
         user: request.user._id,
       });
 
-      const createdOrder = await newOrder.save();
-
-      response.status(201).send(createdOrder);
+      // const createdOrder = await
+      newOrder
+        .save()
+        .then((result) => {
+          console.log("result => ", result);
+          response.status(201).send(result);
+        })
+        .catch((error) => {
+          console.log("error", error);
+          response.status(400).send({ message: error });
+        });
     }
+
+    // response.status(201).send(createdOrder);
   })
 );
 

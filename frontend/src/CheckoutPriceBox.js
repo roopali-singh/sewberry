@@ -7,7 +7,8 @@ import { useStateValue } from "./StateProvider";
 function CheckoutPriceBox() {
   const history = useHistory();
 
-  const [{ basket, userInfo, success, order }, dispatch] = useStateValue();
+  const [{ basket, userInfo, success, order, products }, dispatch] =
+    useStateValue();
 
   const amount = basket?.reduce(
     (amount, item) => item?.price?.lower + amount,
@@ -26,12 +27,14 @@ function CheckoutPriceBox() {
   }, []);
 
   useEffect(() => {
-    if (success) {
+    if (order?._id) {
+      console.log("here comes userInfo with order?._id => ", userInfo);
+      console.log("here comes products with order?._id => ", products);
       history.push(`/shipping/${order?._id}`);
     }
-  }, [success]);
+  }, [order]);
 
-  async function createOrder(event, orders, user, orderTotal) {
+  async function createOrder(event, orders, orderTotal) {
     event.preventDefault();
     dispatch({
       type: "REQUEST_SEND",
@@ -44,12 +47,12 @@ function CheckoutPriceBox() {
         "/api/orders/create",
         {
           orders,
-          user,
+          // user,
           orderTotal,
         },
         {
           headers: {
-            Authorization: `Bearer ${user?.token}`,
+            Authorization: `Bearer ${userInfo?.token}`,
           },
         }
       );
@@ -59,11 +62,14 @@ function CheckoutPriceBox() {
         loading: false,
         order: data,
       });
+      console.log("here comes data => ", data);
+      console.log("here comes order => ", order);
+      console.log("here comes userInfo at checkout => ", userInfo);
 
-      dispatch({
-        type: "SUCCESS_ACHEIVED",
-        success: true,
-      });
+      // dispatch({
+      //   type: "SUCCESS_ACHEIVED",
+      //   success: true,
+      // });
 
       // localStorage.removeItem("basket");
     } catch (error) {
@@ -83,7 +89,7 @@ function CheckoutPriceBox() {
     e.preventDefault();
 
     if (userInfo?.token) {
-      createOrder(e, basket, userInfo, orderTotal); // Deconstruct basket => then. set orderItems to basket
+      createOrder(e, basket, orderTotal); // Deconstruct basket => then. set orderItems to basket
     } else {
       history.push("/login");
     }

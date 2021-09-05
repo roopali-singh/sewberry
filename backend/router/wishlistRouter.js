@@ -52,7 +52,7 @@ wishlistRouter.delete(
       product: request.params.id,
     }).deleteOne(function (err, result) {
       if (err) {
-        response.status(400).send(err);
+        response.status(400).send({ message: err });
       }
       if (result) {
         response.status(201).send(result);
