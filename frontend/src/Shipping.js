@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 function Shipping() {
-  const [{ orderDetails, userInfo, basket }, dispatch] = useStateValue();
+  const [{ orderDetails }, dispatch] = useStateValue();
 
   var { id } = useParams();
 
