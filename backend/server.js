@@ -65,14 +65,12 @@ app.get("*", (request, response) =>
 
 // this middleware will catch error from userRouter as it was wraped in expressAsyncHandler
 app.use((error, request, response, next) => {
-  response
-    .status(500)
-    .send({
-      message:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
+  response.status(500).send({
+    message:
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message,
+  });
 });
 
 const port = process.env.PORT || 5000;

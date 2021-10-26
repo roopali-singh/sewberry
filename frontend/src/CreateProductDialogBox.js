@@ -34,7 +34,6 @@ function CreateProductDialogBox({ open, onClose }) {
         }
       );
 
-
       dispatch({
         type: "SUCCESS_ACHEIVED",
         success: true,

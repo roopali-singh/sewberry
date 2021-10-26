@@ -34,7 +34,6 @@ function EditProductDialogBox({ open, onClose, product }) {
         }
       );
 
-
       dispatch({
         type: "PRODUCT_DETAILS_SUCCESS",
         loading: false,

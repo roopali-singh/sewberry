@@ -8,17 +8,13 @@ const wishlistRouter = express.Router();
 /* Wishlist => 
 1) user info
 2) product info
-
 *WishlistIcon => 
 1) Adding
 2) Removing
-
 *NOT on WishlistScreen --
 onClick: add new to favourites
-
 *On WishlistScreen -- 
 onClick: deleteOne() the found favourite
-
 */
 
 wishlistRouter.post(
