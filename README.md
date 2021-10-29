@@ -1,5 +1,15 @@
 ﻿# Live Demo: [sewberry](https://storevalley.herokuapp.com/)
 # sewberry
+```
+For admin rights:
+email: roopali@gmail.com
+password: moon
+```
+```
+For customer interface:
+email: test@gmail.com
+password: made
+```
 
 It is a **E-commerce Webapp** built on `MERN stack` having the following functionalities:
 
