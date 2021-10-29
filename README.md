@@ -1,14 +1,16 @@
 ﻿# Live Demo: [sewberry](https://storevalley.herokuapp.com/)
 # sewberry
+
+**Please don't change the email address during editing the profile**
 ```
-For admin rights:
+For admin/seller rights:
 email: roopali@gmail.com
 password: moon
 ```
 ```
 For customer interface:
-email: test@gmail.com
-password: made
+email: oreo@gmail.com
+password: dog
 ```
 
 It is a **E-commerce Webapp** built on `MERN stack` having the following functionalities:
