@@ -11,9 +11,10 @@ password: dog
 ```
 
 ```
-It is a **E-commerce Webapp** built on `MERN stack` having the following functionalities:
+It is a E-commerce Webapp built on `MERN stack` having the following functionalities:
 
 For Customer-side Interface:
+
 - Home Page
 - Products details page
 - Login Functionality
