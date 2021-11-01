@@ -1,12 +1,7 @@
 ﻿# Live Demo: [sewberry](https://storevalley.herokuapp.com/)
 # sewberry
 
-**Please don't change the email address during editing the profile**
-```
-For admin/seller rights:
-email: roopali@gmail.com
-password: moon
-```
+**Contact for the admin rights**
 ```
 For customer interface:
 email: oreo@gmail.com
