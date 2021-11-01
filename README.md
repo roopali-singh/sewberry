@@ -13,19 +13,6 @@ password: dog
 ```
 It is a **E-commerce Webapp** built on `MERN stack` having the following functionalities:
 
-- Full User Interface for customer and seller
-- Uses MongoDb as database
-- The product details page
-- Login Functionality
-- Update Account
-- Create New Account
-- Basket Page
-- Checkout Page
-- Wishlist Page
-- Show order history to customers
-- Error Page in case of any failure
-- Completely Responsive
-
 For Customer-side Interface:
 - Home Page
 - Products details page
