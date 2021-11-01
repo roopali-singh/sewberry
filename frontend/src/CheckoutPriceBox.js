@@ -84,7 +84,7 @@ function CheckoutPriceBox() {
     e.preventDefault();
 
     if (userInfo?.token) {
-      createOrder(e, basket, orderTotal); // Deconstruct basket => then. set orderItems to basket
+      createOrder(e, ...basket, orderTotal); // Deconstruct basket => then. set orderItems to basket
     } else {
       history.push("/login");
     }

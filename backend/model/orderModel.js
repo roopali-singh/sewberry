@@ -33,11 +33,11 @@ const orderSchema = new mongoose.Schema(
 
     // paymentMethod: { type: String, required: true },
     orderTotal: { type: Number, required: true },
-    user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+    // user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
     isPaid: { type: Boolean, default: false },
     paidAt: { type: Date },
     isDelivered: { type: Boolean, default: false },
-    deliveredAt: { type: Date },
+    // deliveredAt: { type: Date },
   },
   {
     timestamps: true,

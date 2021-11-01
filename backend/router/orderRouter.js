@@ -14,6 +14,16 @@ orderRouter.post(
     } else {
       const newOrder = new Order({
         orderItems: request.body.orders,
+        // orderItems: {
+        //   name: request.body.orders.name,
+        //   image: request.body.orders.image,
+        //   alt: request.body.orders.alt,
+        //   countInStock: request.body.orders.countInStock,
+        //   price: {
+        //     lower: request.body.orders.price.lower,
+        //   },
+        // },
+
         shippingAddress: {
           firstName: request.user.firstName,
           lastName: request.user.lastName,
@@ -24,7 +34,7 @@ orderRouter.post(
           pin: request.user.pin,
         },
         orderTotal: request.body.orderTotal,
-        user: request.user._id,
+        // user: request.user._id,
       });
 
       // const createdOrder = await

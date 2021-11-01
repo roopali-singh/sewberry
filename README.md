@@ -1,13 +1,16 @@
 ﻿# Live Demo: [sewberry](https://storevalley.herokuapp.com/)
+
 # sewberry
 
-**Contact for the admin rights**
+**Contact to access the email info for admin/seller rights**
+
 ```
 For customer interface:
 email: oreo@gmail.com
 password: dog
 ```
 
+```
 It is a **E-commerce Webapp** built on `MERN stack` having the following functionalities:
 
 - Full User Interface for customer and seller
@@ -23,23 +26,44 @@ It is a **E-commerce Webapp** built on `MERN stack` having the following functio
 - Error Page in case of any failure
 - Completely Responsive
 
-Following will be the functionalities for the seller: 
+For Customer-side Interface:
+- Home Page
+- Products details page
+- Login Functionality
+- Create New Account
+- Edit/Update Profile info.
+- Wishlist page
+- Basket Page
+- Checkout Page
+- Show orders history
+- Completely Responsive
+
+
+For Seller-side Interface:
 
 - ORDERS
   - show all orders
-  - show all unpaid orders
-  - show all paid orders
-  - show all paid Not Delivered orders
-  - show all paid Delivered orders
+  - update the payment and delivery status of orders
+  - delete a order
+  - search through orders
 
 - PRODUCTS
   - show all products
   - create new product
   - Update product
   - delete a product
+  - search through products
+```
 
+> Deployed on _Heroku_
 
-Deployed on *Heroku*
+```
+Tech used:
+- MongoDb (for database)
+- Express && Node (for backend)
+- React (for frontend)
+- JWT (for authentication)
+```
 
 # Getting Started with Create React App
 
@@ -111,5 +135,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# sewberry
 
+# sewberry

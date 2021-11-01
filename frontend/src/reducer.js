@@ -164,11 +164,13 @@ const reducer = (state, action) => {
 
     case "USER_SIGNOUT":
       return {
+        ...state,
         userInfo: action.userInfo,
       };
 
     case "ORDER_CREATE_SUCCESS":
       return {
+        ...state,
         loading: action.loading,
         // success: action.success,
         order: action.order,
@@ -176,6 +178,7 @@ const reducer = (state, action) => {
 
     case "ORDER_CREATE_RESET":
       return {
+        ...state,
         order: action.order,
         // success: action.success,
       };
