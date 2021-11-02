@@ -33,8 +33,7 @@ function AccountInfo() {
       type: "USER_SIGNOUT",
       userInfo: {},
     });
-    window.location.replace("/login");
-    // history.replace("/login");
+    history.replace("/login");
   }
 
   // EDIT ACCOUNT INFO ////////////////////////////////

@@ -14,15 +14,6 @@ orderRouter.post(
     } else {
       const newOrder = new Order({
         orderItems: request.body.orders,
-        // orderItems: {
-        //   name: request.body.orders.name,
-        //   image: request.body.orders.image,
-        //   alt: request.body.orders.alt,
-        //   countInStock: request.body.orders.countInStock,
-        //   price: {
-        //     lower: request.body.orders.price.lower,
-        //   },
-        // },
 
         shippingAddress: {
           firstName: request.user.firstName,
@@ -34,7 +25,7 @@ orderRouter.post(
           pin: request.user.pin,
         },
         orderTotal: request.body.orderTotal,
-        // user: request.user._id,
+        user: request.user.id,
       });
 
       // const createdOrder = await
@@ -56,12 +47,15 @@ orderRouter.post(
   "/userOrders",
   isAuth,
   expressAsyncHandler(async (request, response) => {
-    const order = await Order.find({ user: request.user._id }).sort({
+    const order = await Order.find({ user: request.user.id }).sort({
       createdAt: -1,
     });
+    console.log("token => ", request.user.id);
     if (!order) {
+      console.log("NO NO NO");
       response.status(400).send({ message: "No orders yet" });
     } else {
+      console.log(order);
       response.status(201).send({ order });
     }
   })
