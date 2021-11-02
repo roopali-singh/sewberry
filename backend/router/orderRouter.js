@@ -50,12 +50,9 @@ orderRouter.post(
     const order = await Order.find({ user: request.user.id }).sort({
       createdAt: -1,
     });
-    console.log("token => ", request.user.id);
     if (!order) {
-      console.log("NO NO NO");
       response.status(400).send({ message: "No orders yet" });
     } else {
-      console.log(order);
       response.status(201).send({ order });
     }
   })
