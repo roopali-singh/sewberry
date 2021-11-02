@@ -2,14 +2,6 @@
 
 # sewberry
 
-**Contact to access the email info for admin/seller rights**
-
-```
-For customer interface:
-email: oreo@gmail.com
-password: dog
-```
-
 ```
 It is a E-commerce Webapp built on `MERN stack` having the following functionalities:
 
