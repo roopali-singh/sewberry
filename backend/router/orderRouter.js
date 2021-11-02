@@ -25,7 +25,7 @@ orderRouter.post(
           pin: request.user.pin,
         },
         orderTotal: request.body.orderTotal,
-        user: request.user.id,
+        // user: request.user.id,
       });
 
       // const createdOrder = await
