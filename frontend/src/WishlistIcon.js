@@ -4,11 +4,11 @@ import { useStateValue } from "./StateProvider";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import axios from "axios";
 
-function WishlistIcon({ product, forWishlistPageHeart }) {
-  const [{ wishlistBasket, userInfo, favourites, favouriteSuccess }, dispatch] =
-    useStateValue();
+function WishlistIcon({ product }) {
+  const [{ wishlistBasket, userInfo, favourites }, dispatch] = useStateValue();
 
   const [wishlistBasketCheck, setWishlistBasketCheck] = useState({});
+  // const [favouriteSuccessToggle, setFavouriteSuccessToggle] = useState(true);
 
   // useEffect(() => {
   //   localStorage.setItem("wishlistBasket", JSON.stringify(wishlistBasket));
@@ -32,21 +32,15 @@ function WishlistIcon({ product, forWishlistPageHeart }) {
         wishlistBasket?.find((wishlist) => wishlist?._id === product?._id)
       );
     }
-  }, [userInfo, wishlistBasket, favouriteSuccess]);
-
-  // useEffect(() => {
-  //   dispatch({
-  //     type: "FAVOURITE_SUCCESS_ACHEIVED",
-  //     loading: false,
-  //     favouriteSuccess: false,
-  //   });
-  // }, [wishlistBasketCheck]);
+  }, [userInfo, wishlistBasket, favourites]);
 
   //////////// CHOOSING REMOVE OR ADD IN FAOVRITES /////////////////////
 
   function loginUserHeart(e) {
     e.preventDefault();
-    if (forWishlistPageHeart) {
+    if (
+      favourites?.find((wishlist) => wishlist?.product?._id === product?._id)
+    ) {
       removeFromFavourites(product?._id);
     } else {
       addToFavourites(product?._id);
@@ -76,6 +70,8 @@ function WishlistIcon({ product, forWishlistPageHeart }) {
         loading: false,
         favouriteSuccess: true,
       });
+      loginUserFavourites();
+      // setFavouriteSuccessToggle((change) => !change);
     } catch (error) {
       dispatch({
         type: "REQUEST_FAIL",
@@ -101,11 +97,48 @@ function WishlistIcon({ product, forWishlistPageHeart }) {
           },
         }
       );
+      loginUserFavourites();
 
       dispatch({
         type: "FAVOURITE_SUCCESS_ACHEIVED",
         loading: false,
         favouriteSuccess: true,
+      });
+      // setFavouriteSuccessToggle((change) => !change);
+    } catch (error) {
+      dispatch({
+        type: "REQUEST_FAIL",
+        loading: false,
+        error:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  }
+
+  ///////////////// RELOADING WISHLIST ICON (after changing favourites) ///////////////////
+
+  // useEffect(() => {
+  //   if (userInfo?.token) {
+  async function loginUserFavourites() {
+    dispatch({
+      type: "REQUEST_SEND",
+      loading: true,
+      erorr: false,
+    });
+
+    try {
+      const { data } = await axios.get("/api/wishlist/list", {
+        headers: {
+          Authorization: `Bearer ${userInfo?.token}`,
+        },
+      });
+
+      dispatch({
+        type: "SHOW_ALL_FAVOURITES",
+        loading: false,
+        favourites: data,
       });
     } catch (error) {
       dispatch({
@@ -118,6 +151,9 @@ function WishlistIcon({ product, forWishlistPageHeart }) {
       });
     }
   }
+  // loginUserFavourites();
+  //   }
+  // }, [userInfo, favouriteSuccessToggle]);
 
   ///////////////////////// ADD WISHLIST TO CONTEXT API ///////////////////////////
 

@@ -6,7 +6,6 @@ import WishlistIcon from "./WishlistIcon";
 
 function CartProduct({ info, forShippingPage, forWishlistPage }) {
   const [{}, dispatch] = useStateValue();
-  const [add, setAdd] = useState(0);
 
   // useEffect(() => {
   //   localStorage.setItem("basket", JSON.stringify(basket));
