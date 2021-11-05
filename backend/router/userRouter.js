@@ -9,7 +9,7 @@ import { generateToken, isAuth } from "../utils.js";
 const userRouter = express.Router();
 // express.Router() =>  a function to make code Modular, instead of creating all routes in server.js we can define multiple files to have our routers...
 
-// nature of mongoosse operation is async => so define the funtion async
+// nature of mongoose operation is async => so define the funtion async
 // expressAsyncHandler => to handle the errors
 userRouter.get(
   "/seed",

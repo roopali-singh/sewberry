@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./CartProduct.css";
 import { useStateValue } from "./StateProvider";
 import { Link } from "react-router-dom";
@@ -6,6 +6,7 @@ import WishlistIcon from "./WishlistIcon";
 
 function CartProduct({ info, forShippingPage, forWishlistPage }) {
   const [{}, dispatch] = useStateValue();
+  const [add, setAdd] = useState(0);
 
   // useEffect(() => {
   //   localStorage.setItem("basket", JSON.stringify(basket));

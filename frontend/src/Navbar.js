@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { useStateValue } from "./StateProvider";
 
 function Navbar() {
-  const [{ basket }] = useStateValue();
+  const [{ basket, wishlistBasket, favourites, userInfo }] = useStateValue();
 
   const StyledBadge = withStyles((theme) => ({
     badge: {
@@ -36,8 +36,17 @@ function Navbar() {
           <span className="navbar__links hvr-buzz">ACCOUNT</span>
         </Link>
 
-        <Link to="/wishlist">
-          <span className="navbar__links hvr-buzz">WISHLIST</span>
+        <Link to="/wishlist" className="strong">
+          {/* <span className="navbar__links hvr-buzz">WISHLIST</span> */}
+          <StyledBadge
+            className="navbar__links nav__mobileSize hvr-buzz"
+            badgeContent={
+              !userInfo?.token ? wishlistBasket?.length : favourites?.length
+            }
+            color="secondary"
+          >
+            <span>WISHLIST</span>
+          </StyledBadge>
         </Link>
 
         <Link to="/orders">

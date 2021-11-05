@@ -39,10 +39,10 @@
 }
 
 .strong {
-  color: black;
+  color: black !important;
   text-decoration-line: none !important;
-  font-family: "Numans", sans-serif;
-  letter-spacing: 0.0625rem;
+  font-family: "Numans", sans-serif !important;
+  letter-spacing: 0.0625rem !important;
 }
 
 /* NAVBAR LINKS BUZZ ANIMATION(HOVER.CSS) */
