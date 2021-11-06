@@ -47,7 +47,7 @@ orderRouter.post(
   "/userOrders",
   isAuth,
   expressAsyncHandler(async (request, response) => {
-    const order = await Order.find({ user: request.user.id }).sort({
+    const order = await Order.find({ user: request.user._id }).sort({
       createdAt: -1,
     });
     if (!order) {

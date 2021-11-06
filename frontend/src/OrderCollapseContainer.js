@@ -21,6 +21,7 @@ function OrderCollapseContainer({ order, classes }) {
   const [openEditDialog, setOpenEditDialog] = useState(false);
   //   const [selectedValue, setSelectedValue] = useState();
   const orderId = order?._id;
+
   const orderEditInfo = {
     orderTotalInfo: order?.orderTotal,
     orderPaymentInfo: order?.isPaid,
