@@ -66,8 +66,12 @@ function PriceBox() {
       )}
 
       {/* /// ADD TO BASKET BUTTON ////////////////////////////////////////////////// */}
-      <button onClick={addToCart} disabled={productDetails?.countInStock <= 0}>
-        Add To Cart
+      <button
+        id="orderBtn2"
+        onClick={addToCart}
+        disabled={productDetails?.countInStock <= 0}
+      >
+        {productDetails?.countInStock <= 0 ? "Out of Stock" : "Add To Cart"}
       </button>
     </div>
   );

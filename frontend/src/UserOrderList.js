@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import "./UserOrderList.css";
 import { useStateValue } from "./StateProvider";
 import { Link } from "react-router-dom";
 
 function UserOrderList({ order }) {
-  const [{ basket }, dispatch] = useStateValue();
+  const [{}, dispatch] = useStateValue();
 
   function addToCart() {
     dispatch({
@@ -52,7 +52,13 @@ function UserOrderList({ order }) {
           })}
         </div>
 
-        <button onClick={addToCart}>Buy Again</button>
+        <button
+          onClick={addToCart}
+          id="orderBtn3"
+          disabled={order?.countInStock <= 0}
+        >
+          {order?.countInStock <= 0 ? "Out of Stock" : "Buy Again"}
+        </button>
       </div>
     </main>
   );

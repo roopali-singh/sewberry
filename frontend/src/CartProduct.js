@@ -91,7 +91,13 @@ function CartProduct({ info, forShippingPage, forWishlistPage, forCartPage }) {
           )}
 
           {forWishlistPage ? (
-            <button onClick={addToCart}>Add to Cart</button>
+            <button
+              id="orderBtn1"
+              onClick={addToCart}
+              disabled={info?.countInStock <= 0}
+            >
+              {info?.countInStock <= 0 ? "Out of Stock" : "Add to Cart"}
+            </button>
           ) : forShippingPage ? (
             <></>
           ) : (
