@@ -32,7 +32,7 @@ function CheckoutPriceBox() {
     }
   }, [order]);
 
-  async function createOrder(event, orders, orderTotal) {
+  async function createOrder(event, orders, user, orderTotal) {
     event.preventDefault();
     dispatch({
       type: "REQUEST_SEND",
@@ -45,7 +45,7 @@ function CheckoutPriceBox() {
         "/api/orders/create",
         {
           orders,
-          // user,
+          user,
           orderTotal,
         },
         {
@@ -84,7 +84,7 @@ function CheckoutPriceBox() {
     e.preventDefault();
 
     if (userInfo?.token) {
-      createOrder(e, basket, orderTotal); // Deconstruct basket => then. set orderItems to basket
+      createOrder(e, basket, userInfo, orderTotal); // Deconstruct basket => then. set orderItems to basket
     } else {
       history.push("/login");
     }
