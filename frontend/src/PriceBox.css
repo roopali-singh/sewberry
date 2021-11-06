@@ -64,12 +64,13 @@ button {
   font-weight: bolder;
 }
 
-/* button:disabled,
+button:disabled,
 button[disabled] {
   border: 1px solid #999999;
-  background-color: #cccccc;
+  background-color: #e0dddd;
+  /* background-color: #d8d4d4; */
   color: #666666;
-} */
+}
 
 /* FOR MOBILE USERS */
 

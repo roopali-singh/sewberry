@@ -71,7 +71,7 @@ function PriceBox() {
         onClick={addToCart}
         disabled={productDetails?.countInStock <= 0}
       >
-        {productDetails?.countInStock <= 0 ? "Out of Stock" : "Add To Cart"}
+        Add To Cart
       </button>
     </div>
   );
