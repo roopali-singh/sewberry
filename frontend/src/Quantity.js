@@ -44,7 +44,7 @@ function Quantity({
   }
 
   function removeQtyHandler() {
-    if (!(qty <= 0)) {
+    if (!(qty < 2)) {
       setQty((qty) => qty - 1);
     }
   }

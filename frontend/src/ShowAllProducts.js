@@ -199,7 +199,15 @@ function ShowAllProducts() {
                       <strong>{product?.name}</strong>
                     </StyledTableCell>
                     <StyledTableCell>{product?.alt}</StyledTableCell>
-                    <StyledTableCell>{product?.countInStock}</StyledTableCell>
+                    <StyledTableCell>
+                      {product?.countInStock === 0 ? (
+                        <strong style={{ color: "#db0c0c" }}>
+                          Out of Stock
+                        </strong>
+                      ) : (
+                        `${product?.countInStock}`
+                      )}
+                    </StyledTableCell>
 
                     <StyledTableCell>
                       <strong>
