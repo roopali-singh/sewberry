@@ -76,10 +76,23 @@ const reducer = (state, action) => {
 
     //ADD TO BASKET
     case "ADD_TO_BASKET":
-      return {
-        ...state,
-        basket: [...state.basket, action.items],
-      };
+      const foundInBasket = state?.basket?.find(
+        (item) => item?._id === action.items?._id
+      );
+
+      if (foundInBasket) {
+        return {
+          ...state,
+          basket: state?.basket?.map((product) =>
+            product?._id === foundInBasket?._id ? action.items : product
+          ),
+        };
+      } else {
+        return {
+          ...state,
+          basket: [...state.basket, action.items],
+        };
+      }
 
     //EMPTYING THE BASKET
     case "BASKET__EMPTY":
@@ -91,25 +104,30 @@ const reducer = (state, action) => {
     //REMOVE FROM BASKET
 
     case "REMOVE_FROM_BASKET":
-      const index = state.basket.findIndex(
-        (basketItem) => basketItem._id === action._id
-      );
-      const found = state.basket.find((item) => item._id === action._id);
-      let newBasket = [...state.basket];
+      // const index = state.basket.findIndex(
+      //   (basketItem) => basketItem._id === action._id
+      // );
+      // const found = state.basket.find((item) => item._id === action._id);
+      // let newBasket = [...state.basket];
 
-      if (index >= 0) {
-        found.countInStock = found.countInStock + 1;
-        // at index: {index} remove that element;
-        newBasket.splice(index, 1);
-      } else {
-        console.warn(
-          `Can't remove product with id: ${action._id} as its not in the basket`
-        );
-      }
+      // if (index >= 0) {
+      //   found.countInStock = found.countInStock + 1;
+      //   // at index: {index} remove that element;
+      //   newBasket.splice(index, 1);
+      // } else {
+      //   console.warn(
+      //     `Can't remove product with id: ${action._id} as its not in the basket`
+      //   );
+      // }
+
+      // return {
+      //   ...state,
+      //   basket: newBasket,
+      // };
 
       return {
         ...state,
-        basket: newBasket,
+        basket: state.basket.filter((item) => item?._id !== action?._id),
       };
 
     // ADDING AND REMOVIGN FROM THE WISHLIST ITEMS

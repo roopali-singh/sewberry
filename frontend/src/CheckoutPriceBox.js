@@ -11,7 +11,7 @@ function CheckoutPriceBox() {
     useStateValue();
 
   const amount = basket?.reduce(
-    (amount, item) => item?.price?.lower + amount,
+    (amount, item) => item?.price?.lower * item?.qty + amount,
     0
   );
   const discount = amount > 7000 ? 10 : 0;

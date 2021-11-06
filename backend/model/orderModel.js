@@ -18,6 +18,7 @@ const orderSchema = new mongoose.Schema(
         //   ref: "Product",
         //   required: true,
         // },
+        qty: { type: Number, required: 1, default: 1 },
       },
     ],
 

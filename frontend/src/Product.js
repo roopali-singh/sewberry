@@ -22,7 +22,8 @@ function Product({ product, forSlider, forShopScreen, forSale }) {
         alt: product?.alt,
         name: product?.name,
         price: product?.price,
-        countInStock: product?.countInStock - 1,
+        countInStock: product?.countInStock,
+        qty: product?.qty ? product?.qty : 1,
       },
     });
   }

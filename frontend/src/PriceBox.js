@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./PriceBox.css";
+import Quantity from "./Quantity";
 import { useStateValue } from "./StateProvider";
 
 function PriceBox() {
   const [{ productDetails }, dispatch] = useStateValue();
+  const [productQty, setProductQty] = useState(1);
 
   // useEffect(() => {
   //   localStorage.setItem("basket", JSON.stringify(basket));
@@ -18,7 +20,8 @@ function PriceBox() {
         alt: productDetails?.alt,
         name: productDetails?.name,
         price: productDetails?.price,
-        countInStock: productDetails?.countInStock - 1,
+        countInStock: productDetails?.countInStock,
+        qty: productQty,
       },
     });
   };
@@ -27,7 +30,7 @@ function PriceBox() {
     <div className="priceBox">
       {/* /// NORMAL PRICE FOR PRODUCT SCREEN ////////////////////////////////////// */}
 
-      <span className="priceBox__info">
+      <div className="priceBox__info">
         <span>Price</span>
         <strong>
           ₹
@@ -35,11 +38,11 @@ function PriceBox() {
             maximumFractionDigits: 2,
           })}
         </strong>
-      </span>
+      </div>
 
       {/* /// IN OR OUT OF STOCK ///////////////////////////////////////////////////// */}
 
-      <span className="priceBox__info">
+      <div className="priceBox__info">
         <span>Status </span>
         {productDetails?.countInStock > 0 ? (
           <span className="priceBox__info-inOut in-status-color">In Stock</span>
@@ -48,7 +51,19 @@ function PriceBox() {
             Out of Stock
           </span>
         )}
-      </span>
+      </div>
+
+      {/* /// Quantity to ADD/ REMOVE ///////////////////////////////////////////////////// */}
+      {productDetails?.countInStock > 0 && (
+        <div className="priceBox__info">
+          <span>Quantity </span>
+          <Quantity
+            // initialProductQty={1}
+            totalProductQty={productDetails?.countInStock}
+            passProductQty={setProductQty}
+          />
+        </div>
+      )}
 
       {/* /// ADD TO BASKET BUTTON ////////////////////////////////////////////////// */}
       <button onClick={addToCart} disabled={productDetails?.countInStock <= 0}>

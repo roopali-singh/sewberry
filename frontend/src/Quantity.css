@@ -1,0 +1,13 @@
+.quantity {
+  display: flex;
+  flex-direction: row;
+}
+
+.quantity__value {
+  padding: 7px;
+}
+
+.quantity__value--forCart {
+  padding: 7px;
+  margin-top: 10px;
+}

@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./CartProduct.css";
 import { useStateValue } from "./StateProvider";
 import { Link } from "react-router-dom";
 import WishlistIcon from "./WishlistIcon";
+import Quantity from "./Quantity";
 
-function CartProduct({ info, forShippingPage, forWishlistPage }) {
+function CartProduct({ info, forShippingPage, forWishlistPage, forCartPage }) {
   const [{}, dispatch] = useStateValue();
+  const [productQty, setProductQty] = useState(info?.qty ? info?.qty : 1);
 
   // useEffect(() => {
   //   localStorage.setItem("basket", JSON.stringify(basket));
@@ -20,7 +22,8 @@ function CartProduct({ info, forShippingPage, forWishlistPage }) {
         alt: info?.alt,
         name: info?.name,
         price: info?.price,
-        countInStock: info?.countInStock - 1,
+        countInStock: info?.countInStock,
+        qty: productQty,
       },
     });
   }
@@ -29,7 +32,7 @@ function CartProduct({ info, forShippingPage, forWishlistPage }) {
     dispatch({
       type: "REMOVE_FROM_BASKET",
       _id: info._id,
-      countInStock: info?.countInStock + 1,
+      // countInStock: info?.countInStock,
     });
   }
 
@@ -65,6 +68,27 @@ function CartProduct({ info, forShippingPage, forWishlistPage }) {
               maximumFractionDigits: 2,
             })}
           </div>
+
+          {forShippingPage && (
+            <div className="cartProduct__right-info">
+              <strong>Qty: </strong>
+              {info?.qty?.toLocaleString("en-IN", {
+                maximumFractionDigits: 2,
+              })}
+            </div>
+          )}
+
+          {forCartPage && (
+            <div className="cartProduct__right-info">
+              <Quantity
+                initialProductQty={productQty}
+                productInfo={info}
+                totalProductQty={info?.countInStock}
+                passProductQty={setProductQty}
+                forCartPage
+              />
+            </div>
+          )}
 
           {forWishlistPage ? (
             <button onClick={addToCart}>Add to Cart</button>

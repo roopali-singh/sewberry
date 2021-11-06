@@ -35,7 +35,7 @@ function CartScreen() {
               {basket?.length === 0 && <h2>Cart is empty</h2>}
 
               {basket?.map((item) => (
-                <CartProduct key={item?._id} info={item} />
+                <CartProduct key={item?._id} info={item} forCartPage />
               ))}
             </div>
 

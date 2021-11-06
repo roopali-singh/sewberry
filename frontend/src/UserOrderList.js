@@ -16,6 +16,7 @@ function UserOrderList({ order }) {
         name: order?.name,
         price: order?.price,
         countInStock: order?.countInStock - 1,
+        qty: order?.qty ? order?.qty : 1,
       },
     });
   }
@@ -40,6 +41,13 @@ function UserOrderList({ order }) {
         <div className="userOrder__right-price">
           ₹
           {order?.price?.lower?.toLocaleString("en-IN", {
+            maximumFractionDigits: 2,
+          })}
+        </div>
+
+        <div className="userOrder__right-price">
+          <strong>Qty: </strong>
+          {order?.qty?.toLocaleString("en-IN", {
             maximumFractionDigits: 2,
           })}
         </div>

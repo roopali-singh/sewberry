@@ -68,6 +68,10 @@ function OrderCollapseContainer({ order, classes }) {
                   <TableCell>{orderItem?.alt}</TableCell>
                 </TableRow>
                 <TableRow>
+                  <StyledTableHeadCell>OrderItem Qty</StyledTableHeadCell>
+                  <TableCell>{orderItem?.qty}</TableCell>
+                </TableRow>
+                <TableRow>
                   <StyledTableHeadCell>OrderItem Price</StyledTableHeadCell>
                   <TableCell>
                     <strong>
