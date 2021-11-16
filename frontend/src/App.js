@@ -42,7 +42,7 @@ function App() {
           </Route>
 
           <PrivateRoute path="/account/edit">
-            <AccountInfoEdit />
+            <AccountInfoEdit /> 
           </PrivateRoute>
 
           <PrivateRoute path="/account">
