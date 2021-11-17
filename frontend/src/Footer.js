@@ -27,17 +27,25 @@ function Footer() {
             <div className="footer__columnHeading">Connect with Us</div>
             <div className="footer__options">
               <a
-                href="https://www.facebook.com/Sewbery"
+                href="https://www.linkedin.com/in/roopalisingh-rs/"
                 target="_blank"
                 rel="noreferrer noopener"
               >
-                Facebook
+                LinkedIn
               </a>
             </div>
-            <div className="footer__options">Twitter</div>
             <div className="footer__options">
               <a
-                href="https://www.instagram.com/sewbery/"
+                href="https://twitter.com/RoopaliSingh_"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                Twitter
+              </a>
+            </div>
+            <div className="footer__options">
+              <a
+                href="https://www.instagram.com/codebird/"
                 target="_blank"
                 rel="noreferrer noopener"
               >
