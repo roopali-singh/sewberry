@@ -123,8 +123,8 @@ function WishlistIcon({ product }) {
   //   if (userInfo?.token) {
   async function loginUserFavourites() {
     dispatch({
-      type: "REQUEST_SEND",
-      loading: true,
+      type: "FAVORITE_REQUEST_SEND",
+      favoriteLoading: true,
       erorr: false,
     });
 

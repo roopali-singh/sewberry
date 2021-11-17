@@ -13,6 +13,7 @@ export const initialState = {
   orderDetails: {},
   userOrderInfo: {},
   loading: true,
+  favoriteLoading: true,
   error: false,
   success: false,
   // FROM THE ADMIN SIDE
@@ -48,6 +49,13 @@ const reducer = (state, action) => {
       return {
         ...state,
         loading: action.loading,
+        error: action.error,
+      };
+
+    case "FAVORITE_REQUEST_SEND":
+      return {
+        ...state,
+        favoriteLoading: action.favoriteLoading,
         error: action.error,
       };
 
