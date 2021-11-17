@@ -95,10 +95,9 @@ function ProductScreen(props) {
                 <li>lining: {productDetails?.description?.lining}</li>
               </ul>
             </div>
-
-            {/* PRODUCT STATUS */}
-            <PriceBox />
           </div>
+          {/* PRODUCT STATUS */}
+          <PriceBox />
         </div>
       )}
     </>
