@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import CartProduct from "./CartProduct";
 import "./Shipping.css";
 import { useStateValue } from "./StateProvider";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
 
 function Shipping() {
   const [{ orderDetails }, dispatch] = useStateValue();
+  const history = useHistory();
 
   var { id } = useParams();
 
@@ -77,6 +78,7 @@ function Shipping() {
       type: "BASKET__EMPTY",
       basket: [],
     });
+    history.replace("/account");
   }
 
   return (
