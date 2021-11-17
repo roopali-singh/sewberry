@@ -29,17 +29,19 @@ function Navbar() {
       </Link>
       <div className="navbar__options">
         <Link to="/products">
-          <span className="navbar__links hvr-buzz">SHOP</span>
+          <span className="navbar__links hover-underline-animation">SHOP</span>
         </Link>
 
         <Link to="/account">
-          <span className="navbar__links hvr-buzz">ACCOUNT</span>
+          <span className="navbar__links hover-underline-animation">
+            ACCOUNT
+          </span>
         </Link>
 
         <Link to="/wishlist" className="strong">
           {/* <span className="navbar__links hvr-buzz">WISHLIST</span> */}
           <StyledBadge
-            className="navbar__links nav__mobileSize hvr-buzz"
+            className="navbar__links nav__mobileSize hover-underline-animation"
             badgeContent={
               !userInfo?.token ? wishlistBasket?.length : favourites?.length
             }
@@ -51,7 +53,7 @@ function Navbar() {
 
         <Link to="/orders">
           <StyledBadge
-            className="navbar__links nav__mobileSize hvr-buzz"
+            className="navbar__links nav__mobileSize hover-underline-animation"
             badgeContent={basket?.length}
             color="secondary"
           >
