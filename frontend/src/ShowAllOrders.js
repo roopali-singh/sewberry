@@ -207,7 +207,9 @@ function ShowAllOrders() {
                       )}
                     </IconButton>
                   </StyledTableCell>
-                  <StyledTableCell>{order?.createdAt}</StyledTableCell>
+                  <StyledTableCell>
+                    {order?.createdAt?.split("T")[0]}
+                  </StyledTableCell>
                   <StyledTableCell>
                     <strong>
                       {capitalizeFirstLetter(order?.shippingAddress?.firstName)}{" "}

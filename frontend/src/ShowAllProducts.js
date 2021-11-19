@@ -199,7 +199,9 @@ function ShowAllProducts() {
                         )}
                       </IconButton>
                     </StyledTableCell>
-                    <StyledTableCell>{product?.createdAt}</StyledTableCell>
+                    <StyledTableCell>
+                      {product?.createdAt?.split("T")[0]}
+                    </StyledTableCell>
                     <StyledTableCell>
                       <strong>{product?.category}</strong>
                     </StyledTableCell>

@@ -15,7 +15,9 @@ function Orders({ products }) {
       {/* ////////////////// ORDER INFO //////////////////////// */}
       <main className="order__info">
         <div>
-          <small className="order__date">{products?.createdAt}</small>
+          <small className="order__date">
+            {products?.createdAt?.split("T")[0]}
+          </small>
         </div>
         <div>
           <small className="order__id">{products?._id}</small>
