@@ -17,8 +17,10 @@
 }
 
 .productShopScreen {
-  margin: 1%;
-  max-width: 23% !important;
+  /* margin: 1%; */
+  margin: 5%;
+  /* max-width: 23% !important; */
+  max-width: 100% !important;
   cursor: pointer;
   transition: transform 450ms;
   position: relative;

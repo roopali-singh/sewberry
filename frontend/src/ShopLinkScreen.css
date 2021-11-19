@@ -30,9 +30,15 @@
 
 .shop__products {
   /* width: 100%; */
-  display: flex;
+  /* display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-around; */
+  display: grid;
+  grid-template-columns: repeat(4, minmax(20%, 1fr));
+  justify-content: center;
+  /* align-items: center; */
+
+  /* place-items: center; */
   /* 
   display: grid;
   place-items: center center;

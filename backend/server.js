@@ -10,6 +10,7 @@ import orderRouter from "./router/orderRouter.js";
 import wishlistRouter from "./router/wishlistRouter.js";
 
 dotenv.config(); // to use .env file content
+
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
