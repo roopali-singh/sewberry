@@ -10,9 +10,9 @@ import orderBy from "lodash/orderBy";
 /// MATERIAL UI TABLES imports ////////////////
 import { withStyles, makeStyles, alpha } from "@material-ui/core/styles";
 
-import CheckCircleIcon from "@material-ui/icons/CheckCircle";
-import CancelIcon from "@material-ui/icons/Cancel";
-import { green } from "@material-ui/core/colors";
+// import CheckCircleIcon from "@material-ui/icons/CheckCircle";
+// import CancelIcon from "@material-ui/icons/Cancel";
+// import { green } from "@material-ui/core/colors";
 import Collapse from "@material-ui/core/Collapse";
 import IconButton from "@material-ui/core/IconButton";
 import Table from "@material-ui/core/Table";
@@ -33,6 +33,7 @@ function ShowAllProducts() {
     dispatch,
   ] = useStateValue();
 
+  const [open, setOpen] = useState(false);
   const [productId, setProductId] = useState("");
   const [sortOrder, setSortOrder] = useState();
   const [sortBy, setSortBy] = useState();
@@ -140,7 +141,15 @@ function ShowAllProducts() {
     setSortBy(prop);
   }
 
+  // OPEN COLLAPSE CONTAINER /////////////////////////////////////////////////////////////////////
+
+  function collapseContainer(id) {
+    setOpen((open) => !open);
+    setProductId(id);
+  }
+
   ///////////////////////////////////////////////////////////////////////////////////////////////
+
   return (
     <div className={classes.root}>
       {loading ? (
@@ -181,9 +190,9 @@ function ShowAllProducts() {
                       <IconButton
                         aria-label="expand row"
                         size="small"
-                        onClick={() => setProductId(product?._id)}
+                        onClick={() => collapseContainer(product?._id)}
                       >
-                        {productId === product?._id ? (
+                        {open && productId === product?._id ? (
                           <KeyboardArrowUpIcon />
                         ) : (
                           <KeyboardArrowDownIcon />
@@ -225,7 +234,7 @@ function ShowAllProducts() {
                       colSpan={9}
                     >
                       <Collapse
-                        in={productId === product?._id}
+                        in={open && productId === product?._id}
                         timeout="auto"
                         unmountOnExit
                       >

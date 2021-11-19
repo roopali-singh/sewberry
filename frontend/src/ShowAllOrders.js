@@ -32,6 +32,7 @@ function ShowAllOrders() {
     dispatch,
   ] = useStateValue();
 
+  const [open, setOpen] = useState(false);
   const [orderId, setOrderId] = useState("");
   const [sortOrder, setSortOrder] = useState();
   const [sortBy, setSortBy] = useState();
@@ -148,6 +149,13 @@ function ShowAllOrders() {
     setSortBy(prop);
   }
 
+  // OPEN COLLAPSE CONTAINER /////////////////////////////////////////////////////////////////////
+
+  function collapseContainer(id) {
+    setOpen((open) => !open);
+    setOrderId(id);
+  }
+
   ///////////////////////////////////////////////////////////////////////////////////////////////
 
   return (
@@ -189,9 +197,10 @@ function ShowAllOrders() {
                     <IconButton
                       aria-label="expand row"
                       size="small"
-                      onClick={() => setOrderId(order?._id)}
+                      // onClick={() => setOrderId(order?._id)}
+                      onClick={() => collapseContainer(order?._id)}
                     >
-                      {orderId === order?._id ? (
+                      {open && orderId === order?._id ? (
                         <KeyboardArrowUpIcon />
                       ) : (
                         <KeyboardArrowDownIcon />
@@ -245,7 +254,7 @@ function ShowAllOrders() {
                     colSpan={9}
                   >
                     <Collapse
-                      in={orderId === order?._id}
+                      in={open && orderId === order?._id}
                       timeout="auto"
                       unmountOnExit
                     >
