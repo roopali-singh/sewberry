@@ -54,7 +54,8 @@ function AccountInfoEdit() {
     address,
     city,
     state,
-    pin
+    pin,
+    admin
   ) {
     dispatch({
       type: "REQUEST_SEND",
@@ -72,6 +73,7 @@ function AccountInfoEdit() {
           city,
           state,
           pin,
+          admin,
         },
         {
           headers: {
@@ -105,7 +107,16 @@ function AccountInfoEdit() {
 
   function submitHandler(e) {
     e.preventDefault();
-    userRegister(firstName, lastName, email, address, city, state, pin);
+    userRegister(
+      firstName,
+      lastName,
+      email,
+      address,
+      city,
+      state,
+      pin,
+      userInfo?.isAdmin
+    );
   }
 
   function backToHome(e) {

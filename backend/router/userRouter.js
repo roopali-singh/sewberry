@@ -100,6 +100,7 @@ userRouter.put(
       editUser.city = request.body.city;
       editUser.state = request.body.state;
       editUser.pin = request.body.pin;
+      editUser.isAdmin = request.body.admin;
 
       const updatedUser = await editUser.save();
       response.send({
@@ -111,6 +112,7 @@ userRouter.put(
         city: updatedUser.city,
         state: updatedUser.state,
         pin: updatedUser.pin,
+        isAdmin: updatedUser.isAdmin,
         token: generateToken(updatedUser),
       });
     } else {
