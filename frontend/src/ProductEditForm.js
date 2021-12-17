@@ -15,7 +15,7 @@ function ProductEditForm({ product, createNewProduct, passFormData }) {
     !createNewProduct ? product?.image : ""
   );
   const [category, setCategory] = useState(
-    !createNewProduct ? product?.category : "Best Sellers"
+    !createNewProduct ? product?.category : "All Products"
   );
   const [name, setName] = useState(!createNewProduct ? product?.name : "");
   const [imageAlt, setImageAlt] = useState(
@@ -106,6 +106,10 @@ function ProductEditForm({ product, createNewProduct, passFormData }) {
       label: "New Arrivals",
     },
     {
+      value: "All Products",
+      label: "All Products",
+    },
+    {
       value: "Best Sellers",
       label: "Best Sellers",
     },
@@ -182,23 +186,23 @@ function ProductEditForm({ product, createNewProduct, passFormData }) {
               </option>
             ))}
           </TextField>
-          {createNewProduct && (
-            <>
-              <input
-                accept="image/*"
-                className={classes.input}
-                id="contained-button-file"
-                // multiple
-                type="file"
-                onChange={uploadFileHandler}
-              />
-              <label htmlFor="contained-button-file">
-                <Button variant="contained" color="primary" component="span">
-                  Upload Image
-                </Button>
-              </label>
-            </>
-          )}
+          {/* {createNewProduct && (
+            <> */}
+          <input
+            accept="image/*"
+            className={classes.input}
+            id="contained-button-file"
+            // multiple
+            type="file"
+            onChange={uploadFileHandler}
+          />
+          <label htmlFor="contained-button-file">
+            <Button variant="contained" color="primary" component="span">
+              {createNewProduct ? "Upload Image" : "Edit Image"}
+            </Button>
+          </label>
+          {/* </>
+          )} */}
         </div>
       </div>
 

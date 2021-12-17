@@ -71,7 +71,7 @@ productRouter.put(
   expressAsyncHandler(async (request, response) => {
     const changeProduct = await Product.findById(request.params.productId);
     if (changeProduct) {
-      // changeProduct.image = request.body.formData.imageSrc;
+      changeProduct.image = request.body.formData.imageSrc;
       changeProduct.category = request.body.formData.category;
       changeProduct.name = request.body.formData.name;
       changeProduct.alt = request.body.formData.imageAlt;
