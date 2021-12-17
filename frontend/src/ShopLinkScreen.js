@@ -123,7 +123,7 @@ function ShopLinkScreen() {
                 //   <Product key={product._id} product={product} forShopScreen />
                 // ))
                 products
-                  ?.filter((items) => items?.category === "Best Sellers")
+                  // ?.filter((items) => items?.category === "Best Sellers")
                   ?.map((product) => (
                     <Product
                       key={product._id}
@@ -137,7 +137,7 @@ function ShopLinkScreen() {
                 //   <Product key={product._id} product={product} forShopScreen />
                 // ))
                 products
-                  ?.filter((items) => items?.category === "Best Sellers")
+                  // ?.filter((items) => items?.category === "Best Sellers")
                   ?.map((product) => (
                     <Product
                       key={product._id}
